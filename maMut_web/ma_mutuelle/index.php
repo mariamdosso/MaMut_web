@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "./config/db.php"; // Connexion à la base de données
+require "./config/db.php"; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = trim(htmlspecialchars($_POST['name']));
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-        // Vérifier si l'email existe déjà
+        
         $query = $conn->prepare("SELECT * FROM user WHERE email = ?");
         $query->execute([$email]);
 
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['error'] = "Cet e-mail est déjà enregistré.";
         } else {
             try {
-                // Correction de la requête INSERT avec les bons placeholders
+                
                 $query = $conn->prepare("INSERT INTO user (name, email, password) VALUES (?, ?, ?)");
                 $query->execute([$name, $email, $hashed_password]);
 
