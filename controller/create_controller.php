@@ -3,7 +3,7 @@
 
 $message = '';
 
-if (isset($_POST['name']) && isset($_POST['password']) && isset($_POST['email']). (empty($_POST['name']) && isset($_POST['password']) && isset($_POST['email']))) {
+if (isset($_POST['name']) && isset($_POST['password']) && isset($_POST['email']). (empty($_POST['name']) && empty($_POST['password']) && empty($_POST['email']))) {
     $name = htmlspecialchars ($_POST['name']); 
     $email = htmlspecialchars($_POST['email']);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); 
