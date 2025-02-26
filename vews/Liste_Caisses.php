@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des Caisses</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body>
+
     <div class="container my-5">
         <h1 class="text-center mb-4">Gestion des Caisses</h1>
         <a href="ajouter_Caisse.php" class="btn btn-primary mb-3">Ajouter une Caisse</a>
@@ -35,9 +27,8 @@
         </table>
         <a href="creer_caisse.php" class="btn btn-success">Créer une Nouvelle Caisse</a>
     </div>
-</body>
-</html>
-<?php require_once __DIR__ . "/config/db.php"; ?>
+
+
 
 
 
