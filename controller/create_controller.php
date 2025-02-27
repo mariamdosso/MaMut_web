@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include("../config/db.php");
 
 $message = '';
@@ -12,7 +13,7 @@ if (isset($_POST['name'], $_POST['password'], $_POST['email'], $_POST['confirm_p
     $confirm_password = $_POST['confirm_password'];
 
     if ($password !== $confirm_password) {
-        echo "Les mots de passe ne correspondent pas.";
+        $_SESSION['message'] = "Les mots de passe ne correspondent pas.";
         exit(); 
     } 
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
@@ -26,10 +27,12 @@ if (isset($_POST['name'], $_POST['password'], $_POST['email'], $_POST['confirm_p
     ]);
 
     if ($result) {
+        $_SESSION['message'] = "inscription reussi";
         header('Location:http://localhost/MaMut_web/login');
-        exit;
+        exit();
     } else {
-        $message = 'Erreur lors de l\'inscription.';
+        $_SESSION['message'] = 'Erreur lors de l\'inscription.';
+
     }
 }
 ?>

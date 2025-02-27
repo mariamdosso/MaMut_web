@@ -1,4 +1,15 @@
 
+<?php
+session_start();  
+
+if (isset($_SESSION['message'])) {
+    
+    echo '<p>' . $_SESSION['message'] . '</p>';
+
+    unset($_SESSION['message']);
+}
+?>
+
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card p-4 shadow-sm" style="width: 25rem;">
             <h2 class="text-center mb-4">Connexion</h2>

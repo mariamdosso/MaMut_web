@@ -17,7 +17,7 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) (!isset($_POST['email
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['user_name'] = $user['user_name']; 
         header('Location:http://localhost/MaMut_web/tableau');
-        exit;
+        exit();
     } else {
         $message = 'Mauvais identifiants';
     }
