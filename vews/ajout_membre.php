@@ -8,7 +8,7 @@
 <body>
     <div class="container mt-5">
         <form method="POST" action="add_member.php">
-            <!-- Première ligne -->
+            
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="name" class="form-label">Nom :</label>

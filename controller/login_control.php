@@ -4,7 +4,7 @@ session_start();
 include("../config/db.php");
 $message = '';
 
-if (!empty($_POST['email']) && !empty($_POST['password'])) {
+if (!empty(isset($_POST['email']) && !empty(isset($_POST['password'])))) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
@@ -13,11 +13,10 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
     $stmt->execute(['user_email' => $email]);
     $user = $stmt->fetch();
 
-    exit;
     if ($user && password_verify($password, $user['user_password'])) {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['user_name'] = $user['user_name']; 
-        header('Location: tableau');
+        header('Location:vews/tableau');
         exit;
     } else {
         $message = 'Mauvais identifiants';
