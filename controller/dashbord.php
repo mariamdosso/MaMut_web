@@ -3,7 +3,7 @@ include("config/db.php");
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location:MaMut_web/login');
+    header('Location:http://localhost/MaMut_web/login');
     exit;
 }
 
