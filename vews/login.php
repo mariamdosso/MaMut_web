@@ -1,18 +1,22 @@
 
 <?php
-session_start();  
+// session_start();  
 
-if (isset($_SESSION['message'])) {
-    
-    echo '<p>' . $_SESSION['message'] . '</p>';
-
-    unset($_SESSION['message']);
-}
 ?>
 
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card p-4 shadow-sm" style="width: 25rem;">
             <h2 class="text-center mb-4">Connexion</h2>
+            <p class="text-danger fw-bold">
+               <?php 
+               if (isset($_SESSION['message'])) {
+    
+                echo  $_SESSION['message'];
+            
+                unset($_SESSION['message']);
+            }
+               ?>
+            </p>
             <form method="POST" action="controller/login_control.php">
                 <div class="mb-3">
                     <label for="email" class="form-label">E-mail</label>

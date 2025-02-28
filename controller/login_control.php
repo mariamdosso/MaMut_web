@@ -4,7 +4,7 @@ session_start();
 include("../config/db.php");
 $message = '';
 
-if (!empty($_POST['email']) && !empty($_POST['password'])) (!isset($_POST['email']) && !isset($_POST['password'])); {
+if ((!isset($_POST['email']) && !isset($_POST['password'])) && (!empty($_POST['email']) && !($_POST['password']))); {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
@@ -14,12 +14,13 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) (!isset($_POST['email
     $user = $stmt->fetch();
 
     if ($user && password_verify($password, $user['user_password'])) {
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['user_name'] = $user['user_name']; 
+        $_SESSION['user_info'] = $user;
+        $_SESSION['user_token'] = uniqid('', true); 
         header('Location:http://localhost/MaMut_web/tableau');
-        exit();
+        // exit();
     } else {
-        $message = 'Mauvais identifiants';
+        $_SESSION["message"] = 'Mauvais identifiants';
+        header('Location:http://localhost/MaMut_web/login');
     }
 }
 

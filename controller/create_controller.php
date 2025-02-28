@@ -14,6 +14,7 @@ if (isset($_POST['name'], $_POST['password'], $_POST['email'], $_POST['confirm_p
 
     if ($password !== $confirm_password) {
         $_SESSION['message'] = "Les mots de passe ne correspondent pas.";
+        header('Location:http://localhost/MaMut_web/register');
         exit(); 
     } 
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
@@ -32,6 +33,7 @@ if (isset($_POST['name'], $_POST['password'], $_POST['email'], $_POST['confirm_p
         exit();
     } else {
         $_SESSION['message'] = 'Erreur lors de l\'inscription.';
+        header('Location:http://localhost/MaMut_web/register');
 
     }
 }
