@@ -75,7 +75,7 @@ switch ($url){
         require("vews/home.php");   
         break;
     case '/MaMut_web/add_member':
-        require("vews/ajout_membre.php");   
+        require("vews/add_member.php");   
         break;
      case '/MaMut_web/caisse':
          require("vews/Liste_caisses.php");   

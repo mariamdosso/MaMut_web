@@ -1,14 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="container mt-5">
-        <form method="POST" action="add_member.php">
+
+    <div class="container mt-5 w-100 d-flex  justify-content-center">
+        <div class="card p-4 shadow-sm " style="width: 45rem;">
+            <h4 class="text-uppercase fw-bold text-center"> NOUVEAU MEMBRE </h4>
+            <h6 class="text-lowercase fw-bold text-center mt-4">veillez renseigner les champs ci dessous</h6>
             
+            <?php
+                 if (isset($_SESSION['errorMessage'])) {?>
+                 <p class=" alert alert-danger fw-bold">
+
+    
+              <?= $_SESSION['errorMessage'] ;?>
+                </p>
+                <?php
+                unset($_SESSION['errorMessage']);
+                } 
+            ?>
+            
+            
+            <?php
+                 if (isset($_SESSION['successMessage'])) {?>
+                 <p class ="alert alert-success fw-bold">
+    
+                <?=   $_SESSION['successMessage'] ;?>
+                </p>
+                <?php
+
+                unset($_SESSION['successMessage']);
+                } 
+            ?>
+
+            
+        <form method="POST" action="controller/add_member_controller.php" class="mt-6">
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="name" class="form-label">Nom :</label>
@@ -34,7 +56,12 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="genre" class="form-label">Genre :</label>
-                    <input type="text" class="form-control" name="genre" required>
+
+                    <input type="radio"  name="genre" value="femme" required>
+                    <label for="femme">femme </label>
+
+                    <input type="radio"  name="genre" value="homme" required>
+                    <label for="homme">Homme</label>
                 </div>
                 <div class="col-md-6">
                     <label for="ville" class="form-label">Ville :</label>
@@ -64,30 +91,27 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="role" class="form-label">Role :</label>
-                    <input type="text" class="form-control" name="role" required>
+            <div class="row mb-3 ">
+                <div class="col-md-6 ">
+                    <label for="role" class="form-label ">fonction :</label>
+                        <select id="fonction" name="fonction" required class="form-select">
+                            <option value="president">Membre</option>
+                            <option value="president">President</option>
+                            <option value="president">Secretaire generale</option>
+                            <option value="vice president">Vice President</option>
+                            <option value="tresorier">Tresorier</option>
+                            <option value="secretaire">Secretaire</option>
+                            <option value="autre">Autre</option>
+                        </select>
                 </div>
                 <div class="col-md-6">
                     <label for="email" class="form-label">Email :</label>
                     <input type="email" class="form-control" name="email" required>
                 </div>
             </div>
-
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="password" class="form-label">Mot de passe :</label>
-                    <input type="password" class="form-control" name="password" required>
+                <div class=" d-flex p-2 w-100 justify-content-center  ">
+                <button type="submit" class="btn btn-primary ">Ajouter</button>
                 </div>
-                <div class="col-md-6">
-                    <label for="confirm_password" class="form-label">Confirmer le mot de passe :</label>
-                    <input type="password" class="form-control" name="confirm_password" required>
-                </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Ajouter</button>
-        </form>
+         </form>
+       </div>
     </div>
-</body>
-</html>
