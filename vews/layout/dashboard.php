@@ -22,25 +22,25 @@
             </a>
             <ul class="collapse list-unstyled ps-3" id="dashboardMenu">
                 <li><a href="add_member" class="nav-link text-white"> ajouter</a></li>
-                <li><a href="caisse" class="nav-link text-white">lister</a></li>
+                <li><a href="member_list" class="nav-link text-white">lister</a></li>
             </ul>
         </li>
 
         <li>
             <a class="nav-link text-white" data-bs-toggle="collapse" href="#ordersMenu" role="button" aria-expanded="false" aria-controls="ordersMenu">
                 <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-                Orders
+                Evenements
             </a>
             <ul class="collapse list-unstyled ps-3" id="ordersMenu">
-                <li><a href="#" class="nav-link text-white">blablan</a></li>
-                <li><a href="#" class="nav-link text-white">lllllllllllllll</a></li>
+                <li><a href="add_event" class="nav-link text-white">ajouter</a></li>
+                <li><a href="event_list" class="nav-link text-white">lister</a></li>
             </ul>
         </li>
 
         <li>
             <a class="nav-link text-white" data-bs-toggle="collapse" href="#productsMenu" role="button" aria-expanded="false" aria-controls="productsMenu">
                 <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-                Products
+                Caisses
             </a>
             <ul class="collapse list-unstyled ps-3" id="productsMenu">
                 <li><a href="#" class="nav-link text-white">oooooooooooo</a></li>
@@ -65,7 +65,6 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 <?php
 $url = rtrim($_SERVER["REQUEST_URI"], "/"); 
@@ -80,18 +79,19 @@ switch ($url){
      case '/MaMut_web/caisse':
          require("vews/Liste_caisses.php");   
          break;
-    case '/MaMut_web/liste_member':
-        require("vews/Liste_des_membre.php");   
+    case '/MaMut_web/member_list':
+        require("vews/member_list.php");   
         break;
 
-    case '/MaMut_web/add_even':
-         require("vews/form_evenement.php");   
+    case '/MaMut_web/add_event':
+         require("vews/add_event.php");   
          break;
-    case '/MaMut_web/liste_even':
-         require("vews/liste_evenement.php");   
+    case '/MaMut_web/event_list':
+         require("vews/event_list.php");   
          break;
     default:
         require("vews/home.php");
 }
 ?>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>

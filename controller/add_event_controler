@@ -1,0 +1,43 @@
+<?php 
+session_start();
+include("../config/db.php");
+
+$message = '';
+
+if (isset($_POST['libelle'], $_POST['type'], $_POST['domaine'], $_POST['date_debut'] , $_POST['date_fin'], $_POST['participation'], $_POST['participation']) 
+    && !empty($_POST['libelle']) && !empty($_POST['type']) && !empty($_POST['domaine']) && !empty($_POST['date_debut'])   && !empty($_POST['date_fin']) && !empty($_POST['date_debut']) && !empty($_POST['participation'])) {
+
+    $libelle = htmlspecialchars($_POST['libelle']); 
+    $type = htmlspecialchars($_POST['type']);
+    $domaine = $_POST['domaine']; 
+    $date_debut = $_POST['date_debut'];
+    $date_fin = $_POST['date_fin'];
+    $periodicite = $_POST['periode'];
+    $participation = $_POST['participation'];
+
+
+
+    $sql = "INSERT INTO user (event_label,event_type, event_domaine,event_date_start,event_date_end,event_periodicity,event_contribution_amount) VALUES (:event_label, :event_type, :event_domaine, :event_date_start, :event_date_end, :event_periodicity, :event_contribution_amount) ";
+    $stmt = $pdo->prepare($sql);
+    $result = $stmt->execute([
+        
+          "event_label" => $libelle,
+         "event_type" =>  $type,
+         "event_domaine" => $domaine,
+         "event_date_start" => $date_debut,
+         "event_date_end" =>  $date_fin,
+         "event_periodicity" => $periodicite,
+         "event_contribution_amount" => $participation
+    ]);
+
+    if ($result) {
+        $_SESSION['message'] = "inscription reussi";
+        header('Location:http://localhost/MaMut_web/add_event');
+        exit();
+    } else {
+        $_SESSION['message'] = 'Erreur lors de l\'inscription.';
+        header('Location:http://localhost/MaMut_web/add_event');
+
+    }
+}
+?>
