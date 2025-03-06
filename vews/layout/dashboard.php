@@ -43,8 +43,8 @@
                 Caisses
             </a>
             <ul class="collapse list-unstyled ps-3" id="productsMenu">
-                <li><a href="#" class="nav-link text-white">oooooooooooo</a></li>
-                <li><a href="#" class="nav-link text-white">Mmmmmmmmmmmmm</a></li>
+                <li><a href="#" class="nav-link text-white">Ajouter</a></li>
+                <li><a href="#" class="nav-link text-white">Lister</a></li>
             </ul>
         </li>
 

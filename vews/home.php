@@ -1,5 +1,9 @@
+ 
+ <?php 
+require("controller/home_controller.php");
+?>
 
-    <div class="container-fluid">
+     <div class="container-fluid">
         <div class="row">
             <main class="col-md-10 ms-sm-auto px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -11,7 +15,12 @@
                         <div class="card text-white bg-primary mb-3">
                             <div class="card-body">
                                 <h5 class="card-title">Liste Membre</h5>
-                                <p class="card-text">120 inscrits</p>
+                                <p class="card-text">
+                                    <?php 
+                                    
+                                    echo "Nombre de membres : " . $members['total'];
+                                    ?>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -19,7 +28,12 @@
                         <div class="card text-white bg-success mb-3">
                             <div class="card-body">
                                 <h5 class="card-title">Liste Evenement</h5>
-                                <p class="card-text">3450 transactions</p>
+                                <p class="card-text">
+                                <?php 
+                                    
+                                    echo "Nombre des evenements : " . $events['total'];
+                                    ?>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -27,7 +41,12 @@
                         <div class="card text-white bg-warning mb-3">
                             <div class="card-body">
                                 <h5 class="card-title">Liste Caisse</h5>
-                                <p class="card-text">15 caisses</p>
+                                <p class="card-text">
+                                <?php 
+                                    
+                                    echo "Nombre de caisses : " . $fund['total'];
+                                    ?>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -37,34 +56,59 @@
                 <div class="mt-4">
                     <h4>Dernières Transactions</h4>
                     <table class="table table-striped">
+
+                    <tbody>
+            <?php  if (count($members)){ 
+                foreach($members as $member){
+                     ?>
+                <tr>
+                    <td> <?= $member["member_name"];?></td>
+                    <td><?= $member["firstname_member"];?> </td>
+                    <td><?= $member["date_birth_member"];?></td>
+                    <td><?= $member["contact_member"];?></td>
+                    <td><?= $member["gender_member"];?></td>
+                    <td><?= $member["member_city"];?></td>
+                    <td><?= $member["member_municipality"];?></td>
+                    <td><?= $member["member_district"];?></td>
+                    <td>
+                    
+                        <a href="modifier_membre.php?id=1" class="btn btn-warning btn-sm">Modifier</a>
+                        <a href="delete_membre.php?id=1" class="btn btn-danger btn-sm">Supprimer</a>
+                    </td>
+                </tr>
+                <?php
+                            }
+                        }
+                            ?>
+            </tbody>
                         <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nom</th>
-                                <th>Montant</th>
-                                <th>Date</th>
-                                <th>evenements</th>
-                            </tr>
+                        <?php  if (count($events)){ 
+                            foreach($events as $event){
+                        ?>
+                    <tr>
+                    <td> <?= $event["event_label"];?></td>
+                    <td><?= $event["event_type"];?> </td>
+                    <td><?= $event["event_domaine"];?></td>
+                    <td><?= $event["event_date_start"];?></td>
+                    <td><?= $event["event_date_end"];?></td>
+                    <td><?= $event["event_periodicity"];?></td>
+                    <td><?= $event["event_contribution_amount"];?></td>
+                    <td>
+                    
+                        <a href="modifier_membre.php?id=1" class="btn btn-warning btn-sm">Modifier</a>
+                        <a href="supprimer_membre.php?id=1" class="btn btn-danger btn-sm">Supprimer</a>
+                        </td>
+                        </tr>
+                        <?php
+                             }
+                            }
+                        ?>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Jean Dupont</td>
-                                <td>250 €</td>
-                                <td>01/03/2025</td>
-                                <td>bapteme</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Marie Curie</td>
-                                <td>430 €</td>
-                                <td>02/03/2025</td>
-                                <td>mariage</td>
-                            </tr>
-                        </tbody>
+                        
                     </table>
                 </div>
             </main>
         </div>
-    </div> 
-    
+    </div>  
+ 
+
