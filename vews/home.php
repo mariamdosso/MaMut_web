@@ -1,6 +1,6 @@
  
  <?php 
-require("controller/home_controller.php");
+    require("controller/home_controller.php");
 ?>
 
      <div class="container-fluid">
@@ -53,7 +53,7 @@ require("controller/home_controller.php");
                 </div>
                 
                  
-                <div class="mt-4">
+                <!-- <div class="mt-4">
                     <h4>Dernières Transactions</h4>
                     <table class="table table-striped">
 
@@ -106,7 +106,7 @@ require("controller/home_controller.php");
                         </thead>
                         
                     </table>
-                </div>
+                </div> -->
             </main>
         </div>
     </div>  

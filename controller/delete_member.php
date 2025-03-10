@@ -1,16 +1,23 @@
 <?php
-include "../db.php"; // Connexion à la base de données
+require 'fonction_controller.php';  
 
-// Vérifier si un ID est passé
-if (!isset($_GET['id']) || empty($_GET['id'])) {
-    die("ID du membre manquant !");
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    if ('deleteMembre'($id)) {
+        echo "<script>
+                Swal.fire({
+                    title: 'Supprimé !',
+                    text: 'Le membre a été supprimé avec succès.',
+                    icon: 'success'
+                }).then(() => {
+                    window.location.href = 'dashboard.php'; 
+                });
+              </script>";
+    } else {
+        echo "<script>
+                Swal.fire('Erreur', 'Impossible de supprimer ce membre.', 'error');
+              </script>";
+    }
 }
-
-$id = (int) $_GET['id']; // Sécurisation de l'ID
-
-// Supprimer le membre
-$deleteQuery = $pdo->prepare("DELETE FROM membres WHERE id = :id");
-$deleteQuery->execute(['id' => $id]);
-
-echo "<script>alert('Membre supprimé avec succès !'); window.location.href='member_list.php';</script>";
 ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

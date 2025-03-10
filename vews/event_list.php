@@ -31,8 +31,8 @@ require("controller/event_list_controller.php");
                     <td><?= $event["event_contribution_amount"];?></td>
                     <td>
                     
-                        <a href="modifier_membre.php?id=1" class="btn btn-warning btn-sm">Modifier</a>
-                        <a href="supprimer_membre.php?id=1" class="btn btn-danger btn-sm">Supprimer</a>
+                        <a href="modifier?id=1" class="btn btn-warning btn-sm">Modifier</a>
+                        <a href="delete_member.php?id=1" class="btn btn-danger btn-sm">Supprimer</a>
                     </td>
                 </tr>
                 <?php

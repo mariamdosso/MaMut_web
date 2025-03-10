@@ -30,14 +30,14 @@
 
             
 
-        <form method="POST" action="controller/add_event_controller.php">
+        <form method="POST" action="controller/add_event_controler.php">
             <div class="mb-3">
                 <label class="form-label">Libellé</label>
-                <input type="text" name="libelle" class="form-control" required >">
+                <input type="text" name="libelle" class="form-control" required >
             </div>
             <div class="mb-3">
                 <label class="form-label">Type</label>
-                <input type="text" name="type" class="form-control" required?>">
+                <input type="text" name="type" class="form-control" required?>
             </div>
             <div class="mb-3">
                 <label class="form-label">Domaine</label>
@@ -58,7 +58,7 @@
             <div class="mb-3">
                 <input type="date" name="periode" > Periodicite
             </div>
-            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <button type="submit" class="btn btn-primary">ajouter</button>
         </form>
         </div>
     </div>

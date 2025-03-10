@@ -1,6 +1,8 @@
 <main class="d-flex flex-nowrap">
   <h1 class="visually-hidden">Sidebars examples</h1>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark min-vh-100" style="width: 280px;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <span class="fs-4">Mon Espace</span>
@@ -65,7 +67,6 @@
     </div>
 </div>
 
-
 <?php
 $url = rtrim($_SERVER["REQUEST_URI"], "/"); 
 switch ($url){
@@ -89,9 +90,13 @@ switch ($url){
     case '/MaMut_web/event_list':
          require("vews/event_list.php");   
          break;
+    case '/MaMut_web/modifier':
+        require("vews/edit_member.php");   
+         break;
+         
     default:
         require("vews/home.php");
 }
 ?>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
