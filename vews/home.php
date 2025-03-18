@@ -18,7 +18,7 @@
                                 <p class="card-text">
                                     <?php 
                                     
-                                    echo "Nombre de membres : " . $members['total'];
+                                    echo "Nombre de membres : " . $members['total']??0;
                                     ?>
                                 </p>
                             </div>
@@ -31,7 +31,7 @@
                                 <p class="card-text">
                                 <?php 
                                     
-                                    echo "Nombre des evenements : " . $events['total'];
+                                    echo "Nombre des evenements : " . $events['total']??0;
                                     ?>
                                 </p>
                             </div>
@@ -44,7 +44,7 @@
                                 <p class="card-text">
                                 <?php 
                                     
-                                    echo "Nombre de caisses : " . $fund['total'];
+                                    echo "Nombre de caisses : " . $fund['total']??0;
                                     ?>
                                 </p>
                             </div>

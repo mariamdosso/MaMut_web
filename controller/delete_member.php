@@ -3,21 +3,29 @@ require 'fonction_controller.php';
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    if ('deleteMembre'($id)) {
-        echo "<script>
-                Swal.fire({
-                    title: 'Supprimé !',
-                    text: 'Le membre a été supprimé avec succès.',
-                    icon: 'success'
-                }).then(() => {
-                    window.location.href = 'dashboard.php'; 
-                });
-              </script>";
-    } else {
-        echo "<script>
-                Swal.fire('Erreur', 'Impossible de supprimer ce membre.', 'error');
-              </script>";
-    }
+   
+$resultat =  deleteMembre($id) ;
+    echo "Le membre supprimer est : $resultat ";
+    header('Location:http://localhost/MaMut_web/member_list');
+
 }
+// if (deleteMembre($id)) {
+//              echo "<script>
+//                    Swal.fire({
+//                          title: 'Modifié !',
+//                          text: 'Le membre a été mis à jour avec succès.',
+//                          icon: 'success'
+//                      }).then(() => {
+//                         window.location.href = 'modifier'; 
+//                     });
+//                   </script>";
+//          } else {
+//             echo "<script>
+//                     Swal.fire('Erreur', 'La modification a échoué.', 'error');
+//                   </script>";
+//         }
+
+     ?>
+    
+    
 ?>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

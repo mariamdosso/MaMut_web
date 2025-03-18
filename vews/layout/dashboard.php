@@ -68,7 +68,12 @@
 </div>
 
 <?php
-$url = rtrim($_SERVER["REQUEST_URI"], "/"); 
+$url = $_SERVER["REQUEST_URI"];
+$path = parse_url($url, PHP_URL_PATH); // Removes query parameters
+$url =rtrim($path, "/") ; 
+if (strpos($url, '/MaMut_web/controller/') === 0) {
+    return false;
+}
 switch ($url){
 
     case '/MaMut_web/Home':
@@ -77,6 +82,9 @@ switch ($url){
     case '/MaMut_web/add_member':
         require("vews/add_member.php");   
         break;
+    case '/MaMut_web/remove_member':
+            require("controller/delete_member.php");   
+            break;
      case '/MaMut_web/caisse':
          require("vews/Liste_caisses.php");   
          break;

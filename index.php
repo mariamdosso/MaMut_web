@@ -15,9 +15,12 @@ session_start();
 <?php
 
 $url = rtrim($_SERVER["REQUEST_URI"], "/");
+
+if (strpos($url, '/MaMut_web/controller/') === 0) {
+    return;
+}
 if (isset($_SESSION["user_token"]) ){
 require("vews/layout/dashboard.php");
-die();
 } else{
     switch ($url){
 

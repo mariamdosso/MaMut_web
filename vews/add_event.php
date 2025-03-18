@@ -14,7 +14,10 @@
                 unset($_SESSION['errorMessage']);
                 } 
             ?>
-            
+            <?Php 
+            var_dump($_SERVER["REQUEST_URI"] );
+            var_dump(__DIR__);
+            ?>
             
             <?php
                  if (isset($_SESSION['successMessage'])) {?>
@@ -30,7 +33,7 @@
 
             
 
-        <form method="POST" action="controller/add_event_controler.php">
+        <form method="POST" action="controller/add_event_controller.php" class="mt-6">
             <div class="mb-3">
                 <label class="form-label">Libellé</label>
                 <input type="text" name="libelle" class="form-control" required >

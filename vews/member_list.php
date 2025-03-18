@@ -36,8 +36,8 @@ require("controller/member_list_controller.php");
                     <td><?= $member["member_district"];?></td>
                     <td>
                     
-                        <a href="modifier_membre.php?id=1" class="btn btn-warning btn-sm">Modifier</a>
-                        <a href="supprimer_membre.php?id=1" class="btn btn-danger btn-sm">Supprimer</a>
+                        <a href="modifier?id=<?=$member['member_id'] ?>" class="btn btn-warning btn-sm">Modifier</a>
+                        <a href="remove_member?id=<?=$member['member_id'] ?>" class="btn btn-danger btn-sm">Supprimer</a>
                     </td>
                 </tr>
                 <?php

@@ -1,6 +1,8 @@
 <?php 
-session_start();
 include("../config/db.php");
+if (!$pdo) {
+    die("Erreur de connexion à la base de données !");
+}
 
 $message = '';
 
@@ -20,7 +22,7 @@ if (
     if (!isset($_SESSION['user_id'])) {
         $_SESSION['message'] = "Erreur : utilisateur non connecté.";
         header('Location: http://localhost/MaMut_web/add_event');
-        exit();
+        // exit();
     }
     
     $user_id = $_SESSION['user_id'];  
@@ -43,11 +45,11 @@ if (
     if ($result) {
         $_SESSION['message'] = "Événement ajouté avec succès.";
         header('Location: http://localhost/MaMut_web/add_event');
-        exit();
+        // exit();
     } else {
         $_SESSION['message'] = "Erreur lors de l'ajout de l'événement.";
         header('Location: http://localhost/MaMut_web/add_event');
-        exit();
+        // exit();
     }
 }
     $sql = "SELECT event.*, user.user_name, user.user_email 
