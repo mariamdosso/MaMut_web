@@ -98,6 +98,13 @@ switch ($url){
     case '/MaMut_web/event_list':
          require("vews/event_list.php");   
          break;
+    case '/MaMut_web/update_event':
+        require("vews/edit_event.php");   
+        break;
+    case '/MaMut_web/remove_event':
+        require("controller/delete_event_controller.php");   
+        break;
+
     case '/MaMut_web/modifier':
         require("vews/edit_member.php");   
          break;

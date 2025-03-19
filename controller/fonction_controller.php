@@ -1,6 +1,6 @@
 <?php
 
-include("config/db.php");  
+include("../config/db.php");  
 
 function deleteMembre($id) {
     global $pdo;  
@@ -49,6 +49,48 @@ function updateMember($pdo, $data) {
         ":profession" => htmlspecialchars(trim($data['profession'])),
         ":fonction" => htmlspecialchars(trim($data['fonction'])),
         ":email" => htmlspecialchars(trim($data['email'])),
+        ":id" => (int) $data['id']
+    ]);
+}
+
+function deleteEvent($id) {
+    global $pdo;  
+    $sql = "DELETE FROM event WHERE event_id='$id'";
+    $stmt = $pdo->prepare($sql);
+    return $stmt->execute();
+}
+
+function getEventById($pdo, $id) {
+    if ($id <= 0) return null;
+
+    $sql = "SELECT * FROM event WHERE event_id = :id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['id' => $id]);
+    return $stmt->fetch(PDO::FETCH_OBJ);
+}
+
+
+function updateEvent($pdo, $data) {
+    $sql =" UPDATE event SET 
+    event_label = :libelle,
+    event_type = :type,
+    event_domain = :domaine,
+    event_date_start = :date_debut,
+    event_date_end = :date_fin,
+    event_periodicity = :participation,
+    event_contribution_amount = :periode,
+    user_id = :id WHERE event_id ";
+
+    $stmt = $pdo->prepare($sql);
+
+    return $stmt->execute([
+        ":libelle" => htmlspecialchars(trim($data['libelle'])),
+        ":type" => htmlspecialchars(trim($data['type'])),
+        ":domaine" => $data['domaine'],
+        ":date_debut" => $data['date_debut'],
+        ":date_fin" => $data['date_fin'],
+        ":participation" => htmlspecialchars(trim($data['participation'])),
+        ":periode" => htmlspecialchars(trim($data['periode'])),
         ":id" => (int) $data['id']
     ]);
 }

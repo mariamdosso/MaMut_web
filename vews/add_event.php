@@ -14,10 +14,6 @@
                 unset($_SESSION['errorMessage']);
                 } 
             ?>
-            <?Php 
-            var_dump($_SERVER["REQUEST_URI"] );
-            var_dump(__DIR__);
-            ?>
             
             <?php
                  if (isset($_SESSION['successMessage'])) {?>

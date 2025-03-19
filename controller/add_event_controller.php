@@ -1,10 +1,16 @@
 <?php 
+session_start();
 include("../config/db.php");
-if (!$pdo) {
-    die("Erreur de connexion à la base de données !");
-}
 
 $message = '';
+
+if (!isset($_SESSION['user_info']['user_id'])) {
+    $_SESSION['message'] = "Erreur : utilisateur non connecté.";
+    header('Location: http://localhost/MaMut_web/login.php'); 
+    exit;
+}
+
+$user_id = $_SESSION['user_info']['user_id']; 
 
 if (
     isset($_POST['libelle'], $_POST['type'], $_POST['domaine'], $_POST['date_debut'], $_POST['date_fin'], $_POST['periode'], $_POST['participation']) 
@@ -18,14 +24,6 @@ if (
     $date_fin = $_POST['date_fin'];
     $periodicite = $_POST['periode'];
     $participation = $_POST['participation'];
-
-    if (!isset($_SESSION['user_id'])) {
-        $_SESSION['message'] = "Erreur : utilisateur non connecté.";
-        header('Location: http://localhost/MaMut_web/add_event');
-        // exit();
-    }
-    
-    $user_id = $_SESSION['user_id'];  
 
     $sql = "INSERT INTO event (event_label, event_type, event_domain, event_date_start, event_date_end, event_periodicity, event_contribution_amount, user_id) 
             VALUES (:event_label, :event_type, :event_domain, :event_date_start, :event_date_end, :event_periodicity, :event_contribution_amount, :user_id)";
@@ -44,19 +42,17 @@ if (
 
     if ($result) {
         $_SESSION['message'] = "Événement ajouté avec succès.";
-        header('Location: http://localhost/MaMut_web/add_event');
-        // exit();
     } else {
         $_SESSION['message'] = "Erreur lors de l'ajout de l'événement.";
-        header('Location: http://localhost/MaMut_web/add_event');
-        // exit();
+        // print_r($stmt->errorInfo()); 
+        // exit;
     }
+    
+    header('Location: http://localhost/MaMut_web/add_event');
+    exit;
 }
-    $sql = "SELECT event.*, user.user_name, user.user_email 
-        FROM event 
-        INNER JOIN user ON event.user_id = user.id";
 
-    $stmt = $pdo->query($sql);
-    $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+$sql = "SELECT event.*, user.user_name, user.user_email FROM event INNER JOIN user ON event.user_id = user.id";
+$stmt = $pdo->query($sql);
+$events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
