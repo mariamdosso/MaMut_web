@@ -7,3 +7,5 @@ $sql = "SELECT * FROM member";
     $stmt->execute();
     $members = $stmt->fetchAll();
     // var_dump($members);
+
+    

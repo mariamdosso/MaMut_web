@@ -52,7 +52,7 @@ if (
     exit;
 }
 
-$sql = "SELECT event.*, user.user_name, user.user_email FROM event INNER JOIN user ON event.user_id = user.id";
+$sql = "SELECT event.*, user.user_name, user.user_email FROM event INNER JOIN user ON event.user_id = user.user_id";
 $stmt = $pdo->query($sql);
 $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>

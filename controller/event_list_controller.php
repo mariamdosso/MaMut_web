@@ -7,3 +7,5 @@ $sql = "SELECT * FROM event";
     $stmt->execute();
     $events = $stmt->fetchAll();
     // var_dump($event);
+
+    
