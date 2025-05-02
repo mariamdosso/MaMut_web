@@ -36,6 +36,8 @@
             <ul class="collapse list-unstyled ps-3" id="ordersMenu">
                 <li><a href="add_event" class="nav-link text-white">ajouter</a></li>
                 <li><a href="event_list" class="nav-link text-white">lister</a></li>
+                <li><a href="select_event_participant" class="nav-link text-white">selection de participants</a></li>
+                <li><a href="cotisation_suivie" class="nav-link text-white">Suivie de cotisation</a></li>
             </ul>
         </li>
 
@@ -108,6 +110,14 @@ switch ($url){
     case '/MaMut_web/modifier':
         require("vews/edit_member.php");   
          break;
+
+    case '/MaMut_web/select_event_participant':
+        require("vews/select_participant.php");   
+        break;
+
+    case '/MaMut_web/cotisation_suivie':
+        require("vews/suivie_cotisation.php");   
+        break;
          
     default:
         require("vews/home.php");

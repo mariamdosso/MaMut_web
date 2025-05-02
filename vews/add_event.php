@@ -57,6 +57,21 @@
             <div class="mb-3">
                 <input type="date" name="periode" > Periodicite
             </div>
+
+            <!-- <div class="mb-3">
+                <label class="form-label">Cotisation ?</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                         <input class="form-check-input" type="radio" name="cotisation" id="cotisationOui" value="1" required onclick="afficherMembres(true)">
+                <label class="form-check-label" for="cotisationOui">Oui</label>
+                    </div>
+                        <div class="form-check form-check-inline">
+                         <input class="form-check-input" type="radio" name="cotisation" id="cotisationNon" value="0" onclick="afficherMembres(false)">
+                <label class="form-check-label" for="cotisationNon">Non</label>
+                     </div>
+                         </div>
+            </div> -->
+
             <button type="submit" class="btn btn-primary">ajouter</button>
         </form>
         </div>

@@ -46,4 +46,21 @@ require("controller/member_list_controller.php");
                             ?>
             </tbody>
         </table>
-    </div>
+        <?php $membres_ajour = $pdo->query("SELECT * FROM event WHERE event_contribution_amount = TRUE")?>;
+
+        <h2>Membres à jour</h2>
+        <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+        </tr>
+     <?php while ($membre = $membres_ajour->fetch()) { ?>
+        <tr>
+            <td><?= $membre['member_id'] ?></td>
+            <td><?= $membre['member_name'] ?></td>
+        </tr>
+     <?php } ?>
+    </table>
+
+
+</div>
