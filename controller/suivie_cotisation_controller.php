@@ -1,12 +1,23 @@
 <?php
-        // $stmt = $pdo->prepare("SELECT member_id, member_name FROM member");
-        // $stmt->execute();
-        // $membres = $stmt->fetchAll();
+include("../config/db.php"); 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $cotisation = $_POST['cotisation'];
 
-        // foreach ($membres as $membre) {
-        //   echo '<div class="form-check">';
-        //   echo '<input class="form-check-input" type="checkbox" name="membres[]" value="'.$membre['member_id'].'" id="membre'.$membre['menber_id'].'">';
-        //   echo '<label class="form-check-label" for="membre'.$membre['member_id'].'">'.$membre['member_name'].'</label>';
-        //   echo '</div>';
-        }
-        ?>
+  if ($cotisation === 'oui') {
+    if (!empty($_POST['member'])) {
+      $membres = $_POST['member'];
+
+      foreach ($membres as $member_id) {
+        $stmt = $pdo->prepare("INSERT INTO participation (member_id, added_date) VALUES (:member_id, :added_date");
+        $stmt->execute([$member_id]);
+      }
+
+      echo "Cotisation enregistrée pour les membres sélectionnés.";
+    } else {
+      echo "Aucun membre sélectionné.";
+    }
+  } else {
+    echo "Pas de cotisation.";
+  }
+}
+?>

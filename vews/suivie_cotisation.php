@@ -3,7 +3,7 @@ include("config/db.php");
 ?>
 <div class="container mt-5 w-100 d-flex justify-content-center">
   <div class="card p-4 shadow-sm" style="width: 45rem;">
-    <form action="controller/add_event_controller.php" method="POST">
+    <form action="controller/suivie_cotisation_controller.php" method="POST">
       
       <div class="mb-3">
         <label class="form-label">Libellé</label>
@@ -41,11 +41,11 @@ include("config/db.php");
         <label class="form-label">Cotisation ?</label>
         <div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="cotisation" value="1" onclick="afficherMembres(true)" required>
+            <input class="form-check-input" type="radio" name="cotisation" value="oui" onclick="afficherMembres(true)" required>
             <label class="form-check-label">Oui</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="cotisation" value="0" onclick="afficherMembres(false)">
+            <input class="form-check-input" type="radio" name="cotisation" value="non" onclick="afficherMembres(false)">
             <label class="form-check-label">Non</label>
           </div>
         </div>
@@ -60,9 +60,9 @@ include("config/db.php");
   </div>
 </div>
 
-<!-- JS pour afficher/masquer la liste -->
-<!-- <script>
+<!-- JS pour afficher/masquer la liste  -->
+ <script>
 function afficherMembres(afficher) {
   document.getElementById("listeMembres").style.display = afficher ? "block" : "none";
-} --
-</script> -->
+} 
+</script>
