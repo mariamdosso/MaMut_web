@@ -4,6 +4,9 @@
         <h2>creer un événement</h2>
 
         <?php
+
+        include("config/db.php");
+        $result = $pdo->query("SELECT * FROM member");
                  if (isset($_SESSION['errorMessage'])) {?>
                  <p class=" alert alert-danger fw-bold">
 
@@ -58,6 +61,23 @@
                 <input type="date" name="periode" > Periodicite
             </div>
 
+                <label>Sélectionner les membres :</label><br>
+
+                <?php
+                $result = $pdo->query("SELECT member_id, member_name FROM member");
+                while ($row = $result->fetch()) {
+                    echo "
+                    <div class='form-check'>
+                    <input class='form-check-input' type='checkbox' name='membres[]' value='{$row['member_id']}' id='membre{$row['member_id']}'>
+                    <label class='form-check-label' for='membre{$row['member_id']}'>
+                        {$row['member_name']}
+                    </label>
+                    </div>
+                    ";
+                }
+                ?>
+                <br><br>
+
             <!-- <div class="mb-3">
                 <label class="form-label">Cotisation ?</label>
                     <div>
@@ -74,6 +94,7 @@
 
             <button type="submit" class="btn btn-primary">ajouter</button>
         </form>
+        <?php $pdo = null; ?>
         </div>
     </div>
 

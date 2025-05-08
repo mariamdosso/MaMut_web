@@ -1,7 +1,9 @@
 
-
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="card p-4 shadow-sm" style="width: 25rem;">
+        <div class="text-center mb-4">
+            <h1 class="welcome-text">Creer votre compte sur MA-MUT 👋</h1>
+        </div>
+    <div class="container d-flex justify-content-center align-items-center vh-100  bg-info">
+        <div class="card p-4 shadow-sm bg-light" style="width: 25rem;">
             <h2 class="text-center mb-4">Créer un compte</h2>
             <?php
                 session_start();  

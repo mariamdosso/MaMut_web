@@ -3,9 +3,12 @@
 // session_start();  
 
 ?>
+        <div class="text-center mb-4">
+            <h1 class="welcome-text">Bienvenue sur MA-MUT 👋</h1>
+        </div>
+    <div class="container d-flex justify-content-center align-items-center vh-100 bg-info">
 
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="card p-4 shadow-sm" style="width: 25rem;">
+        <div class="card p-4 shadow-sm bg-light" style="width: 25rem;">
             <h2 class="text-center mb-4">Connexion</h2>
             <p class="text-danger fw-bold">
                <?php 
