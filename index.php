@@ -7,7 +7,9 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <script src="assets/js/bootstrap.bundle.js" defer> </script>
+   <script src="assets/js/popper.min.js" defer> </script>
 </head>
 
 <body>
@@ -36,7 +38,7 @@ require("vews/layout/dashboard.php");
 }
 
 ?>
-   <script src="assets/js/bootstrap.bundle.min.js"> </script>
+   
 </body>
 
 </html>

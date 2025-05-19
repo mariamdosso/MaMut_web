@@ -71,15 +71,15 @@ function getEventById($pdo, $id) {
 
 
 function updateEvent($pdo, $data) {
-    $sql =" UPDATE event SET 
-    event_label = :libelle,
-    event_type = :type,
-    event_domain = :domaine,
-    event_date_start = :date_debut,
-    event_date_end = :date_fin,
-    event_periodicity = :participation,
-    event_contribution_amount = :periode,
-    user_id = :id WHERE event_id ";
+    $sql = "UPDATE event SET 
+        event_label = :libelle,
+        event_type = :type,
+        event_domain = :domaine,
+        event_date_start = :date_debut,
+        event_date_end = :date_fin,
+        event_periodicity = :participation,
+        event_contribution_amount = :periode
+        WHERE event_id = :event_id";
 
     $stmt = $pdo->prepare($sql);
 
@@ -91,8 +91,7 @@ function updateEvent($pdo, $data) {
         ":date_fin" => $data['date_fin'],
         ":participation" => htmlspecialchars(trim($data['participation'])),
         ":periode" => htmlspecialchars(trim($data['periode'])),
-        ":id" => (int) $data['id']
+        ":event_id" => (int) $data['id']
     ]);
 }
 
-?>

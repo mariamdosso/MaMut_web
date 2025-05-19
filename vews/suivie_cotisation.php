@@ -49,13 +49,24 @@ include("config/db.php");
             <label class="form-check-label">Non</label>
           </div>
         </div>
+
+                  <label>Sélectionner les membres :</label><br>
+                      <?php
+                      $result = $pdo->query("SELECT member_id, member_name FROM member");
+                      while ($row = $result->fetch()) {
+                          echo "
+                          <div class='form-check'>
+                          <input class='form-check-input' type='checkbox' name='membres[]' value='{$row['member_id']}' id='membre{$row['member_id']}'>
+                          <label class='form-check-label' for='membre{$row['member_id']}'>
+                              {$row['member_name']}
+                          </label>
+                          </div>
+                          ";
+                      }
+                      ?>
+                      <br><br>
         <button type="submit" class="btn btn-primary mt-3">Créer l'événement</button>
       </div>
-
-      <div >
-        <label class="form-label">Membres à cotiser :</label>
-      </div> 
-      <a href="member_listt?id=<?=$member['member_id'] ?>" class="btn btn-warning btn-sm">selection des membres</a>
     </form>
   </div>
 </div>

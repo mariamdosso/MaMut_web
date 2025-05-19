@@ -53,12 +53,12 @@
                 <label class="form-label">Date de fin</label>
                 <input type="date" name="date_fin" class="form-control" required >
             </div>
-            <div class="mb-3">
-                <input type="number" name="participation" > Participation requise
-            </div>
 
             <div class="mb-3">
                 <input type="date" name="periode" > Periodicite
+            </div>
+            <div class="mb-3">
+                <input type="number" name="participation" > Participation requise
             </div>
 
                 <label>Sélectionner les membres :</label><br>

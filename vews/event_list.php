@@ -27,9 +27,9 @@ require("controller/event_list_controller.php");
                     <td><?= $event["event_domain"];?></td>
                     <td><?= $event["event_date_start"];?></td>
                     <td><?= $event["event_date_end"];?></td>
-                    <td><?= $event["event_contribution_amount"];?></td>
                     <td><?= $event["event_periodicity"];?></td>
-                    
+                    <td><?= $event["event_contribution_amount"];?></td>
+                    <td>
                         <a href="update_event?id=<?=$event['event_id'] ?>" class="btn btn-warning btn-sm">Modifier</a>
                         <a href="remove_event?id=<?=$event['event_id'] ?>" class="btn btn-danger btn-sm">Supprimer</a>
                     </td>
@@ -41,4 +41,3 @@ require("controller/event_list_controller.php");
             </tbody>
         </table>
     </div>
-

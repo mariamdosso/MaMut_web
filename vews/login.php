@@ -4,7 +4,7 @@
 
 ?>
         <div class="text-center mb-4">
-            <h1 class="welcome-text">Bienvenue sur MA-MUT 👋</h1>
+            <h1 class="welcome-text test-danger">Bienvenue sur MA-MUT 👋</h1>
         </div>
     <div class="container d-flex justify-content-center align-items-center vh-100 bg-info">
 

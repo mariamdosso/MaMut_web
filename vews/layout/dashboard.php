@@ -1,8 +1,9 @@
 <main class="d-flex flex-nowrap">
   <h1 class="visually-hidden">Sidebars examples</h1>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-
+<?php
+// session_destroy()
+ ?>
+  <!-- <script src="assets/js/bootstrap.bunddle.js"></script> -->
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark min-vh-100" style="width: 280px;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <span class="fs-4">Mon Espace</span>
@@ -11,14 +12,14 @@
     <ul class="nav nav-pills flex-column mb-auto">
         
         <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">
+            <a href="Home" class="nav-link active" aria-current="page">
                 <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
                 Acceuil
             </a>
         </li>
 
         <li>
-            <a class="nav-link text-white" data-bs-toggle="collapse" href="#dashboardMenu" role="button" aria-expanded="false" aria-controls="dashboardMenu">
+            <a class="nav-link text-white" data-bs-toggle="collapse" href="#dashboardMenu" role="button" aria-expanded="true" aria-controls="dashboardMenu">
                 <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
                 Membre
             </a>
@@ -36,7 +37,6 @@
             <ul class="collapse list-unstyled ps-3" id="ordersMenu">
                 <li><a href="add_event" class="nav-link text-white">ajouter</a></li>
                 <li><a href="event_list" class="nav-link text-white">lister</a></li>
-                <li><a href="select_event_participant" class="nav-link text-white">selection de participants</a></li>
                 <li><a href="cotisation_suivie" class="nav-link text-white">Suivie de cotisation</a></li>
             </ul>
         </li>
@@ -47,8 +47,9 @@
                 Caisses
             </a>
             <ul class="collapse list-unstyled ps-3" id="productsMenu">
-                <li><a href="#" class="nav-link text-white">Ajouter</a></li>
-                <li><a href="#" class="nav-link text-white">Lister</a></li>
+                <li><a href="add_fund" class="nav-link text-white">Ajouter</a></li>
+                <li><a href="fund" class="nav-link text-white">Lister</a></li>
+                <li><a href="cash_flow" class="nav-link text-white">flux</a></li>
             </ul>
         </li>
 
@@ -64,7 +65,7 @@
             <li><a class="dropdown-item" href="#">Settings</a></li>
             <li><a class="dropdown-item" href="#">Profile</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
+            <li><a class="dropdown-item" href="#">Se deconnecter</a></li>
         </ul>
     </div>
 </div>
@@ -87,8 +88,8 @@ switch ($url){
     case '/MaMut_web/remove_member':
             require("controller/delete_member.php");   
             break;
-     case '/MaMut_web/caisse':
-         require("vews/Liste_caisses.php");   
+     case '/MaMut_web/fund':
+         require("vews/fund_liste.php");   
          break;
     case '/MaMut_web/member_list':
         require("vews/member_list.php");   
@@ -97,6 +98,11 @@ switch ($url){
     case '/MaMut_web/add_event':
          require("vews/add_event.php");   
          break;
+
+    case '/MaMut_web/cash_flow':
+        require("vews/add_cash_flow.php");   
+        break;
+
     case '/MaMut_web/event_list':
          require("vews/event_list.php");   
          break;
@@ -110,6 +116,10 @@ switch ($url){
     case '/MaMut_web/modifier':
         require("vews/edit_member.php");   
          break;
+
+    case '/MaMut_web/add_fund':
+        require("vews/add_fund.php");   
+        break;
 
     case '/MaMut_web/select_event_participant':
         require("vews/select_participant.php");   
@@ -125,3 +135,5 @@ switch ($url){
 ?>
 </main>
 
+
+<!-- #region -->
