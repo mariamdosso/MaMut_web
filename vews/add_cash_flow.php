@@ -21,8 +21,8 @@ include("config/db.php");
             <div class="mb-3">
                 <label class="form-label">Type :</label>
                 <select class="form-select" name="type">
-                    <option value="Entrée">Entrée</option>
-                    <option value="Sortie">Sortie</option>
+                    <option value="entrer">Entrée</option>
+                    <option value="sortie">Sortie</option>
                 </select>
             </div>
 

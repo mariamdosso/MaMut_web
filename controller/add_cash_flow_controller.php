@@ -11,20 +11,35 @@ if (
     !empty($_POST['date_operation']) &&
     !empty($_POST['fund_id'])
 ) {
-    // Récupération des données
+    
     $description = $_POST['description'];
     $montant = $_POST['montant'];
     $type = $_POST['type'];
     $date_operation = $_POST['date_operation'];
     $fund_id = $_POST['fund_id'];
 
-    // Préparer et exécuter l'insertion
-    $stmt = $pdo->prepare("INSERT INTO `cash flow` (description_cash_flow, amount_cash_flow, type_cash_flow, date_cash_flow, fund_id) 
+    $stmt = $pdo->prepare("INSERT INTO cash_flow (description_cash_flow, amount_cash_flow, type_cash_flow, date_cash_flow, fund_id) 
                            VALUES (?, ?, ?, ?, ?)");
 
     $result = $stmt->execute([$description, $montant, $type, $date_operation, $fund_id]);
 
     if ($result) {
+        if ($type == "entrer"){
+        $sql = "UPDATE fund
+                SET tatal_amount_fund =  tatal_amount_fund + :montant
+                WHERE fund_id = :fund_id";
+            }else {
+                $sql = "UPDATE fund
+                SET tatal_amount_fund =  tatal_amount_fund - :montant
+                WHERE fund_id = :fund_id";
+            }
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':montant' => $montant,
+            ':fund_id' => $fund_id
+        ]);
+
+
         $_SESSION['successMessage'] = "Flux ajouté avec succès !";
         header('Location: http://localhost/MaMut_web/cash_flow');  
         exit();
