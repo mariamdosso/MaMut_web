@@ -58,14 +58,12 @@
     <div class="dropdown">
         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong>mdo</strong>
+            <strong><?= $_SESSION['user_info']['user_name'];?></strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
             <li><a class="dropdown-item" href="#">Profile</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Se deconnecter</a></li>
+            <li><a class="dropdown-item" href="destroy">Se deconnecter</a></li>
         </ul>
     </div>
 </div>
@@ -97,6 +95,10 @@ switch ($url){
 
     case '/MaMut_web/add_event':
          require("vews/add_event.php");   
+         break;
+
+    case '/MaMut_web/destroy':
+         require("controller/destroy.php");   
          break;
 
     case '/MaMut_web/cash_flow':
