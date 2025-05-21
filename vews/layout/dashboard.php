@@ -1,8 +1,10 @@
 <main class="d-flex flex-nowrap">
-  <h1 class="visually-hidden">Sidebars examples</h1>
-<?php
+   <?php
 // session_destroy()
- ?>
+require_once("config/db.php");
+ ?> 
+  <h1 class="visually-hidden">Sidebars examples</h1>
+
   <!-- <script src="assets/js/bootstrap.bunddle.js"></script> -->
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark min-vh-100" style="width: 280px;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -89,6 +91,7 @@ switch ($url){
      case '/MaMut_web/fund':
          require("vews/fund_liste.php");   
          break;
+
     case '/MaMut_web/member_list':
         require("vews/member_list.php");   
         break;

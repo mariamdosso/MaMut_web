@@ -1,11 +1,38 @@
 <?php
 // Connexion
-include("config/db.php");
+// include("config/db.php");
 ?>
 
 <div class="container d-flex justify-content-center align-items-center vh-100 bg-secondary">
     <div class="card p-4 shadow-lg bg-white rounded-4" style="width: 26rem;">
         <h2 class="mb-4 text-center">Ajouter un flux</h2>
+
+            <?php
+                 if (isset($_SESSION['errorMessage'])) {?>
+                 <p class=" alert alert-danger fw-bold">
+
+    
+              <?= $_SESSION['errorMessage'] ;?>
+                </p>
+                <?php
+                unset($_SESSION['errorMessage']);
+                } 
+            ?>
+            
+            
+            <?php
+                 if (isset($_SESSION['successMessage'])) {?>
+                 <p class ="alert alert-success fw-bold">
+    
+                <?=   $_SESSION['successMessage'] ;?>
+                </p>
+                <?php
+
+                unset($_SESSION['successMessage']);
+                } 
+            ?>
+
+
         <form action="controller/add_cash_flow_controller.php" method="POST">
             
             <div class="mb-3">
