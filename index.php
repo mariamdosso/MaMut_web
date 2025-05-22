@@ -8,9 +8,11 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/select2.min.css">
     <script src="assets/js/bootstrap.bundle.js" defer> </script>
    <script src="assets/js/popper.min.js" defer> </script>
    <script src="assets/js/jquery-3.6.0.min.js" defer> </script>
+   <script src="assets/js/select2.min.js" defer> </script>
 </head>
 
 <body>
