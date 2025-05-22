@@ -1,11 +1,17 @@
 $(document).ready(function() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> d5d9bf2 ( alimentation de caisse a parti de participation d'un event)
     $('#participants').select2({
         placeholder: "Choisissez les membres",
         allowClear: true
     });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d5d9bf2 ( alimentation de caisse a parti de participation d'un event)
     $('#participationCheck').on('change', function() {
         if ($(this).is(':checked')) {
             $('#participantsDiv').slideDown();
@@ -14,6 +20,7 @@ $(document).ready(function() {
             $('#participants').val(null).trigger('change');
         }
     });
+<<<<<<< HEAD
 
     $('#eventForm').on('submit', function(e) {
         e.preventDefault();
@@ -49,4 +56,6 @@ $(document).ready(function() {
             }
         });
     });
+=======
+>>>>>>> d5d9bf2 ( alimentation de caisse a parti de participation d'un event)
 });
