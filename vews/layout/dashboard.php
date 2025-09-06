@@ -1,8 +1,8 @@
+
 <main class="d-flex flex-nowrap">
   <h1 class="visually-hidden">Sidebars examples</h1>
-<?php
-// session_destroy()
- ?>
+
+
   <!-- <script src="assets/js/bootstrap.bunddle.js"></script> -->
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark min-vh-100" style="width: 280px;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -38,6 +38,7 @@
                 <li><a href="add_event" class="nav-link text-white">ajouter</a></li>
                 <li><a href="event_list" class="nav-link text-white">lister</a></li>
                 <li><a href="cotisation_suivie" class="nav-link text-white">Suivie de cotisation</a></li>
+                <li><a href="paiement" class="nav-link text-white">paye une participation</a></li>
             </ul>
         </li>
 
@@ -63,10 +64,26 @@
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
             <li><a class="dropdown-item" href="#">Profile</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="destroy">Se deconnecter</a></li>
+            <li><a class="dropdown-item" href="login">Se deconnecter</a></li>
         </ul>
     </div>
 </div>
+
+<script>
+//On sélectionne tous les liens du menu
+const links = document.querySelectorAll('.nav-link');
+
+// On parcourt chaque lien
+links.forEach(link => {
+  link.addEventListener('click', function() {
+    // 1. Retirer "active" de tous les liens
+    links.forEach(l => l.classList.remove('active'));
+
+    // 2. Ajouter "active" au lien cliqué
+    this.classList.add('active');
+  });
+});
+</script>
 
 <?php
 $url = $_SERVER["REQUEST_URI"];
@@ -94,11 +111,15 @@ switch ($url){
         break;
 
     case '/MaMut_web/add_event':
-         require("vews/add_event.php");   
+         require("vews/add_event.php");  
          break;
 
-    case '/MaMut_web/destroy':
-         require("controller/destroy.php");   
+     case '/MaMut_web/paiement ':
+         require("vews/paiement.php");
+         break;
+
+    case '/MaMut_web/login':
+         require("vews/login.php");   
          break;
 
     case '/MaMut_web/cash_flow':
@@ -136,6 +157,3 @@ switch ($url){
 }
 ?>
 </main>
-
-
-<!-- #region -->

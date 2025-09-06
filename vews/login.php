@@ -1,11 +1,9 @@
-
-
-        <div class="container d-flex justify-content-center align-items-center vh-100 bg-light">
+<div class="container d-flex justify-content-center align-items-center vh-100 bg-light">
   <div class="card p-4 shadow-lg border-0" style="width: 26rem;">
     <div class="text-center mb-4">
-      <h1 class="fw-bold text-primary">Bienvenue sur MA-MUT 👋</h1>
+      <h3 class="fw-bold text-primary">Bienvenue sur MA-MUT 👋</h3>
     </div>
-    <h2 class="text-center mb-3 text-secondary">Connexion</h2>
+    <h4 class="text-center mb-3 text-secondary">Connexion</h4>
     <p class="text-danger fw-semibold text-center">
       <?php 
         if (isset($_SESSION['message'])) {
@@ -42,8 +40,4 @@ function togglePassword() {
 </script>
 
 
-
-
-
-
-
+<
