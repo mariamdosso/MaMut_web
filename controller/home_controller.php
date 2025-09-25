@@ -1,7 +1,7 @@
 <?php  
     include("config/db.php");
 
-    $queryMembers = $pdo->query("SELECT COUNT(*) as total FROM member");
+    $queryMembers = $pdo->query("SELECT COUNT(*) as total FROM adherent");
     $members = $queryMembers->fetch(PDO::FETCH_ASSOC);
 
     
