@@ -30,11 +30,44 @@ require("controller/member_list_controller.php");
                                 <li><strong>Quartier :</strong> <?= $member["member_district"];?></li>
                             </ul>
 
-                            <div class="d-flex justify-content-center gap-2 mt-3">
-                                <a href="modifier?id=<?=$member['member_id']?>" class="btn btn-warning btn-sm">✏️ Modifier</a>
-                                <a href="remove_member?id=<?=$member['member_id']?>" class="btn btn-danger btn-sm">🗑️ Supprimer</a>
-                                <button class="btn btn-info btn-sm btn-details" data-id="<?=$member['member_id']?>">ℹ️ Détails</button>
-                            </div>
+                            <!-- Ajoute Font Awesome dans ton <head> -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<div class="d-flex justify-content-center gap-2 mt-3">
+    <!-- Bouton Modifier -->
+    <a href="modifier?id=<?=$member['member_id']?>" 
+       class="btn btn-warning btn-sm" 
+       data-bs-toggle="tooltip" 
+       data-bs-placement="top" 
+       title="Modifier ce membre">
+        ✏️
+    </a>
+
+    <!-- Bouton Supprimer -->
+    <a href="remove_member?id=<?=$member['member_id']?>" 
+       class="btn btn-danger btn-sm" 
+       data-bs-toggle="tooltip" 
+       data-bs-placement="top" 
+       title="Supprimer ce membre">
+        🗑️
+    </a>
+
+    <!-- Bouton Détails -->
+    <button class="btn btn-info btn-sm btn-details" 
+            data-id="<?=$member['member_id']?>"
+            data-bs-toggle="tooltip" 
+            data-bs-placement="top" 
+            title="Voir les détails du membre">
+        ℹ️
+    </button>
+</div>
+<!-- Script Bootstrap pour activer les tooltips -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+  [...tooltipTriggerList].map(el => new bootstrap.Tooltip(el));
+</script>
+
                         </div>
                     </div>
                 </div>

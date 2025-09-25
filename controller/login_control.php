@@ -1,27 +1,29 @@
 <?php
 session_start(); 
-
 include("../config/db.php");
-$message = '';
 
-if ((!isset($_POST['email']) && !isset($_POST['password'])) && (!empty($_POST['email']) && !($_POST['password']))); {
-    $email = $_POST['email'];
+if (isset($_POST['login'], $_POST['password']) && !empty($_POST['login']) && !empty($_POST['password'])) {
+    $login = $_POST['login'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM user WHERE user_email = :user_email";
+    $sql = "SELECT * FROM user WHERE login = :login";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute(['user_email' => $email]);
+    $stmt->execute(['login' => $login]);
     $user = $stmt->fetch();
 
-    if ($user && password_verify($password, $user['user_password'])) {
+    if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_info'] = $user;
         $_SESSION['user_token'] = uniqid('', true); 
-        header('Location:http://localhost/MaMut_web/tableau');
-        // exit();
+        header('Location: http://localhost/MaMut_web/tableau');
+        exit();
     } else {
         $_SESSION["message"] = 'Mauvais identifiants';
-        header('Location:http://localhost/MaMut_web/login');
+        header('Location: http://localhost/MaMut_web/login');
+        exit();
     }
+} else {
+    $_SESSION["message"] = 'Veuillez remplir tous les champs';
+    header('Location: http://localhost/MaMut_web/login');
+    exit();
 }
-
 ?>

@@ -1,9 +1,10 @@
+<?php ob_start();?>
 
 <main class="d-flex flex-nowrap">
   <h1 class="visually-hidden">Sidebars examples</h1>
 
 
-  <!-- <script src="assets/js/bootstrap.bunddle.js"></script> -->
+  <script src="assets/js/bootstrap.bundle.js"></script>
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark min-vh-100" style="width: 280px;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <span class="fs-4">Mon Espace</span>
@@ -59,27 +60,21 @@
     <div class="dropdown">
         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong><?= $_SESSION['user_info']['user_name'];?></strong>
+            <strong><?= $_SESSION['user_info']['login'];?></strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
             <li><a class="dropdown-item" href="#">Profile</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="login">Se deconnecter</a></li>
+            <li><a class="dropdown-item" href="destroy">Se deconnecter</a></li>
         </ul>
     </div>
 </div>
 
 <script>
-//On sélectionne tous les liens du menu
 const links = document.querySelectorAll('.nav-link');
-
-// On parcourt chaque lien
 links.forEach(link => {
   link.addEventListener('click', function() {
-    // 1. Retirer "active" de tous les liens
-    links.forEach(l => l.classList.remove('active'));
-
-    // 2. Ajouter "active" au lien cliqué
+   links.forEach(l => l.classList.remove('active'));
     this.classList.add('active');
   });
 });
@@ -100,6 +95,10 @@ switch ($url){
     case '/MaMut_web/add_member':
         require("vews/add_member.php");   
         break;
+
+    case '/MaMut_web/destroy':
+        require("controller/destroy.php");   
+        break;
     case '/MaMut_web/remove_member':
             require("controller/delete_member.php");   
             break;
@@ -114,7 +113,7 @@ switch ($url){
          require("vews/add_event.php");  
          break;
 
-     case '/MaMut_web/paiement ':
+     case '/MaMut_web/paiement':
          require("vews/paiement.php");
          break;
 
@@ -156,4 +155,6 @@ switch ($url){
         require("vews/home.php");
 }
 ?>
+<?php
+ob_end_flush(); ?>
 </main>

@@ -1,61 +1,72 @@
 $(document).ready(function() {
-<<<<<<< HEAD
 
-=======
->>>>>>> d5d9bf2 ( alimentation de caisse a parti de participation d'un event)
     $('#participants').select2({
-        placeholder: "Choisissez les membres",
+        placeholder: "Choisir les membres",
         allowClear: true
     });
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d5d9bf2 ( alimentation de caisse a parti de participation d'un event)
+    //
     $('#participationCheck').on('change', function() {
         if ($(this).is(':checked')) {
             $('#participantsDiv').slideDown();
         } else {
             $('#participantsDiv').slideUp();
-            $('#participants').val(null).trigger('change');
+            $('#participants').val(null).trigger('change'); // reset Select2
         }
     });
-<<<<<<< HEAD
 
+    /
     $('#eventForm').on('submit', function(e) {
-        e.preventDefault();
+        e.preventDefault(); // Empêche le rechargement
 
-        let submitButton = $(this).find('button[type="submit"]');
-        submitButton.prop('disabled', true).text("Enregistrement...");
+        $("#loading").show();
 
         let formData = $(this).serialize();
 
+
+        if ($('#libelle').val().trim() === "") {
+            alert("Veuillez entrer le libellé.");
+            $("#loading").hide();
+            return;
+        }
+
         $.ajax({
-            type: "POST",
-            url: $(this).attr('action'),
+            url: "controller/add_event_controller.php",
+            method: "POST",
             data: formData,
             dataType: "json",
             success: function(response) {
+                $("#loading").hide();
+
+                // ===== 4️⃣ Mettre le message dans le toast =====
+                $("#toastBody").text(response.message);
+
                 if (response.success) {
-                    console.warn(response)
-                    alert(response.message);
+                    $("#eventToast").removeClass("text-bg-danger").addClass("text-bg-success");
+                } else {
+                    $("#eventToast").removeClass("text-bg-success").addClass("text-bg-danger");
+                }
+
+
+                var toastEl = document.getElementById('eventToast');
+                var toast = new bootstrap.Toast(toastEl);
+                toast.show();
+
+                // Si succès → réinitialiser le formulaire
+                if (response.success) {
                     $('#eventForm')[0].reset();
                     $('#participants').val(null).trigger('change');
                     $('#participantsDiv').hide();
-                } else {
-
-                    alert("Erreur : " + response.message);
                 }
             },
-            error: function(xhr, status, error) {
-                console.log(error)
-                alert("Une erreur est survenue : " + error);
-            },
-            complete: function() {
-                submitButton.prop('disabled', false).text("Ajouter");
+            error: function() {
+                $("#loading").hide();
+                $("#toastBody").text("⚠️ Erreur serveur.");
+                $("#eventToast").removeClass("text-bg-success").addClass("text-bg-danger");
+                var toastEl = document.getElementById('eventToast');
+                var toast = new bootstrap.Toast(toastEl);
+                toast.show();
             }
         });
     });
-=======
->>>>>>> d5d9bf2 ( alimentation de caisse a parti de participation d'un event)
 });
