@@ -14,8 +14,8 @@
     </p>
     <form method="POST" action="controller/login_control.php">
       <div class="mb-3">
-        <label for="email" class="form-label">E-mail</label>
-        <input type="email" name="email" class="form-control rounded-3" id="email" required>
+        <label for="login" class="form-label">login</label>
+        <input type="text" name="login" class="form-control rounded-3" id="login" required>
       </div>
       <div class="mb-3 position-relative">
         <label for="password" class="form-label">Mot de passe</label>
