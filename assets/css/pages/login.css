@@ -35,6 +35,18 @@
 
 .login-button {
     background: rgba(255, 137, 4);
+    background-color: rgba(255, 137, 4);
+    border: none;
+    color: white;
+}
+
+
+/* Conserve la même couleur au survol */
+
+.login-button:hover {
+    background: rgba(255, 137, 4);
+    background-color: rgba(255, 137, 4);
+    color: white;
 }
 
 .login-form {
