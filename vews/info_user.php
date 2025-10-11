@@ -1,7 +1,7 @@
 <?php 
 require("controller/info_user_controller.php");
 ?>
-<div class="container mt-5 w-100 edit-container">
+<div class="container mt-5 w-100 edit-container" style="background-color: e4e4e7;">
     <h1 class="text-center mb-4">
         Bienvenue <?= $adherent["full_name"] ?? "Utilisateur" ?> 
     </h1>
@@ -13,10 +13,10 @@ require("controller/info_user_controller.php");
                 <!-- Carte infos personnelles -->
                 <div class="col-md-6">
                     <div class="card shadow-sm border-0 rounded-4 member-card">
-                        <div class="card-header card-header-custom">
+                        <div class="card-header card-header-custom" style="background-color: feebe7;">
                             <h5>Infos Personnelles</h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="background-color: feebe7;">
                             <div class="text-center mb-3 " >
                                 <ul class="list-unstyled small">
                                 <li><strong>Utilisateur</strong> <?= $adherent["id"] ?? "N/A"; ?></li>
@@ -34,7 +34,7 @@ require("controller/info_user_controller.php");
                             </ul>
                             <div class="d-flex justify-content-center gap-2 mt-3">
                                 <a href="modifier?id=<?= $adherent['id'] ?>" 
-                                   class="btn btn-custom btn-sm">
+                                   class="btn btn-login btn-sm">
                                     ✏️ Modifier
                                 </a>
                             </div>
@@ -45,17 +45,17 @@ require("controller/info_user_controller.php");
                 <!-- Carte infos du compte -->
                 <div class="col-md-6">
                     <div class="card shadow-sm border-0 rounded-4 member-card">
-                        <div class="card-header card-header-custom">
+                        <div class="card-header card-header-custom" style="background-color: feebe7;">
                             <h5>Infos du Compte</h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body"style="background-color: feebe7">
                             <ul class="list-unstyled small">
                                 <li><strong>Login :</strong> <?= $user["login"] ?? "N/A"; ?></li>
                                 <li><strong>Statut :</strong> <?= $user["status"] ?? "N/A"; ?></li>
                             </ul>
                             <div class="d-flex justify-content-center gap-2 mt-3">
                                 <a href="modifier_compte?id=<?= $user['id'] ?>" 
-                                   class="btn btn-custom btn-sm">
+                                   class="btn btn-login btn-sm">
                                     ✏️ Modifier
                                 </a>
                             </div>

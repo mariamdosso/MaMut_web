@@ -11,18 +11,16 @@
 
             <!--begin::Title-->
             <h1 class="text-gray-800 fs-2qx fw-bold text-center mb-7"> 
-                Rapide, efficace et productif
+                rapide, efficace et productif
             </h1>  
             <!--end::Title-->
 
             <!--begin::Text-->
             <div class="text-gray-600 fs-base text-center fw-semibold">
-                Dans ce genre de message, <a href="#" class="opacity-75-hover text-primary me-1">the blogger</a> 
+                Connectez-vous pour gérer vos membres et cotisations facilement,  
 
-                iprésente une personne qu'elle a interviewée <br> et fournit des informations générales sur 
+                et optimisez votre association dès aujourd’hui !  <br> 
                 
-                <a href="#" class="opacity-75-hover text-primary me-1">the intervievee</a> 
-                and their <br>et leur travail qui suit est une transcription de l'interview.   
             </div>
             <!--end::Text-->
         </div>
@@ -104,16 +102,13 @@ if (!empty($_SESSION['message'])) {
     <!--end::Wrapper-->    
 
     <!--begin::Submit button-->
-    <div class="d-grid mb-10">
-        <button type="submit" id="kt_sign_in_submit" class="login-button {
-">
             
-<!--begin::Indicator progress-->
-<span class="indicator-progress">
-    Connectez-vous    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-</span>
-<!--end::Indicator progress-->        </button>
-    </div>
+<div class="d-grid mb-10">
+    <button type="submit" id="kt_sign_in_submit" class="btn login-button">
+        Connectez-vous
+    </button>
+</div>
+
     <!--end::Submit button-->
 
     <!--begin::Sign up-->
@@ -127,4 +122,3 @@ function togglePassword() {
   const input = document.getElementById("password");
   input.type = input.type === "password" ? "text" : "password";
 }
-</script>
