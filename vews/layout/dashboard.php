@@ -22,7 +22,7 @@
             </li>
 
             <li>
-                <a class="nav-link text-white" href="member_list">
+                <a class="nav-link text-white" href="/MaMut_web/member_list">
                     <svg class="bi pe-none me-2" width="16" height="16">
                         <use xlink:href="#speedometer2" />
                     </svg>
