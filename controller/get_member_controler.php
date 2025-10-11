@@ -1,5 +1,5 @@
 <?php
-require_once('config/db.php'); // adapte selon ton projet
+require_once('config/db.php'); 
 
 if (isset($_POST['id'])) {
     $id = $_POST['id'];

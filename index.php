@@ -1,10 +1,10 @@
-<?php 
+<?php
 session_start();
 include("config/db.php");
-
 ?>
-<!DOCTYPE html
+<!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,37 +30,40 @@ include("config/db.php");
    <script src="assets/js/jquery-3.6.0.min.js" defer> </script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+
 </head>
 
 <body>
 <div class="d-flex flex-column flex-root">
 
-<?php
+    <?php
+    $url = rtrim($_SERVER["REQUEST_URI"], "/");
 
-$url = rtrim($_SERVER["REQUEST_URI"], "/");
+    if (strpos($url, '/MaMut_web/controller/') === 0) {
+        return;
+    }
 
-if (strpos($url, '/MaMut_web/controller/') === 0) {
-    return;
-}
-if (isset($_SESSION["user_token"]) ){
-require("vews/layout/dashboard.php");
-} else{
-    switch ($url){
+    if (isset($_SESSION["user_token"])) {
+        require("vews/layout/dashboard.php");
+    } else {
+        switch ($url) {
+            case '/MaMut_web/login':
+                require 'vews/login.php';
+                break;
+            case '/MaMut_web/register':
+                require("vews/create.php");
+                break;
+            default:
+                require("vews/login.php");
+        }
+    }
+    ?>
 
-        case '/MaMut_web/login':
-            require 'vews/login.php';
-            break;
-        case '/MaMut_web/register':
-            require("vews/create.php");   
-            break;
-        default:
-            require("vews/login.php");
-    } 
-}
+
 
 ?>
 </div>
-   
+
 </body>
 
 </html>
