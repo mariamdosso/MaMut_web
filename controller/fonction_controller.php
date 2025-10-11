@@ -2,11 +2,6 @@
 
 include("config/db.php");  
 
-function logout_user(): void {
-    session_destroy();
-    header('Location: http://localhost/MaMut_web/vews/login.php');
-    exit();
-}
 
 function deleteMembre($id) {
     global $pdo;  

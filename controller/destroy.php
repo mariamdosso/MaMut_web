@@ -1,5 +1,6 @@
 <?php
-require 'fonction_controller.php';
- logout_user() ;
 
- ?>
+session_destroy(); 
+    header('location://localhost/MaMut_web/login');
+exit();
+

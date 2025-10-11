@@ -2,8 +2,8 @@
 include("config/db.php");
 session_start();
 
-if (!isset($_SESSION['user_info'])) {
-    header('Location: login.php'); // même dossier
+if (!isset($_SESSION['id'])) {
+    header('Location:http://localhost/MaMut_web/Home');
     exit();
 }
 

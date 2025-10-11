@@ -1,0 +1,36 @@
+/* Définition des polices */
+:root {
+  --font-primary: 'Open Sans', sans-serif;
+  --font-secondary: 'Montserrat', sans-serif;
+  --font-accent: 'Pacifico', cursive;
+}
+
+/* Texte courant */
+body,html {
+  font-weight: 400;
+  font-family: Inter, Helvetica, sans-serif;
+  font-size: 16px;
+  color: #333;
+  background-color: #F9F9F9 !important;
+}
+
+
+
+/* Titres */
+/* h1, h2, h3 {
+  font-family: var(--font-secondary);
+  font-weight: 600
+  color Decidé pour l'application: #FE9A37;
+} */
+
+/* Boutons */
+/* button {
+  font-family: var(--font-secondary);
+  font-weight: 500;
+} */
+
+/* Citations ou slogans */
+/* .quote {
+  font-family: var(--font-accent);
+  font-style: italic;
+} */

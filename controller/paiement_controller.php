@@ -1,91 +1,75 @@
-<<?php
-// Connexion à la base de données
-require_once 'connexion.php';
+<?php
+include("../config/db.php");
+session_start();
+header("Content-Type: application/json");
 
-// Vérifie si le formulaire a été soumis
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-    // Sécurisation et récupération des données
-    $event_id     = intval($_POST['event_id']);
-    $member_id    = intval($_POST['member_id']);
-    $montant_paye = floatval($_POST['montant_paye']);
-    $date_paiement = date('Y-m-d H:i:s');
-
-    // Vérifier si les champs sont bien remplis
-    if ($event_id <= 0 || $member_id <= 0 || $montant_paye <= 0) {
-        die("Données invalides.");
-    }
-
-    // Récupérer la participation existante pour ce membre et cet événement
-    $sql = "SELECT p.id, p.montant_participation, p.montant_paye, p.fund_id, e.type_evenement, e.date_echeance
-            FROM participation p
-            JOIN evenement e ON p.event_id = e.id
-            WHERE p.event_id = ? AND p.member_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([$event_id, $member_id]);
-    $participation = $stmt->fetch();
-
-    if (!$participation) {
-        die("Participation introuvable.");
-    }
-
-    // Calcul du reste à payer
-    $reste_a_payer = $participation['montant_participation'] - $participation['montant_paye'];
-
-    // Vérifie que le montant payé ne dépasse pas le reste à payer
-    if ($montant_paye > $reste_a_payer) {
-        die("Montant payé supérieur au reste à payer.");
-    }
-
-    // Nouvelle somme payée
-    $nouveau_paye = $participation['montant_paye'] + $montant_paye;
-
-    // Définir statut de solde
-    $statut_solde = ($nouveau_paye >= $participation['montant_participation']) ? 'soldé' : 'en attente';
-
-    // Début de transaction SQL pour sécuriser toutes les opérations ensemble
-    $conn->beginTransaction();
+    $event_id   = intval($_POST['event_id']);
+    $member_id  = intval($_POST['member_id']);
+    $amountPaid = floatval($_POST['amount_paid']);
 
     try {
-        // 1️⃣ Mettre à jour la participation
-        $updateParticipation = "UPDATE participation 
-                                SET montant_paye = ?, statut_solde = ? 
-                                WHERE id = ?";
-        $stmt = $conn->prepare($updateParticipation);
-        $stmt->execute([$nouveau_paye, $statut_solde, $participation['id']]);
+        $stmt = $pdo->prepare("
+    SELECT m.*
+    FROM participation p
+    JOIN members m ON p.member_id = m.member_id
+    WHERE p.event_id = :event_id
+");
+$stmt->execute(["event_id" => $event_id]);
+$members = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // 2️⃣ Créer un flux dans cash_flow
-        $insertFlux = "INSERT INTO cash_flow (fund_id, event_id, member_id, montant, type_flux, date_flux)
-                       VALUES (?, ?, ?, ?, 'participation', ?)";
-        $stmt = $conn->prepare($insertFlux);
-        $stmt->execute([
-            $participation['fund_id'],
-            $event_id,
-            $member_id,
-            $montant_paye,
-            $date_paiement
+
+        if (!$participation) {
+            throw new Exception("⚠️ Participation introuvable !");
+        }
+
+        if ($amountPaid <= 0) {
+            throw new Exception("⚠️ Montant invalide.");
+        }
+        if ($amountPaid > $participation['balance']) {
+            throw new Exception("⚠️ Le montant payé dépasse le reste dû.");
+        }
+
+        $pdo->beginTransaction();
+
+        // Mise à jour participation
+        $newPaid    = $participation['paid_amount'] + $amountPaid;
+        $newBalance = $participation['amount_due'] - $newPaid;
+        $newStatus  = $newBalance <= 0 ? "paid" : "partial";
+
+        $update = $pdo->prepare("
+            UPDATE participation 
+            SET paid_amount = :paid, balance = :balance, status = :status 
+            WHERE participation_id = :id
+        ");
+        $update->execute([
+            "paid"    => $newPaid,
+            "balance" => $newBalance,
+            "status"  => $newStatus,
+            "id"      => $participation['participation_id']
         ]);
 
-        // 3️⃣ Mettre à jour le montant de la caisse
-        $updateFund = "UPDATE fund 
-                       SET montant = montant + ? 
-                       WHERE id = ?";
-        $stmt = $conn->prepare($updateFund);
-        $stmt->execute([$montant_paye, $participation['fund_id']]);
+        // Enregistrer le flux de trésorerie
+        $insertFlow = $pdo->prepare("
+            INSERT INTO cash_flow (fund_id, event_id, member_id, amount, flow_type, created_at)
+            VALUES (:fund_id, :event_id, :member_id, :amount, 'in', NOW())
+        ");
+        $insertFlow->execute([
+            "fund_id"   => 1, // TODO: relier à la bonne caisse
+            "event_id"  => $event_id,
+            "member_id" => $member_id,
+            "amount"    => $amountPaid
+        ]);
 
-        // Valider la transaction
-        $conn->commit();
+        // Mettre à jour la caisse
+        $pdo->exec("UPDATE fund SET balance = balance + $amountPaid WHERE fund_id = 1");
 
-        // Retour utilisateur
-        echo "✅ Paiement enregistré avec succès. Statut : $statut_solde.";
+        $pdo->commit();
+
+        echo json_encode(["success" => true, "message" => "✅ Paiement enregistré avec succès !"]);
 
     } catch (Exception $e) {
-        // Annuler la transaction en cas d'erreur
-        $conn->rollBack();
-        die("Erreur lors du traitement : " . $e->getMessage());
+        if ($pdo->inTransaction()) $pdo->rollBack();
+        echo json_encode(["success" => false, "message" => $e->getMessage()]);
     }
-
-} else {
-    die("Accès non autorisé.");
 }
-?>
