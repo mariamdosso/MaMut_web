@@ -34,6 +34,7 @@
 
             <div class="row mb-3">
                 <div class="col-md-6">
+
                     <label class="form-label">Date de naissance :</label>
                     <input type="date" class="form-control" name="birth_date"
                         value="<?= htmlspecialchars($adherent['birth_date'] ?? '') ?>" required>
@@ -65,11 +66,6 @@
                             value="<?= htmlspecialchars($adherent['city'] ?? '') ?>" required>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <label class="form-label">Ville :</label>
-                    <input type="text" class="form-control" name="city"
-                        value="<?= htmlspecialchars($adherent['city'] ?? '') ?>" required>
-                </div>
             </div>
 
             <div class="row mb-3">
@@ -92,6 +88,7 @@
                         value="<?= htmlspecialchars($adherent['address'] ?? '') ?>" required>
                 </div>
             </div>
+
 
             <div class="d-flex p-2 w-100 justify-content-end gap-2">
                 <a href="member_list" class="btn btn-secondary" role="button">Annuler</a>

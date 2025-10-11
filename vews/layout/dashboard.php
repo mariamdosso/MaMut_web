@@ -1,4 +1,14 @@
+
 <?php ob_start(); ?>
+
+
+
+<?php
+
+include("config/db.php");
+require('controller/info_user_controller.php')
+?>
+
 
 <main class="d-flex flex-nowrap">
     <h1 class="visually-hidden">Sidebars examples</h1>
@@ -68,22 +78,21 @@
                 </ul>
             </li>
 
-        </ul>
-        <hr>
-        <div class="dropdown">
-            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                <strong><?= $_SESSION['user_info']['login']; ?></strong>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="destroy">Se deconnecter</a></li>
-            </ul>
-        </div>
-    </div>
+    </ul>
+</hr>
+    <div class="dropdown">
+    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+        <strong><?= htmlspecialchars($adherent['full_name'] ?? $user['login']); ?></strong>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+        <li><a class="dropdown-item" href="info_user">Profile</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="destroy">Se déconnecter</a></li>
+    </ul>
+</div>
+
+</div>
 
     <script>
         const links = document.querySelectorAll('.nav-link');
@@ -104,18 +113,28 @@
     }
     switch ($url) {
 
-        case '/MaMut_web/Home':
-            require("vews/home.php");
-            break;
-        case '/MaMut_web/add_member':
-            require("vews/add_member.php");
-            break;
 
-        case '/MaMut_web/destroy':
-            require("controller/destroy.php");
-            break;
-        case '/MaMut_web/remove_member':
-            require("controller/delete_member.php");
+    case '/MaMut_web/Home':
+        require("vews/home.php");   
+        break;
+    case '/MaMut_web/add_member':
+        require("vews/add_member.php");         
+        break;
+
+    case '/MaMut_web/modifier_compte':
+        require("vews/eddit_acount.php");
+      
+        break;
+
+    case '/MaMut_web/info_user':
+        require("vews/info_user.php");   
+        break;
+
+    case '/MaMut_web/destroy':
+        require("controller/destroy.php");   
+        break;
+    case '/MaMut_web/remove_member':
+            require("controller/delete_member.php");   
             break;
         case '/MaMut_web/fund':
             require("vews/fund_liste.php");
