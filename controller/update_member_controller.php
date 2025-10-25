@@ -2,7 +2,7 @@
 require 'fonction_controller.php';  
 
 $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
-$member = getMemberById($pdo, $id);
+$adherent = getMemberById($pdo, $id);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier'])) {
     if (updateMember($pdo, $_POST)) {

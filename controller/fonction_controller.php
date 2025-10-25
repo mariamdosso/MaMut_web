@@ -2,6 +2,7 @@
 
 include("config/db.php");  
 
+
 function deleteMembre($id) {
     global $pdo;  
     $sql = "DELETE FROM member WHERE member_id='$id'";

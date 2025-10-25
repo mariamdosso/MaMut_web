@@ -1,27 +1,44 @@
 <?php
-session_start(); 
-
+session_start();
 include("../config/db.php");
-$message = '';
 
-if ((!isset($_POST['email']) && !isset($_POST['password'])) && (!empty($_POST['email']) && !($_POST['password']))); {
-    $email = $_POST['email'];
+// Vérifie si les champs ont été remplis
+if (isset($_POST['login'], $_POST['password']) && !empty($_POST['login']) && !empty($_POST['password'])) {
+
+    $login = trim($_POST['login']);
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM user WHERE user_email = :user_email";
+    // Cherche l'utilisateur par login
+    $sql = "SELECT * FROM user WHERE login = :login";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute(['user_email' => $email]);
-    $user = $stmt->fetch();
+    $stmt->execute(['login' => $login]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user && password_verify($password, $user['user_password'])) {
-        $_SESSION['user_info'] = $user;
-        $_SESSION['user_token'] = uniqid('', true); 
-        header('Location:http://localhost/MaMut_web/tableau');
-        // exit();
+    if ($user) {
+        // Vérifie le mot de passe
+        if (password_verify($password, $user['password'])) {
+            // Supprime le mot de passe avant d’enregistrer en session
+            unset($user['password']);
+            $_SESSION['user_info'] = $user;
+            $_SESSION['user_token'] = bin2hex(random_bytes(16));
+
+            // Redirection vers le tableau de bord
+            header('Location: ../tableau');
+            exit();
+        } else {
+            $_SESSION["message"] = 'Mot de passe incorrect.';
+            header('Location: ../views/login');
+            exit();
+        }
     } else {
-        $_SESSION["message"] = 'Mauvais identifiants';
-        header('Location:http://localhost/MaMut_web/login');
+        $_SESSION["message"] = 'Login inexistant.';
+        header('Location: ../views/login');
+        exit();
     }
-}
 
+} else {
+    $_SESSION["message"] = 'Veuillez remplir tous les champs.';
+    header('Location: ../views/login');
+    exit();
+}
 ?>
