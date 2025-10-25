@@ -50,6 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ]);
 
     $_SESSION['successMessage'] = "Adhérent mis à jour avec succès !";
-    header('location://localhost/MaMut_web/member_list');
+    header('location://localhost:8000/MaMut_web/member_list');
     exit;
 }

@@ -2,90 +2,144 @@
 require("controller/member_list_controller.php");
 ?>
 
-<div class="container mt-5 w-100">
-    <h2 class=" mb-4">Gestion des Membres</h2>
-    <a href="add_member" class="btn btn-primary mb-4">➕ Ajouter un membre</a>
+<div class="container list-bg mt-5 w-100">
+    <h2 class="fw-bold text-primary mb-3 mb-md-0">👥 Gestion des Membres</h2>
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+        <!-- Bouton d’ajout -->
+        <a href="add_member" class="btn btn-primary mb-2">➕ Ajouter un membre</a>
 
-    <div class="row g-4">
+        <!-- Formulaire de recherche -->
+        <form method="GET" action="" class="d-flex align-items-center mb-2" style="max-width: 480px; width: 100%;">
+            <div class="input-group">
+                <input type="text"
+                    name="search"
+                    class="form-control"
+                    placeholder="🔍 Rechercher par nom, email, ville ou genre..."
+                    value="<?= htmlspecialchars($_GET['search'] ?? '') ?>"
+                    style="min-width: 250px;">
+                <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="row g-6 mb-6 g-xl-9 mb-xl-9">
         <?php if (count($adherents)) {
             foreach ($adherents as $adherent) { ?>
 
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="card shadow-sm h-100 border-0 rounded-4 text-center py-5 px-3">
+                <div class="col-md-6 col-xxl-4">
+                    <div class="card ">
+                        <!--begin::Card body-->
+                        <div class="card-body d-flex flex-center flex-column py-9 px-5">
+                            <!--begin::Avatar-->
+                            <div class="symbol symbol-65px symbol-circle mb-5 position-relative">
+                                <span class="symbol-label fs-2x fw-semibold text-warning bg-light-warning">
+                                    <?php if (!empty($adherent["photo"])) { ?>
+                                        <img src="<?= $adherent["photo"]; ?>"
+                                            alt="Photo de <?= $adherent["full_name"]; ?>"
+                                            class="img-fluid rounded-circle"
+                                            style="width:65px; height:65px; object-fit:cover;">
+                                    <?php } else { ?>
+                                        <?= strtoupper(substr($adherent["full_name"], 0, 1)); ?>
+                                    <?php } ?>
 
-                        <div class="symbol symbol-65px symbol-circle mb-4 mx-auto">
-                            <?php if (!empty($adherent["photo"])) { ?>
-                                <img src="<?= $adherent["photo"]; ?>"
-                                    alt="Photo de <?= $adherent["full_name"]; ?>"
-                                    class="img-fluid rounded-circle"
-                                    style="width:65px; height:65px; object-fit:cover;">
-                            <?php } else { ?>
-                                <span class="symbol-label fs-2x fw-semibold text-primary bg-light-primary">
-                                    <?= strtoupper(substr($adherent["full_name"], 0, 1)); ?>
                                 </span>
-                            <?php } ?>
-                        </div>
+                                <div class="bg-success position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-body h-15px w-15px ms-n3 mt-n3"></div>
+                            </div>
+                            <!--end::Avatar-->
 
-                        <a href="#" class="fs-5 text-gray-800 text-hover-primary fw-bold mb-1">
-                            <?= $adherent["full_name"]; ?>
-                        </a>
+                            <!--begin::Name-->
+                            <a href="#" class="fs-4 text-gray-800 line_none text-hover-primary fw-bold mb-0"><?= $adherent["full_name"]; ?></a>
+                            <!--end::Name-->
 
-                        <div class="fw-semibold text-gray-500 small mb-4">
-                            <?= $adherent["city"]; ?> - <?= $adherent["gender"]; ?>
-                        </div>
+                            <!--begin::Position-->
+                            <div class="fw-semibold text-gray-500 mb-6"><?= $adherent["city"]; ?> - <?= $adherent["gender"]; ?></div>
+                            <!--end::Position-->
 
-                        <ul class="list-unstyled small text-start">
-                            <li><strong>Date de naissance :</strong> <?= $adherent["birth_date"]; ?></li>
-                            <li><strong>Contact :</strong> <?= $adherent["call_number"]; ?></li>
-                            <li><strong>Créé par :</strong> <?= $adherent["created_by_login"]; ?></li>
-                        </ul>
+                            <!--begin::Info-->
+                            <div class="d-flex flex-center flex-row mb-2 mt-3">
+                                <!--begin::Stats-->
+                                <div class="border border-dashed rounded min-w-90px py-3 px-2 mx-2 mb-3">
+                                    <div class="fs-6 fw-bold text-gray-700"><?= $adherent["birth_date"]; ?></div>
+                                    <div class="fw-semibold text-gray-500">Naissance</div>
+                                </div>
+                                <!--end::Stats-->
 
-                        <div class="d-flex flex-wrap justify-content-center gap-2 mt-3">
-                            <a href="details_adherent?id=<?= $adherent['adherent_id'] ?>"
-                                class="btn btn-sm btn-info"
-                                data-bs-toggle="tooltip"
-                                title="Voir les détails">
-                                👁️
-                            </a>
+                                <!--begin::Stats-->
+                                <div class="border border-dashed rounded min-w-90px py-3 px-2 mx-2 mb-3">
+                                    <div class="fs-6 fw-bold text-gray-700"><?= $adherent["call_number"]; ?></div>
+                                    <div class="fw-semibold text-gray-500">Contact</div>
+                                </div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::Info-->
 
-                            <a href="update_adherent?id=<?= $adherent['adherent_id'] ?>"
-                                class="btn btn-sm btn-warning"
-                                data-bs-toggle="tooltip"
-                                title="Modifier cet adhérent">
-                                ✏️
-                            </a>
+                            <div class="d-flex flex-row justify-content-between">
+                                <a href="details_adherent?id=<?= $adherent['adherent_id'] ?>" data-bs-toggle="tooltip"
+                                    title="Voir les détails">
+                                    <button class="btn btn-sm btn-light-primary btn-flex btn-center mx-2" data-kt-follow-btn="true">
 
-                            <?php if (empty($adherent['has_account_id'])): ?>
-                                <a href="create_account?id=<?= $adherent['adherent_id'] ?>"
-                                    class="btn btn-sm btn-primary"
-                                    data-bs-toggle="tooltip"
-                                    title="Créer un compte pour cet adhérent">
-                                    👤
-                                   
+                                        <span class="indicator-progress">
+                                            <i class="bi bi-eye-fill"></i>
+                                        </span>
+                                    </button>
                                 </a>
-                            <?php endif; ?>
+                                <a href="update_adherent?id=<?= $adherent['adherent_id'] ?>"
+                                    data-bs-toggle="tooltip"
+                                    title="Modifier cet adhérent">
+                                    <button class="btn btn-sm btn-light-primary btn-flex btn-center mx-2" data-kt-follow-btn="true">
 
 
-                            <?php if (!empty($adherent['has_account_id'])): ?>
-                                <?php if ($adherent["user_status"] == "active") { ?>
-                                    <a href="/MaMut_web/toggle_status?id=<?= $adherent['has_account_id'] ?>&user_status=inactive"
-                                        class="btn btn-sm btn-success"
+                                        <span class="indicator-progress">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </span>
+                                    </button>
+                                </a>
+
+                                <?php if (empty($adherent['has_account_id'])): ?>
+                                    <a href="create_account?id=<?= $adherent['adherent_id'] ?>"
                                         data-bs-toggle="tooltip"
-                                        title="Désactiver l'utilisateur">
-                                        ✅
+                                        title="Créer un compte pour cet adhérent">
+                                        <button class="btn btn-sm btn-light-primary btn-flex btn-center mx-2" data-kt-follow-btn="true">
+
+                                            <span class="indicator-progress">
+                                                <i class="bi bi-person-fill-add"></i>
+                                            </span>
+                                        </button>
                                     </a>
-                                <?php } else { ?>
-                                    <a href="/MaMut_web/toggle_status?id=<?= $adherent['has_account_id'] ?>&user_status=active"
-                                        class="btn btn-sm btn-secondary"
-                                        data-bs-toggle="tooltip"
-                                        title="Activer l'utilisateur">
-                                        ⛔
-                                    </a>
-                                <?php } ?>
-                            <?php else: ?>
-                                <span class="badge bg-warning">Pas de compte</span>
-                            <?php endif; ?>
+
+                                <?php endif; ?>
+                                <?php if (!empty($adherent['has_account_id'])): ?>
+                                    <?php if ($adherent["user_status"] == "active") { ?>
+                                        <a href="/MaMut_web/toggle_status?id=<?= $adherent['has_account_id'] ?>&user_status=inactive"
+                                            data-bs-toggle="tooltip"
+                                            title="Désactiver l'utilisateur">
+                                            <button class="btn btn-sm btn-light-primary btn-flex btn-center mx-2 " tooltip="test" data-kt-follow-btn="true">
+                                                <span class="indicator-progress">
+                                                    <i class="bi bi-unlock-fill"></i>
+                                                </span>
+                                            </button>
+                                        </a>
+                                    <?php } else {  ?>
+                                        <a href="/MaMut_web/toggle_status?id=<?= $adherent['has_account_id'] ?>&user_status=active"
+                                            data-bs-toggle="tooltip"
+                                            title="Activer l'utilisateur">
+                                            <button class="btn btn-sm btn-light-primary btn-flex btn-center mx-2 " tooltip="test" data-kt-follow-btn="true">
+
+
+                                                <span class="indicator-progress">
+                                                    <i class="bi bi-lock-fill"></i>
+                                                </span>
+                                            </button>
+                                        </a>
+
+                                    <?php
+                                    }
+                                    ?>
+                                <?php endif; ?>
+
+                            </div>
                         </div>
+                        <!--begin::Card body-->
                     </div>
                 </div>
         <?php }

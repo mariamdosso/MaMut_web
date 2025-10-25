@@ -9,28 +9,19 @@ include("config/db.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/select2.min.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="/assets/css/select2.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
      <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Bootstrap Bundle JS (inclut Popper) -->
-
-
-    <link rel="stylesheet" href="assets/css/style_global.css">
-    <link rel="stylesheet" href="assets/css/pages/login.css">
-
-    <script src="assets/js/bootstrap.bundle.js" defer> </script>
-   <script src="assets/js/popper.min.js" defer> </script>
-   <script src="assets/js/jquery-3.6.0.min.js" defer> </script>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-
+    <link rel="stylesheet" href="/assets/css/style_global.css">
+    <link rel="stylesheet" href="/assets/css/pages/login.css">
+    <link rel="stylesheet" href="/assets/css/pages/adherent.css">
+    <link rel="stylesheet" href="/assets/css/pages/details_adherent.css">
+    <link rel="stylesheet" href="/assets/css/pages/edit_membre.css">
 </head>
 
 <body>
@@ -64,6 +55,11 @@ include("config/db.php");
 ?>
 </div>
 
+   <script src="/assets/js/popper.min.js" defer> </script>
+   <script src="/assets/js/jquery-3.6.0.min.js" defer> </script>
+   <script src="/assets/js/select2.min.js" defer> </script>
+    <script src="/assets/js/bootstrap.bundle.min.js" defer> </script>
+    <script src="/assets/js/event.js" defer> </script>
 </body>
 
 </html>

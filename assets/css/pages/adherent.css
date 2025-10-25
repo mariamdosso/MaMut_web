@@ -1,0 +1,100 @@
+.list-bg{
+    background-color: #F9F9F9 !important;
+}
+
+.symbol.symbol-65px .symbol-label {
+    width: 65px;
+    height: 65px;
+}
+
+
+.symbol .symbol-label {
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.symbol.symbol-circle, .symbol.symbol-circle .symbol-label, .symbol.symbol-circle>img {
+    border-radius: 50%;
+}
+
+
+.bg-light-warning {
+    background-color: #FFF8DD !important;
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
+.border-body {
+    border-color: #ffffff !important;
+}
+
+
+.ms-n3 {
+    margin-left: -.75rem !important;
+}
+
+.mt-n3 {
+    margin-top: -.75rem !important;
+}
+
+.h-15px {
+    height: 15px !important;
+}
+
+.w-15px {
+    width: 15px !important;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.min-w-90px {
+    min-width: 90px !important;
+}
+
+.rounded {
+    border-radius: .475rem !important;
+}
+
+.g-6, .gy-6 {
+--bs-gutter-y: 1.5rem;
+}
+
+.text-hover-primary {
+    transition: color .2s 
+ease;
+}
+
+.line_none {
+    text-decoration: none !important;
+}
+
+.btn.btn-light-primary {
+    color: var(--bs-primary);
+    border-color: #E9F3FF;
+    background-color: #E9F3FF;
+}
+.btn.btn-light-danger {
+    border-color: #ffe9e9;
+    background-color: #ffeae9;
+}
+
+.btn:not(.btn-shadow):not(.shadow):not(.shadow-sm):not(.shadow-lg):not(.shadow-xs) {
+    box-shadow: none;
+}
+
+.btn.btn-flex {
+    display: inline-flex
+;
+    align-items: center;
+}
+

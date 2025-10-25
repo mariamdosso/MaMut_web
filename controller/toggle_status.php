@@ -12,6 +12,6 @@ if (isset($_GET['id'], $_GET['user_status'])) {
     ]);
 }
 
-header('location://localhost/MaMut_web/member_list');
+header('Location: http://localhost:8000/MaMut_web/member_list');
 exit;
 ?>

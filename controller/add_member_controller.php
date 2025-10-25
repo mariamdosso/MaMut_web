@@ -131,13 +131,13 @@ if (
 
         if ($result) {
             $_SESSION['successMessage'] = "Membre ajouté avec succès !";
-            header('location://localhost/MaMut_web/member_list');
+            header('location://localhost:8000/MaMut_web/member_list');
         } else {
             $_SESSION['errorMessage'] = "Erreur lors de l'ajout du membre.";
-            header('location://localhost/MaMut_web/add_member');
+            header('location://localhost:8000/MaMut_web/add_member');
         }
     }
 } else {
     $_SESSION['errorMessage'] = "Tous les champs sont requis.";
-    header('location://localhost/MaMut_web/add_member');
+    header('location://localhost:8000/MaMut_web/add_member');
 }
