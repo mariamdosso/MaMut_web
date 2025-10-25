@@ -3,7 +3,7 @@ require("controller/event_list_controller.php");
 ?>
 
 <div class="container my-5">
-    <h1 class="text-center mb-4">Gestion des événements</h1>
+    <h2 class="mb-4">Gestion des événements</h2>
     <a href="add_event.php" class="btn btn-primary mb-3">Ajouter un événement</a>
 
     <table class="table table-striped">
@@ -54,5 +54,3 @@ require("controller/event_list_controller.php");
     </table>
 </div>
 
-<!-- Bootstrap JS (pour la gestion du collapse) -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
