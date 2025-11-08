@@ -1,84 +1,69 @@
 <?php
-include("../config/db.php");
-session_start();
-header('Content-Type: application/json');
+include(__DIR__ . '/../config/db.php');
 
-if (!isset($_SESSION['user_info']['user_id'])) {
-    echo json_encode(['success' => false, 'message' => "Utilisateur non connecté."]);
-    exit;
+
+if (!isset($_SESSION['user_info']['id'])) {
+    $_SESSION['errorMessage'] = "Vous devez être connecté pour ajouter évenement.";
+    header('Location: /MaMut_web/login');
+    exit();
 }
 
-$user_id = $_SESSION['user_info']['user_id'];
 
+// Vérification des champs requis
 if (
-    !empty($_POST['libelle']) &&
-    !empty($_POST['type']) &&
-    !empty($_POST['domaine']) &&
-    !empty($_POST['date_debut']) &&
-    !empty($_POST['date_fin'])
+    !empty($_POST['label']) &&
+    !empty($_POST['event_type_id']) &&
+    !empty($_POST['event_start_date']) &&
+    !empty($_POST['event_end_date']) &&
+    isset($_POST['with_participation']) &&
+    isset($_POST['event_amount']) &&
+    isset($_POST['event_target_participation'])
 ) {
-    $libelle      = htmlspecialchars($_POST['libelle']);
-    $type         = htmlspecialchars($_POST['type']);
-    $domaine      = htmlspecialchars($_POST['domaine']);
-    $date_debut   = $_POST['date_debut'];
-    $date_fin     = $_POST['date_fin'];
-    $periodicite  = $_POST['periode'] ?? null;
 
-    $participation = !empty($_POST['contribution_amount']) ? floatval($_POST['contribution_amount']) : 0;
-    $sql = "INSERT INTO event (
-                event_label, event_type, event_domain, 
-                event_date_start, event_date_end, 
-                event_periodicity, event_contribution_amount, 
-                user_id
-            )
-            VALUES (
-                :event_label, :event_type, :event_domain, 
-                :event_date_start, :event_date_end, 
-                :event_periodicity, :event_contribution_amount, 
-                :user_id
-            )";
+    // Génération automatique du label (ex: EVT_20251108_001)
+    $event_ref = "EVT_" . strtoupper(bin2hex(random_bytes(4)));
+
+    $label = htmlspecialchars($_POST['label']);
+    $description    = htmlspecialchars($_POST['description'] ?? '');
+    $event_start    = $_POST['event_start_date'];
+    $event_end      = $_POST['event_end_date'];
+    $event_amount   = floatval($_POST['event_amount']);
+    $target_amount  = floatval($_POST['event_target_participation']);
+    $with_participation = intval($_POST['with_participation']); // 1 = Oui, 0 = Non
+    $event_type_id  = intval($_POST['event_type_id']);
+
+    // Statut par défaut = 2 (En attente)
+    $statut_event_id = 2;
+    $today = date("Y-m-d");
+
+    $sql = "INSERT INTO event
+        (label, event_ref, description, event_start_date, event_end_date, event_amount, with_participation, event_target_participation, event_type_id, statut_event_id, created_at, updated_at)
+        VALUES
+        (:label, :event_ref, :description, :start, :end, :amount, :participation, :target, :type, :statut, :created, :updated)";
 
     $stmt = $pdo->prepare($sql);
     $result = $stmt->execute([
-        "event_label" => $libelle,
-        "event_type" => $type,
-        "event_domain" => $domaine,
-        "event_date_start" => $date_debut,
-        "event_date_end" => $date_fin,
-        "event_periodicity" => $periodicite,
-        "event_contribution_amount" => $participation,
-        "user_id" => $user_id
+        ':label' => $label,
+        ':event_ref' => $event_ref,
+        ':description' => $description,
+        ':start' => $event_start,
+        ':end' => $event_end,
+        ':amount' => $event_amount,
+        ':participation' => $with_participation,
+        ':target' => $target_amount,
+        ':type' => $event_type_id,
+        ':statut' => $statut_event_id,
+        ':created' => $today,
+        ':updated' => $today
     ]);
 
+    var_dump($result);
+
     if ($result) {
-        $event_id = $pdo->lastInsertId();
-
-        if (!empty($_POST['membres'])) {
-            $membres = $_POST['membres'];
-            $stmtParticipation = $pdo->prepare(
-                "INSERT INTO participation 
-                (event_id, member_id, added_date, label, amount, amount_due, paid_amount, balance, status) 
-                VALUES 
-                (:event_id, :member_id, :added_date, :label, :amount, :amount_due, :amount_paid, :balance, :status)"
-            );
-
-            $addDate = (new DateTime())->format("Y-m-d");
-            foreach ($membres as $member_id) {
-                $stmtParticipation->execute([
-                    "event_id"   => $event_id,
-                    "member_id"  => $member_id,
-                    "added_date" => $addDate,
-                    "label"      => "Participation du $addDate",
-                    "amount"     => $participation,
-                    "amount_due" => $participation,
-                    "amount_paid"=> 0,
-                    "balance"    => $participation ,
-                    "status"     => "NON SOLDE",
-                ]);
-            }
-        }
-
-        echo json_encode(['success' => true, 'message' => "✅ Événement ajouté avec succès !"]);
+        
+        $_SESSION['message'] = "✅ Événement ajouté avec succès !";
+        header('location://localhost:8000/MaMut_web/event_list');
+        exit;
     } else {
         echo json_encode(['success' => false, 'message' => "❌ Erreur lors de l'ajout de l'événement."]);
     }

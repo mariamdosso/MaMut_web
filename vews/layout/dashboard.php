@@ -46,26 +46,28 @@ require('controller/info_user_controller.php')
                     </svg>
                     Gestion des Evenements
                 </a>
-                <!-- <ul class="collapse list-unstyled ps-3" id="ordersMenu">
-                    <li><a href="add_event" class="nav-link text-white">ajouter</a></li>
-                    <li><a href="event_list" class="nav-link text-white">lister</a></li>
-                    <li><a href="cotisation_suivie" class="nav-link text-white">Suivie de cotisation</a></li>
-                    <li><a href="paiement" class="nav-link text-white">paye une participation</a></li>
-                </ul> -->
             </li>
 
             <li>
-                <a class="nav-link text-white" data-bs-toggle="collapse" href="#productsMenu" role="button" aria-expanded="false" aria-controls="productsMenu">
+                <a class="nav-link text-white" href="/MaMut_web/fund">
                     <svg class="bi pe-none me-2" width="16" height="16">
                         <use xlink:href="#grid" />
                     </svg>
                     Gestion des Caisses
                 </a>
-                <!-- <ul class="collapse list-unstyled ps-3" id="productsMenu">
-                    <li><a href="add_fund" class="nav-link text-white">Ajouter</a></li>
-                    <li><a href="fund" class="nav-link text-white">Lister</a></li>
-                    <li><a href="cash_flow" class="nav-link text-white">flux</a></li>
-                </ul> -->
+            </li>
+            <li>
+                <a class="nav-link text-white" data-bs-toggle="collapse" href="#productsMenu" role="button" aria-expanded="false" aria-controls="productsMenu">
+                    <svg class="bi pe-none me-2" width="16" height="16">
+                        <use xlink:href="#grid" />
+                    </svg>
+                    Configuration
+                </a>
+                <ul class="collapse list-unstyled ps-3" id="productsMenu">
+                    <li><a href="add_fund" class="nav-link text-white">Type d'évenement</a></li>
+                    <li><a href="fund" class="nav-link text-white">Mode paiement</a></li>
+                    <!-- <li><a href="cash_flow" class="nav-link text-white">flux</a></li> -->
+                </ul>
             </li>
 
         </ul>
@@ -98,24 +100,20 @@ require('controller/info_user_controller.php')
 
     <?php
     $url = $_SERVER["REQUEST_URI"];
-    $path = parse_url($url, PHP_URL_PATH); // Removes query parameters
+    $path = parse_url($url, PHP_URL_PATH);
     $url = rtrim($path, "/");
     if (strpos($url, '/MaMut_web/controller/') === 0) {
         return false;
     }
     switch ($url) {
 
-
+        // Routes for all user
         case '/MaMut_web/Home':
             require("vews/home.php");
             break;
 
-        case '/MaMut_web/add_member':
-            require("vews/add_member.php");
-            break;
-
-        case '/MaMut_web/add_member_controller':
-            require("controller/add_member_controller.php");
+        case '/MaMut_web/login':
+            require("vews/login.php");
             break;
 
         case '/MaMut_web/modifier_compte':
@@ -130,46 +128,43 @@ require('controller/info_user_controller.php')
             require("controller/destroy.php");
             break;
 
-        case '/MaMut_web/remove_member':
-            require("controller/delete_member.php");
-            break;
-
-        case '/MaMut_web/fund':
-            require("vews/fund_liste.php");
-            break;
-
         case '/MaMut_web/member_list':
             require("vews/member_list.php");
             break;
 
+        
+    
+        // Routes for management event 
         case '/MaMut_web/add_event':
             require("vews/add_event.php");
             break;
 
-        case '/MaMut_web/paiement':
-            require("vews/paiement.php");
-            break;
-
-        case '/MaMut_web/login':
-            require("vews/login.php");
-            break;
-
-        case '/MaMut_web/cash_flow':
-            require("vews/add_cash_flow.php");
+        case '/MaMut_web/add_event_controller':
+            require("controller/add_event_controller.php");
             break;
 
         case '/MaMut_web/event_list':
             require("vews/event_list.php");
             break;
 
-        case '/MaMut_web/update_event':
+        case '/MaMut_web/edit_event':
             require("vews/edit_event.php");
             break;
-            
+
+        case '/MaMut_web/edit_event_controller':
+            require("controller/update_event_controller.php");
+            break;
+
+        case '/MaMut_web/event_details':
+            require("controller/details_event_controller.php");
+            break;
+
         case '/MaMut_web/remove_event':
             require("controller/delete_event_controller.php");
             break;
 
+
+        // Routes for management adherent
         case '/MaMut_web/update_adherent':
             require("controller/update_adherent.php");
             break;
@@ -190,6 +185,20 @@ require('controller/info_user_controller.php')
             require("controller/toggle_status.php");
             break;
 
+        case '/MaMut_web/add_member':
+            require("vews/add_member.php");
+            break;
+
+        case '/MaMut_web/add_member_controller':
+            require("controller/add_member_controller.php");
+            break;
+
+        case '/MaMut_web/remove_member':
+            require("controller/delete_member.php");
+            break;
+
+
+        // Routes for management fund
         case '/MaMut_web/add_fund':
             require("vews/add_fund.php");
             break;
@@ -201,6 +210,19 @@ require('controller/info_user_controller.php')
         case '/MaMut_web/cotisation_suivie':
             require("vews/suivie_cotisation.php");
             break;
+
+        case '/MaMut_web/fund':
+            require("vews/fund_liste.php");
+            break;
+
+         case '/MaMut_web/paiement':
+            require("vews/paiement.php");
+            break;
+
+        case '/MaMut_web/cash_flow':
+            require("vews/add_cash_flow.php");
+            break;
+
 
         default:
             require("vews/home.php");

@@ -108,7 +108,6 @@ if (
             :created_by
         )";
 
-
         $adherent_data = [
             'full_name'               => $fullname,
             'birth_date'              => $birthday,
