@@ -20,7 +20,7 @@ $adherents = $pdo->query("SELECT id, full_name, email FROM adherent")->fetchAll(
         ?>
 
         <!-- Ajout de l'appel JS avec onsubmit -->
-        <form method="POST" action="controller/create_controller.php" onsubmit="return validateLogin()">
+        <form method="POST" action="controllers/create_controller.php" onsubmit="return validateLogin()">
             <div class="mb-3">
                 <label for="login" class="form-label">Login</label>
                 <input type="text" id="login" name="login" class="form-control" 

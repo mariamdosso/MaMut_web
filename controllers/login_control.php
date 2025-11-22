@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../config/db.php");
+require_once __DIR__ . '/../config/db.php';
 
 // Vérifie si les champs ont été remplis
 if (isset($_POST['login'], $_POST['password']) && !empty($_POST['login']) && !empty($_POST['password'])) {

@@ -5,7 +5,7 @@
 <?php
 
 include("config/db.php");
-require('controller/info_user_controller.php')
+require('controllers/info_user_controller.php')
 ?>
 
 
@@ -16,7 +16,7 @@ require('controller/info_user_controller.php')
     <script src="assets/js/bootstrap.bundle.js"></script>
     <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark min-vh-100 sidebar" style="width: 280px;">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <span class="fs-4">Mon Espace</span>
+            <span class="fs-4">Mat_Mut</span>
         </a>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
@@ -102,130 +102,130 @@ require('controller/info_user_controller.php')
     $url = $_SERVER["REQUEST_URI"];
     $path = parse_url($url, PHP_URL_PATH);
     $url = rtrim($path, "/");
-    if (strpos($url, '/MaMut_web/controller/') === 0) {
+    if (strpos($url, '/MaMut_web/controllers/') === 0) {
         return false;
     }
     switch ($url) {
 
         // Routes for all user
         case '/MaMut_web/Home':
-            require("vews/home.php");
+            require("views/home.php");
             break;
 
         case '/MaMut_web/login':
-            require("vews/login.php");
+            require("views/login.php");
             break;
 
         case '/MaMut_web/modifier_compte':
-            require("vews/eddit_acount.php");
+            require("views/eddit_acount.php");
             break;
 
         case '/MaMut_web/info_user':
-            require("vews/info_user.php");
+            require("views/info_user.php");
             break;
 
         case '/MaMut_web/destroy':
-            require("controller/destroy.php");
+            require("controllers/destroy.php");
             break;
 
         case '/MaMut_web/member_list':
-            require("vews/member_list.php");
+            require("views/member_list.php");
             break;
 
         
     
         // Routes for management event 
         case '/MaMut_web/add_event':
-            require("vews/add_event.php");
+            require("views/add_event.php");
             break;
 
         case '/MaMut_web/add_event_controller':
-            require("controller/add_event_controller.php");
+            require("controllers/add_event_controller.php");
             break;
 
         case '/MaMut_web/event_list':
-            require("vews/event_list.php");
+            require("views/event_list.php");
             break;
 
         case '/MaMut_web/edit_event':
-            require("vews/edit_event.php");
+            require("views/edit_event.php");
             break;
 
         case '/MaMut_web/edit_event_controller':
-            require("controller/update_event_controller.php");
+            require("controllers/update_event_controller.php");
             break;
 
         case '/MaMut_web/event_details':
-            require("controller/details_event_controller.php");
+            require("controllers/details_event_controller.php");
             break;
 
         case '/MaMut_web/remove_event':
-            require("controller/delete_event_controller.php");
+            require("controllers/delete_event_controller.php");
             break;
 
 
         // Routes for management adherent
         case '/MaMut_web/update_adherent':
-            require("controller/update_adherent.php");
+            require("controllers/update_adherent.php");
             break;
 
         case '/MaMut_web/update_adherent_controller':
-            require("controller/update_adherent_controller.php");
+            require("controllers/update_adherent_controller.php");
             break;
 
         case '/MaMut_web/details_adherent':
-            require("controller/details_adherent.php");
+            require("controllers/details_adherent.php");
             break;
 
         case '/MaMut_web/create_account':
-            require("controller/create_account.php");
+            require("controllers/create_account.php");
             break;
 
         case '/MaMut_web/toggle_status':
-            require("controller/toggle_status.php");
+            require("controllers/toggle_status.php");
             break;
 
         case '/MaMut_web/add_member':
-            require("vews/add_member.php");
+            require("views/add_member.php");
             break;
 
         case '/MaMut_web/add_member_controller':
-            require("controller/add_member_controller.php");
+            require("controllers/add_member_controller.php");
             break;
 
         case '/MaMut_web/remove_member':
-            require("controller/delete_member.php");
+            require("controllers/delete_member.php");
             break;
 
 
         // Routes for management fund
         case '/MaMut_web/add_fund':
-            require("vews/add_fund.php");
+            require("views/add_fund.php");
             break;
 
         case '/MaMut_web/select_event_participant':
-            require("vews/select_participant.php");
+            require("views/select_participant.php");
             break;
 
         case '/MaMut_web/cotisation_suivie':
-            require("vews/suivie_cotisation.php");
+            require("views/suivie_cotisation.php");
             break;
 
         case '/MaMut_web/fund':
-            require("vews/fund_liste.php");
+            require("views/fund_liste.php");
             break;
 
          case '/MaMut_web/paiement':
-            require("vews/paiement.php");
+            require("views/paiement.php");
             break;
 
         case '/MaMut_web/cash_flow':
-            require("vews/add_cash_flow.php");
+            require("views/add_cash_flow.php");
             break;
 
 
         default:
-            require("vews/home.php");
+            require("views/home.php");
     }
     ?>
     <?php

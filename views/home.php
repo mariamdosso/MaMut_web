@@ -1,6 +1,6 @@
  
  <?php 
-    require("controller/home_controller.php");
+    require("controllers/home_controller.php");
 ?>
 
      <div class="container-fluid">

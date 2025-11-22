@@ -1,5 +1,5 @@
 <?php 
-require("controller/info_user_controller.php");
+require("controllers/info_user_controller.php");
 ?>
 <div class="container mt-5 w-100 edit-container" style="background-color: e4e4e7;">
     <h1 class="text-center mb-4">
