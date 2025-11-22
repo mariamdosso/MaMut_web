@@ -1,5 +1,4 @@
 <?php
-$hello = "world";
 include("config/db.php");
 
 $perPage = 8; 

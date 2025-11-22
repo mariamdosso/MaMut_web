@@ -22,6 +22,8 @@ include("config/db.php");
     <link rel="stylesheet" href="/assets/css/pages/adherent.css">
     <link rel="stylesheet" href="/assets/css/pages/details_adherent.css">
     <link rel="stylesheet" href="/assets/css/pages/edit_membre.css">
+    <link rel="stylesheet" href="/assets/css/pages/event_add.css">
+    <link rel="stylesheet" href="/assets/css/pages/list_event.css">
 </head>
 
 <body>
