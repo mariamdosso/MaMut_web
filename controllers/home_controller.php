@@ -1,5 +1,5 @@
 <?php  
-    include("config/db.php");
+    require_once __DIR__ . '/../config/db.php';
 
     $queryMembers = $pdo->query("SELECT COUNT(*) as total FROM adherent");
     $members = $queryMembers->fetch(PDO::FETCH_ASSOC);

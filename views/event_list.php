@@ -1,4 +1,4 @@
-<?php require(__DIR__ . '/../controller/event_list_controller.php'); ?>
+<?php require(__DIR__ . '/../controllers/event_list_controller.php'); ?>
 
 <div class="container list-bg mt-5 w-100">
     <h2 class="fw-bold text-primary mb-3 mb-md-0">👥 Gestion des évenements</h2>

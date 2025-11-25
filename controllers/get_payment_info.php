@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
-ini_set('display_errors', 0); // optionnel : ne pas afficher les warnings dans le JSON
-include("../config/db.php"); // chemin corrigé
+ini_set('display_errors', 0); 
+include("../config/db.php"); 
 header("Content-Type: application/json");
 
 if(isset($_POST['event_id'])){

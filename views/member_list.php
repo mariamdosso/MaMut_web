@@ -1,5 +1,5 @@
 <?php
-require("controller/member_list_controller.php");
+require("controllers/member_list_controller.php");
 ?>
 
 <div class="container list-bg mt-5 w-100">

@@ -14,10 +14,6 @@ $stmt = $pdo->prepare("SELECT * FROM adherent WHERE id = ?");
 $stmt->execute([$id]);
 $adherent = $stmt->fetch();
 
-// Récupérer les cotisations
-// $stmt2 = $pdo->prepare("SELECT * FROM cotisations WHERE adherent_id = ?");
-// $stmt2->execute([$id]);
-// $cotisations = $stmt2->fetchAll();
 
 // Appeler la vue
-require("vews/details_info_adherent.php");
+require("views/details_info_adherent.php");
