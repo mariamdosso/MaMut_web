@@ -19,7 +19,6 @@ $adherents = $pdo->query("SELECT id, full_name, email FROM adherent")->fetchAll(
         }
         ?>
 
-        <!-- Ajout de l'appel JS avec onsubmit -->
         <form method="POST" action="controllers/create_controller.php" onsubmit="return validateLogin()">
             <div class="mb-3">
                 <label for="login" class="form-label">Login</label>
@@ -65,7 +64,6 @@ $adherents = $pdo->query("SELECT id, full_name, email FROM adherent")->fetchAll(
 </div>
 
 <script>
-
 function validateLogin() {
     const loginInput = document.getElementById("login").value.trim();
     const errorField = document.getElementById("loginError");

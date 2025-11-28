@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_info'])) {
     exit;
 }
 
-$user = $_SESSION['user_info']; // infos du compte
+$user = $_SESSION['user_info']; 
 
 $sql = "SELECT * FROM adherent WHERE id = :id";
 $stmt = $pdo->prepare($sql);

@@ -66,7 +66,6 @@ require('controllers/info_user_controller.php')
                 <ul class="collapse list-unstyled ps-3" id="productsMenu">
                     <li><a href="add_fund" class="nav-link text-white">Type d'évenement</a></li>
                     <li><a href="fund" class="nav-link text-white">Mode paiement</a></li>
-                    <!-- <li><a href="cash_flow" class="nav-link text-white">flux</a></li> -->
                 </ul>
             </li>
 
@@ -117,7 +116,7 @@ require('controllers/info_user_controller.php')
             break;
 
         case '/MaMut_web/modifier_compte':
-            require("views/eddit_acount.php");
+            require("views/edit_acount.php");
             break;
 
         case '/MaMut_web/info_user':
@@ -132,8 +131,8 @@ require('controllers/info_user_controller.php')
             require("views/member_list.php");
             break;
 
-        
-    
+
+
         // Routes for management event 
         case '/MaMut_web/add_event':
             require("views/add_event.php");
@@ -161,6 +160,12 @@ require('controllers/info_user_controller.php')
 
         case '/MaMut_web/remove_event':
             require("controllers/delete_event_controller.php");
+            break;
+
+        case '/MaMut_web/add_participant':
+            require "controllers/ParticipantsController.php";
+            $controller = new ParticipantsController();
+            $controller->addParticipant();
             break;
 
 
@@ -191,36 +196,6 @@ require('controllers/info_user_controller.php')
 
         case '/MaMut_web/add_member_controller':
             require("controllers/add_member_controller.php");
-            break;
-
-        case '/MaMut_web/remove_member':
-            require("controllers/delete_member.php");
-            break;
-
-
-        // Routes for management fund
-        case '/MaMut_web/add_fund':
-            require("views/add_fund.php");
-            break;
-
-        case '/MaMut_web/select_event_participant':
-            require("views/select_participant.php");
-            break;
-
-        case '/MaMut_web/cotisation_suivie':
-            require("views/suivie_cotisation.php");
-            break;
-
-        case '/MaMut_web/fund':
-            require("views/fund_liste.php");
-            break;
-
-         case '/MaMut_web/paiement':
-            require("views/paiement.php");
-            break;
-
-        case '/MaMut_web/cash_flow':
-            require("views/add_cash_flow.php");
             break;
 
 

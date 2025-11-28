@@ -37,4 +37,4 @@ if (!$adherent) {
 }
 
 
-include("vews/edit_member.php");
+include("views/edit_member.php");

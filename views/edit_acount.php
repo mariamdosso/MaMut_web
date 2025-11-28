@@ -59,4 +59,3 @@ $user = $_SESSION['user_info'] ?? null;
     </div>
 </div>
 
-<!-- Bootstrap Icons -->

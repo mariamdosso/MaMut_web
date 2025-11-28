@@ -13,8 +13,6 @@ class Participant
         return $stmt->fetchAll();
     }
 
-
-
     // Nouvelle méthode pour récupérer les participants par événement
     public static function getByEvent($eventId)
     {
@@ -44,5 +42,37 @@ class Participant
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function addToEvent($eventId, $userId)
+    {
+        global $pdo;
+
+        // Vérifier si l'utilisateur est déjà participant de cet événement
+        $stmt = $pdo->prepare("
+        SELECT COUNT(*) 
+        FROM user_event 
+        WHERE user_id = :userId AND event_id = :eventId
+    ");
+        $stmt->execute([
+            ':userId' => $userId,
+            ':eventId' => $eventId
+        ]);
+
+        // Si déjà présent → stop
+        if ($stmt->fetchColumn() > 0) {
+            return false;
+        }
+
+        // Ajouter le participant
+        $stmt = $pdo->prepare("
+        INSERT INTO user_event (event_id, user_id)
+        VALUES (:eventId, :userId)
+    ");
+
+        return $stmt->execute([
+            ':eventId' => $eventId,
+            ':userId' => $userId
+        ]);
     }
 }
