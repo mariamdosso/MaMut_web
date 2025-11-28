@@ -69,19 +69,37 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card mb-2  mb-xl-10">
-                    <div class="card-body p-9">
-                        <div class="tab-pane fade show active" id="tab-infos" role="tabpanel">
-                            <?php include __DIR__ . '/tabs/infos.php'; ?>
-                        </div>
-                        <div class="tab-pane fade" id="tab-participants" role="tabpanel">
-                             <?php include __DIR__ . '/tabs/participants.php'; ?>
-                        </div>
-                        <div class="tab-pane fade" id="tab-paiement" role="tabpanel">
-                            <?php include __DIR__ . '/tabs/payment.php'; ?>
+                <div class="tab-content mt-3">
+
+                    <!-- TAB INFOS -->
+                    <div class="tab-pane fade show active" id="tab-infos" role="tabpanel">
+                        <div class="card mb-5 mb-xl-10">
+                            <div class="card-body p-9">
+                                <?php include __DIR__ . '/tabs/infos.php'; ?>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- TAB PARTICIPANTS -->
+                    <div class="tab-pane fade" id="tab-participants" role="tabpanel">
+                        <div class="card mb-5 mb-xl-10">
+                            <div class="card-body p-9">
+                                <?php include __DIR__ . '/tabs/participants.php'; ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB PAIEMENT -->
+                    <div class="tab-pane fade" id="tab-paiement" role="tabpanel">
+                        <div class="card mb-5 mb-xl-10">
+                            <div class="card-body p-9">
+                                <?php include __DIR__ . '/tabs/payment.php'; ?>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
         </div>
     </div>

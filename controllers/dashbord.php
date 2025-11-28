@@ -7,5 +7,5 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
-// Test affichage
+
 echo "<h1>Bienvenue " . $_SESSION['user_info']['login'] . "</h1>";

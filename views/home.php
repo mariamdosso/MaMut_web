@@ -51,62 +51,6 @@
                         </div>
                     </div>
                 </div>
-                
-                 
-                <!-- <div class="mt-4">
-                    <h4>Dernières Transactions</h4>
-                    <table class="table table-striped">
-
-                    <tbody>
-            <?php  if (count($members)){ 
-                foreach($members as $member){
-                     ?>
-                <tr>
-                    <td> <?= $member["member_name"];?></td>
-                    <td><?= $member["firstname_member"];?> </td>
-                    <td><?= $member["date_birth_member"];?></td>
-                    <td><?= $member["contact_member"];?></td>
-                    <td><?= $member["gender_member"];?></td>
-                    <td><?= $member["member_city"];?></td>
-                    <td><?= $member["member_municipality"];?></td>
-                    <td><?= $member["member_district"];?></td>
-                    <td>
-                    
-                        <a href="modifier_membre.php?id=1" class="btn btn-warning btn-sm">Modifier</a>
-                        <a href="delete_membre.php?id=1" class="btn btn-danger btn-sm">Supprimer</a>
-                    </td>
-                </tr>
-                <?php
-                            }
-                        }
-                            ?>
-            </tbody>
-                        <thead>
-                        <?php  if (count($events)){ 
-                            foreach($events as $event){
-                        ?>
-                    <tr>
-                    <td> <?= $event["event_label"];?></td>
-                    <td><?= $event["event_type"];?> </td>
-                    <td><?= $event["event_domaine"];?></td>
-                    <td><?= $event["event_date_start"];?></td>
-                    <td><?= $event["event_date_end"];?></td>
-                    <td><?= $event["event_periodicity"];?></td>
-                    <td><?= $event["event_contribution_amount"];?></td>
-                    <td>
-                    
-                        <a href="modifier_membre.php?id=1" class="btn btn-warning btn-sm">Modifier</a>
-                        <a href="supprimer_membre.php?id=1" class="btn btn-danger btn-sm">Supprimer</a>
-                        </td>
-                        </tr>
-                        <?php
-                             }
-                            }
-                        ?>
-                        </thead>
-                        
-                    </table>
-                </div> -->
             </main>
         </div>
     </div>  

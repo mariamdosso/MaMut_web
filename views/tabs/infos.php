@@ -2,7 +2,6 @@
     <div class="card-title m-0">
         <h3 class="fw-bold m-0">Informations détaillées de l'évenement</h3>
     </div>
-    <!-- <a href="/metronic8/demo1/account/settings.html" class="btn btn-sm btn-primary align-self-center">Edit Profile</a> -->
 </div>
 <div class="card-body p-9">
     <div class="row mb-7">
@@ -37,13 +36,13 @@
     <div class="row mb-7">
         <label class="col-lg-4 fw-semibold text-muted">Montant évenement</label>
         <div class="col-lg-8">
-            <span class="fw-bold fs-6 text-gray-800"><?= $event['event_amount'] ?></span>
+            <span class="fw-bold fs-6 text-gray-800"><?= $event['event_amount'] ?> FR</span>
         </div>
     </div>
     <div class="row mb-10">
         <label class="col-lg-4 fw-semibold text-muted">Target Montant</label>
         <div class="col-lg-8">
-            <span class="fw-semibold fs-6 text-gray-800"><?= $event['event_target_participation'] ?></span>
+            <span class="fw-semibold fs-6 text-gray-800"><?= $event['event_target_participation'] ?> FR</span>
         </div>
     </div>
      <div class="row mb-7">

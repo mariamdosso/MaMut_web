@@ -80,10 +80,7 @@ if (
         exit();
     } else {
 
-        // ID de l'utilisateur connecté
       $created_by = $_SESSION['user_info']['id'];
-
-
         $sql = "INSERT INTO adherent (
             full_name,
             birth_date,
