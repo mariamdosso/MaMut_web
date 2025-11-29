@@ -25,12 +25,9 @@ require("controllers/member_list_controller.php");
     <div class="row g-6 mb-6 g-xl-9 mb-xl-9">
         <?php if (count($adherents)) {
             foreach ($adherents as $adherent) { ?>
-
                 <div class="col-md-6 col-xxl-4">
                     <div class="card ">
-                        <!--begin::Card body-->
                         <div class="card-body d-flex flex-center flex-column py-9 px-5">
-                            <!--begin::Avatar-->
                             <div class="symbol symbol-65px symbol-circle mb-5 position-relative">
                                 <span class="symbol-label fs-2x fw-semibold text-warning bg-light-warning">
                                     <?php if (!empty($adherent["photo"])) { ?>
@@ -45,34 +42,18 @@ require("controllers/member_list_controller.php");
                                 </span>
                                 <div class="bg-success position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-body h-15px w-15px ms-n3 mt-n3"></div>
                             </div>
-                            <!--end::Avatar-->
-
-                            <!--begin::Name-->
                             <a href="#" class="fs-4 text-gray-800 line_none text-hover-primary fw-bold mb-0"><?= $adherent["full_name"]; ?></a>
-                            <!--end::Name-->
-
-                            <!--begin::Position-->
                             <div class="fw-semibold text-gray-500 mb-6"><?= $adherent["city"]; ?> - <?= $adherent["gender"]; ?></div>
-                            <!--end::Position-->
-
-                            <!--begin::Info-->
                             <div class="d-flex flex-center flex-row mb-2 mt-3">
-                                <!--begin::Stats-->
                                 <div class="border border-dashed rounded min-w-90px py-3 px-2 mx-2 mb-3">
                                     <div class="fs-6 fw-bold text-gray-700"><?= $adherent["birth_date"]; ?></div>
                                     <div class="fw-semibold text-gray-500">Naissance</div>
                                 </div>
-                                <!--end::Stats-->
-
-                                <!--begin::Stats-->
                                 <div class="border border-dashed rounded min-w-90px py-3 px-2 mx-2 mb-3">
                                     <div class="fs-6 fw-bold text-gray-700"><?= $adherent["call_number"]; ?></div>
                                     <div class="fw-semibold text-gray-500">Contact</div>
                                 </div>
-                                <!--end::Stats-->
                             </div>
-                            <!--end::Info-->
-
                             <div class="d-flex flex-row justify-content-between">
                                 <a href="details_adherent?id=<?= $adherent['adherent_id'] ?>" data-bs-toggle="tooltip"
                                     title="Voir les détails">
@@ -136,10 +117,8 @@ require("controllers/member_list_controller.php");
                                     }
                                     ?>
                                 <?php endif; ?>
-
                             </div>
                         </div>
-                        <!--begin::Card body-->
                     </div>
                 </div>
         <?php }

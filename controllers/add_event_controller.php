@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_info']['id'])) {
 }
 
 
-// Vérification des champs requis
+
 if (
     !empty($_POST['label']) &&
     !empty($_POST['event_type_id']) &&
@@ -20,7 +20,6 @@ if (
     isset($_POST['event_target_participation'])
 ) {
 
-    // Génération automatique du label (ex: EVT_20251108_001)
     $event_ref = "EVT_" . strtoupper(bin2hex(random_bytes(4)));
 
     $label = htmlspecialchars($_POST['label']);
@@ -29,10 +28,9 @@ if (
     $event_end      = $_POST['event_end_date'];
     $event_amount   = floatval($_POST['event_amount']);
     $target_amount  = floatval($_POST['event_target_participation']);
-    $with_participation = intval($_POST['with_participation']); // 1 = Oui, 0 = Non
+    $with_participation = intval($_POST['with_participation']); 
     $event_type_id  = intval($_POST['event_type_id']);
 
-    // Statut par défaut = 2 (En attente)
     $statut_event_id = 2;
     $today = date("Y-m-d");
 
@@ -61,12 +59,12 @@ if (
 
     if ($result) {
         
-        $_SESSION['message'] = "✅ Événement ajouté avec succès !";
+        $_SESSION['message'] = "Événement ajouté avec succès !";
         header('location://localhost:8000/MaMut_web/event_list');
         exit;
     } else {
-        echo json_encode(['success' => false, 'message' => "❌ Erreur lors de l'ajout de l'événement."]);
+        echo json_encode(['success' => false, 'message' => "Erreur lors de l'ajout de l'événement."]);
     }
 } else {
-    echo json_encode(['success' => false, 'message' => "⚠️ Veuillez remplir tous les champs obligatoires."]);
+    echo json_encode(['success' => false, 'message' => "Veuillez remplir tous les champs obligatoires."]);
 }
