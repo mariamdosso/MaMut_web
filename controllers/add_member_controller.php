@@ -4,17 +4,17 @@ include('../config/db.php');
 
 function parseDate($input)
 {
-    $d = DateTime::createFromFormat('Y-m-d', $input); // format HTML5
+    $d = DateTime::createFromFormat('Y-m-d', $input);
     if ($d !== false) return $d;
 
-    $d = DateTime::createFromFormat('d/m/Y', $input); // format manuel
+    $d = DateTime::createFromFormat('d/m/Y', $input); 
     if ($d !== false) return $d;
 
     return false;
 }
 
 
-// Vérifier que l'utilisateur est connecté
+
 if (!isset($_SESSION['user_info']['id'])) {
     $_SESSION['errorMessage'] = "Vous devez être connecté pour ajouter un adhérent.";
     header('Location: /MaMut_web/login');

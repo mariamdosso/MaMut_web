@@ -7,7 +7,6 @@ $offset = ($page - 1) * $perPage;
 
 $search = trim($_GET['search'] ?? '');
 
-// Préparer la requête avec filtres
 $sql = "
     SELECT 
         a.id AS adherent_id,
@@ -43,7 +42,6 @@ $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
 $adherents = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Total pour la pagination
 $countSql = "
     SELECT COUNT(*) 
     FROM adherent a
@@ -52,6 +50,7 @@ $countSql = "
        OR a.gender LIKE :search
        OR a.email LIKE :search
 ";
+
 $countStmt = $pdo->prepare($countSql);
 $countStmt->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
 $countStmt->execute();
