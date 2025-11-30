@@ -1,28 +1,13 @@
-<?php ob_start(); ?>
-
-
-
-<?php
-
-include("config/db.php");
-require('controllers/info_user_controller.php')
-?>
-
-
 <main class="d-flex flex-nowrap">
     <h1 class="visually-hidden">Sidebars examples</h1>
-
-
-    <script src="assets/js/bootstrap.bundle.js"></script>
     <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark min-vh-100 sidebar" style="width: 280px;">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <span class="fs-4">Mat_Mut</span>
         </a>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
-
             <li class="nav-item">
-                <a href="Home" class="nav-link active" aria-current="page">
+                <a href="home" class="nav-link active" aria-current="page">
                     <svg class="bi pe-none me-2" width="16" height="16">
                         <use xlink:href="#home" />
                     </svg>
@@ -71,20 +56,22 @@ require('controllers/info_user_controller.php')
 
         </ul>
         </hr>
-        <div class="dropdown">
-            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+        <div class="dropdown mt-3">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://github.com/mdo.png" alt="" width="32" height="32"
+                    class="rounded-circle me-2">
                 <strong><?= htmlspecialchars($adherent['full_name'] ?? $user['login']); ?></strong>
             </a>
+
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                <li><a class="dropdown-item" href="info_user">Profile</a></li>
+                <li><a class="dropdown-item" href="/MaMut_web/info_user">Profile</a></li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="destroy">Se déconnecter</a></li>
+                <li><a class="dropdown-item" href="/MaMut_web/logout">Se déconnecter</a></li>
             </ul>
         </div>
-
     </div>
 
     <script>
@@ -107,12 +94,10 @@ require('controllers/info_user_controller.php')
     switch ($url) {
 
         // Routes for all user
-        case '/MaMut_web/Home':
-            require("views/home.php");
-            break;
-
-        case '/MaMut_web/login':
-            require("views/login.php");
+        case '/MaMut_web/home':
+            require_once "controllers/DashboardController.php";
+            $controller = new DashboardController();
+            $controller->showDashboard();
             break;
 
         case '/MaMut_web/modifier_compte':
@@ -120,87 +105,126 @@ require('controllers/info_user_controller.php')
             break;
 
         case '/MaMut_web/info_user':
-            require("views/info_user.php");
+            require_once "controllers/AdherentController.php";
+            $controller = new AdherentController();
+            $controller->showProfile();
             break;
 
-        case '/MaMut_web/destroy':
-            require("controllers/destroy.php");
+        case '/MaMut_web/logout':
+            require_once __DIR__ . "/controllers/UserController.php";
+            $user = new UserController();
+            $user->logout();
             break;
-
-        case '/MaMut_web/member_list':
-            require("views/member_list.php");
-            break;
-
 
 
         // Routes for management event 
         case '/MaMut_web/add_event':
-            require("views/add_event.php");
+            require_once "controllers/EventController.php";
+            $controller = new EventController();
+            $controller->showAddEventForm();
             break;
 
         case '/MaMut_web/add_event_controller':
-            require("controllers/add_event_controller.php");
+            require_once "controllers/EventController.php";
+            $controller = new EventController();
+            $controller->addEvent();
             break;
 
         case '/MaMut_web/event_list':
-            require("views/event_list.php");
+            require_once "controllers/EventController.php";
+            $controller = new EventController();
+            $controller->getAllEvent();
             break;
 
         case '/MaMut_web/edit_event':
-            require("views/edit_event.php");
+            require_once "controllers/EventController.php";
+            $controller = new EventController();
+            $controller->showEditEventForm();
             break;
 
         case '/MaMut_web/edit_event_controller':
-            require("controllers/update_event_controller.php");
+            require_once "controllers/EventController.php";
+            $controller = new EventController();
+            $controller->updateEvent();
             break;
 
         case '/MaMut_web/event_details':
-            require("controllers/details_event_controller.php");
-            break;
-
-        case '/MaMut_web/remove_event':
-            require("controllers/delete_event_controller.php");
+            require_once "controllers/EventController.php";
+            $controller = new EventController();
+            $controller->handleShowEvent();
             break;
 
         case '/MaMut_web/add_participant':
-            require "controllers/ParticipantsController.php";
-            $controller = new ParticipantsController();
+            require_once "controllers/ParticipantsController.php";
+            $controller = new ParticipantController();
             $controller->addParticipant();
+            break;
+
+        case '/MaMut_web/delete_participant':
+            require_once "controllers/ParticipantsController.php";
+            $controller = new ParticipantController();
+            $controller->deleteParticipant();
+            break;
+
+        case '/MaMut_web/details_user_event':
+            require_once "controllers/ParticipantsController.php";
+            $controller = new ParticipantController();
+            $controller->showParticipantDetails();
             break;
 
 
         // Routes for management adherent
         case '/MaMut_web/update_adherent':
-            require("controllers/update_adherent.php");
+            require_once "controllers/AdherentController.php";
+            $controller = new AdherentController();
+            $controller->showEditForm();
             break;
 
         case '/MaMut_web/update_adherent_controller':
-            require("controllers/update_adherent_controller.php");
+            require_once "controllers/AdherentController.php";
+            $controller = new AdherentController();
+            $controller->updateAdherent();
             break;
 
         case '/MaMut_web/details_adherent':
-            require("controllers/details_adherent.php");
+            require_once "controllers/AdherentController.php";
+            $controller = new AdherentController();
+            $controller->detailsAdherent();
             break;
 
         case '/MaMut_web/create_account':
-            require("controllers/create_account.php");
+            require_once "controllers/create_account.php";
             break;
 
         case '/MaMut_web/toggle_status':
-            require("controllers/toggle_status.php");
+            require_once "controllers/AdherentController.php";
+            $controller = new AdherentController();
+            $controller->toggleUserStatus();
+            break;
+
+        case '/MaMut_web/member_list':
+            require_once "controllers/AdherentController.php";
+            $controller = new AdherentController();
+            $controller->list();
             break;
 
         case '/MaMut_web/add_member':
-            require("views/add_member.php");
+            require_once "controllers/AdherentController.php";
+            $controller = new AdherentController();
+            $controller->showAddForm();
             break;
 
         case '/MaMut_web/add_member_controller':
-            require("controllers/add_member_controller.php");
+            require_once "controllers/AdherentController.php";
+            $controller = new AdherentController();
+            $controller->addAdherent();
             break;
 
-
         default:
-            require("views/home.php");
+            require_once "controllers/DashboardController.php";
+            $controller = new DashboardController();
+            $controller->showDashboard();
+            break;
     }
     ?>
     <?php

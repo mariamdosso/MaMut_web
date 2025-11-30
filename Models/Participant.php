@@ -92,8 +92,8 @@ class Participant
 
         // Ajouter le participant
         $stmt = $pdo->prepare("
-        INSERT INTO user_event (event_id, user_id)
-        VALUES (:eventId, :userId)
+        INSERT INTO user_event (event_id, user_id, created_at, updated_at)
+        VALUES (:eventId, :userId, NOW(), NOW())
     ");
 
         return $stmt->execute([
@@ -107,7 +107,40 @@ class Participant
     {
         global $pdo;
 
-        $stmt = $pdo->prepare("DELETE FROM participants WHERE id = ?");
+        $stmt = $pdo->prepare("DELETE FROM user_event WHERE id = ?");
         return $stmt->execute([$id]);
+    }
+
+    // detail d'un utilisateur sur un évenement 
+    public static function getDetails($id)
+    {
+        global $pdo;
+
+        $stmt = $pdo->prepare("
+        SELECT 
+            ue.id AS participant_id,
+            u.id AS user_id,
+            a.full_name,
+            a.email,
+            a.call_number,
+            a.city,
+            a.gender,
+            a.address,
+            e.id AS event_id,
+            e.label AS event_label,
+            e.event_ref,
+            e.event_start_date,
+            e.event_end_date,
+            ue.created_at,
+            ue.updated_at
+        FROM user_event ue
+        JOIN user u ON ue.user_id = u.id
+        JOIN adherent a ON u.adherent_id = a.id
+        JOIN event e ON ue.event_id = e.id
+        WHERE ue.id = :id
+    ");
+
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }

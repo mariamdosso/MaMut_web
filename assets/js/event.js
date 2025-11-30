@@ -11,13 +11,13 @@ $(document).ready(function() {
             $('#participantsDiv').slideDown();
         } else {
             $('#participantsDiv').slideUp();
-            $('#participants').val(null).trigger('change'); // reset Select2
+            $('#participants').val(null).trigger('change'); 
         }
     });
 
-    /
+    
     $('#eventForm').on('submit', function(e) {
-        e.preventDefault(); // Empêche le rechargement
+        e.preventDefault(); 
 
         $("#loading").show();
 
@@ -38,7 +38,7 @@ $(document).ready(function() {
             success: function(response) {
                 $("#loading").hide();
 
-                // ===== 4️⃣ Mettre le message dans le toast =====
+                
                 $("#toastBody").text(response.message);
 
                 if (response.success) {
@@ -52,7 +52,7 @@ $(document).ready(function() {
                 var toast = new bootstrap.Toast(toastEl);
                 toast.show();
 
-                // Si succès → réinitialiser le formulaire
+               
                 if (response.success) {
                     $('#eventForm')[0].reset();
                     $('#participants').val(null).trigger('change');

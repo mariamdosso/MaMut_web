@@ -1,23 +1,8 @@
-<?php require(__DIR__ . '/../controllers/event_list_controller.php'); ?>
 
 <div class="container list-bg mt-5 w-100">
     <h2 class="fw-bold text-primary mb-3 mb-md-0">👥 Gestion des évenements</h2>
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
-        <!-- Bouton d’ajout -->
         <a href="/MaMut_web/add_event" class="btn btn-primary mb-3"> ➕ Ajouter un événement</a>
-
-        <!-- Formulaire de recherche -->
-        <!-- <form method="GET" action="" class="d-flex align-items-center mb-2" style="max-width: 480px; width: 100%;">
-            <div class="input-group">
-                <input type="text"
-                    name="search"
-                    class="form-control"
-                    placeholder="🔍 Rechercher par nom, email, ville ou genre..."
-                    value="<?= htmlspecialchars($_GET['search'] ?? '') ?>"
-                    style="min-width: 250px;">
-                <button type="submit" class="btn btn-primary">Rechercher</button>
-            </div>
-        </form> -->
     </div>
 
     <div class="row g-6 mb-6 g-xl-9 mb-xl-9">
@@ -27,49 +12,29 @@
                 <div class="col-md-6 col-xxl-4">
                     <div class="card ">
                         <div class="card-header border-0 pt-9">
-                            <!--begin::Card Title-->
                             <div class="card-title m-0">
-                                <!--begin::Avatar-->
                                 <div class="symbol symbol-50px w-50px bg-light">
                                     <?= $event["event_ref"]; ?>
                                 </div>
-                                <!--end::Avatar-->
                             </div>
-                            <!--end::Car Title-->
-
-                            <!--begin::Card toolbar-->
                             <div class="card-toolbar">
                                 <span class="badge badge-light-primary fw-bold me-auto px-4 py-3 "><?= $event["with_participation"]? "Oui" : "Non"; ?></span>
                             </div>
-                            <!--end::Card toolbar-->
                         </div>
-                        <!--begin::Card body-->
                         <div class="card-body d-flex flex-center flex-column py-9 px-5">
 
                             <div class="fs-3 fw-bold text-gray-900"><?= $event["label"]; ?></div>
-
-                            <!--begin::Name-->
                             <a href="#" class="fs-4 text-gray-800 line_none text-hover-primary fw-bold mb-0">$<?= $event["event_amount"]; ?></a>
-                            <!--end::Name-->
-
-                            <!--begin::Info-->
                             <div class="d-flex flex-center flex-row mb-2 mt-3">
-                                <!--begin::Stats-->
                                 <div class="border border-dashed rounded min-w-90px py-3 px-2 mx-2 mb-3">
                                     <div class="fs-6 fw-bold text-gray-700"><?= $event["event_start_date"]; ?></div>
                                     <div class="fw-semibold text-gray-500">Date de début</div>
                                 </div>
-                                <!--end::Stats-->
-
-                                <!--begin::Stats-->
                                 <div class="border border-dashed rounded min-w-90px py-3 px-2 mx-2 mb-3">
                                     <div class="fs-6 fw-bold text-gray-700"><?= $event["event_end_date"]; ?></div>
                                     <div class="fw-semibold text-gray-500">Date de fin</div>
                                 </div>
-                                <!--end::Stats-->
                             </div>
-                            <!--end::Info-->
-
                             <div class="d-flex flex-row justify-content-between">
                                 <a href="event_details?id=<?= $event['id'] ?>" data-bs-toggle="tooltip"
                                     title="Voir les détails">
@@ -90,7 +55,6 @@
                                 </a>
                             </div>
                         </div>
-                        <!--begin::Card body-->
                     </div>
                 </div>
         <?php }

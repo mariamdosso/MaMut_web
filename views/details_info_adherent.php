@@ -72,14 +72,6 @@
                                 <a class="nav-link text-active-primary ms-0 me-10 py-5 " href="/metronic8/demo1/account/security.html">
                                     Security </a>
                             </li>
-                            <li class="nav-item mt-2">
-                                <a class="nav-link text-active-primary ms-0 me-10 py-5 " href="/metronic8/demo1/account/activity.html">
-                                    Activity </a>
-                            </li>
-                            <li class="nav-item mt-2">
-                                <a class="nav-link text-active-primary ms-0 me-10 py-5 " href="/metronic8/demo1/account/billing.html">
-                                    Billing </a>
-                            </li>
                         </ul>
                     </div>
                 </div>

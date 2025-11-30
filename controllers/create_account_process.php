@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $pdo->commit();
 
-        $_SESSION['successMessage'] = "✅ Compte de l'adhérent créé avec succès !";
+        $_SESSION['successMessage'] = "Compte de l'adhérent créé avec succès !";
         header('location://localhost/MaMut_web/member_list');
         exit;
 

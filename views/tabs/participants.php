@@ -42,13 +42,16 @@
                                     </span>
                                 </button>
                             </a>
-                            <form action="/MaMut_web/delete_participant" method="POST" onsubmit="return confirm('Supprimer ce participant ?');">
+                            <form action="/MaMut_web/delete_participant" method="POST"
+                                onsubmit="return confirm('Supprimer ce participant ?');">
+
                                 <input type="hidden" name="participant_id" value="<?= $p['participant_id'] ?>">
-                                <button class="btn btn-sm btn-light-danger btn-flex btn-center mx-2" data-kt-follow-btn="true">
+                                <input type="hidden" name="event_id" value="<?= $eventId ?>">
+
+                                <button class="btn btn-sm btn-light-danger btn-flex btn-center mx-2">
                                     <i class="bi bi-trash-fill"></i>
                                 </button>
                             </form>
-
                         </div>
                     </div>
                 </div>

@@ -10,14 +10,10 @@
 
                 <form method="post" action="controller/create_account_process.php">
                     <input type="hidden" name="adherent_id" value="<?= $adherent['id'] ?>">
-
-                    <!-- Login -->
                     <div class="mb-3">
                         <label for="login" class="form-label">Login (ex: email)</label>
                         <input type="text" name="login" id="login" class="form-control" required>
                     </div>
-
-                    <!-- Mot de passe -->
                     <div class="mb-3">
                         <label for="password" class="form-label">Mot de passe</label>
                         <div class="input-group">
@@ -27,8 +23,6 @@
                             </button>
                         </div>
                     </div>
-
-                    <!-- Confirmer mot de passe -->
                     <div class="mb-3">
                         <label for="confirm_password" class="form-label">Confirmer le mot de passe</label>
                         <div class="input-group">
@@ -38,8 +32,6 @@
                             </button>
                         </div>
                     </div>
-
-                    <!-- Rôles -->
                     <div class="mb-3">
                         <label class="form-label">Affecter un ou plusieurs rôle(s)</label>
                         <?php foreach ($roles as $role): ?>
@@ -52,13 +44,10 @@
                             </div>
                         <?php endforeach; ?>
                     </div>
-
-                    <!-- Boutons -->
                     <div class="d-flex justify-content-end gap-2">
                         <a href="member_list" class="btn btn-outline-secondary">Annuler</a>
                         <button type="submit" class="btn btn-primary">Créer le compte</button>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -66,7 +55,6 @@
 </div>
 
 <script>
-    // Fonction pour toggle l'affichage du mot de passe
     function togglePassword(fieldId) {
         const input = document.getElementById(fieldId);
         if (input.type === "password") {

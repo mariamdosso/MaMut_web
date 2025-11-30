@@ -1,9 +1,4 @@
- 
- <?php 
-    require("controllers/home_controller.php");
-?>
-
-     <div class="container-fluid">
+  <div class="container-fluid">
         <div class="row">
             <main class="col-md-10 ms-sm-auto px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -18,7 +13,7 @@
                                 <p class="card-text">
                                     <?php 
                                     
-                                    echo "Nombre de membres : " . $members['total']??0;
+                                    echo "Nombre de membres : " .  $totalMembers ?? 0;
                                     ?>
                                 </p>
                             </div>
@@ -31,7 +26,7 @@
                                 <p class="card-text">
                                 <?php 
                                     
-                                    echo "Nombre des evenements : " . $events['total']??0;
+                                    echo "Nombre des evenements : " . $totalEvents ?? 0;
                                     ?>
                                 </p>
                             </div>
@@ -44,7 +39,7 @@
                                 <p class="card-text">
                                 <?php 
                                     
-                                    echo "Nombre de caisses : " . $fund['total']??0;
+                                    echo "Nombre de caisses : " . $totalFunds ?? 0;
                                     ?>
                                 </p>
                             </div>
