@@ -1,7 +1,3 @@
-<?php
-require("controllers/member_list_controller.php");
-?>
-
 <div class="container list-bg mt-5 w-100">
     <h2 class="fw-bold text-primary mb-3 mb-md-0">👥 Gestion des Membres</h2>
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">

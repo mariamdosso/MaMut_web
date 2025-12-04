@@ -23,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         exit;
     }
 
-    // Vérifier l’ancien mot de passe
     $stmt = $pdo->prepare("SELECT password FROM user WHERE id = :id");
     $stmt->execute(['id' => $_SESSION['user_info']['id']]);
     $user = $stmt->fetch();
@@ -34,14 +33,13 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         exit;
     }
 
-    // Vérifier la confirmation
     if ($newPassword !== $confirmPassword) {
         $_SESSION["error"] = "Le nouveau mot de passe et sa confirmation ne correspondent pas.";
         header("Location: /MaMut_web/modifier_compte");
         exit;
     }
 
-    // Mettre à jour login et mot de passe
+    
     $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
     $update = "UPDATE user SET login = :login, password = :password WHERE id = :id";
@@ -52,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         'id'       => $_SESSION['user_info']['id']
     ]);
 
-    // Mise à jour de la session
+    
     $_SESSION['user_info']['login'] = $newLogin;
     $_SESSION["message"] = "Votre compte a été mis à jour avec succès.";
 

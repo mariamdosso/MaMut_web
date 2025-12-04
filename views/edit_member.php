@@ -183,27 +183,15 @@
                                         </div>
                                         <!--end::Col-->
                                     </div>
-
-
-                                    <!--end::Input group-->
                                 </div>
-                                <!--end::Card body-->
-
-                                <!--begin::Actions-->
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
                                     <button type="button" onclick="window.location.href='member_list'" class="btn btn-light btn-active-light-primary me-2">Annuler</button>
                                     <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Modifier</button>
                                 </div>
-                                <!--end::Actions-->
-                                <input type="hidden">
                             </form>
-                            <!--end::Form-->
                         </div>
-                        <!--end::Content-->
                     </div>
-                    <!--end::Basic info-->
                 </div>
-                <!--end::Container-->
             </div>
         </div>
 

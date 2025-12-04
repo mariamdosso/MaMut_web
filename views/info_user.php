@@ -1,6 +1,3 @@
-<?php 
-require("controllers/info_user_controller.php");
-?>
 <div class="container mt-5 w-100 edit-container" style="background-color: e4e4e7;">
     <h1 class="text-center mb-4">
         Bienvenue <?= $adherent["full_name"] ?? "Utilisateur" ?> 
@@ -10,7 +7,6 @@ require("controllers/info_user_controller.php");
         <div class="col-12">
             <div class="row">
 
-                <!-- Carte infos personnelles -->
                 <div class="col-md-6">
                     <div class="card shadow-sm border-0 rounded-4 member-card">
                         <div class="card-header card-header-custom" style="background-color: feebe7;">
@@ -19,7 +15,7 @@ require("controllers/info_user_controller.php");
                         <div class="card-body" style="background-color: feebe7;">
                             <div class="text-center mb-3 " >
                                 <ul class="list-unstyled small">
-                                <li><strong>Utilisateur</strong> <?= $adherent["id"] ?? "N/A"; ?></li>
+                                <li><strong>Utilisateur</strong> <?= $adherent["adherent_id"] ?? "N/A"; ?></li>
                                 </ul>
                             </div>
                             <ul class="list-unstyled small">
@@ -33,7 +29,7 @@ require("controllers/info_user_controller.php");
                                 <li><strong>Adresse :</strong> <?= $adherent["address"] ?? "N/A"; ?></li>
                             </ul>
                             <div class="d-flex justify-content-center gap-2 mt-3">
-                                <a href="modifier?id=<?= $adherent['id'] ?>" 
+                                <a href="modifier?id=<?= $adherent['adherent_id'] ?>" 
                                    class="btn btn-login btn-sm">
                                     ✏️ Modifier
                                 </a>
@@ -42,7 +38,6 @@ require("controllers/info_user_controller.php");
                     </div>
                 </div>
 
-                <!-- Carte infos du compte -->
                 <div class="col-md-6">
                     <div class="card shadow-sm border-0 rounded-4 member-card">
                         <div class="card-header card-header-custom" style="background-color: feebe7;">
