@@ -7,7 +7,7 @@ class AuthController
         require_once __DIR__ . '/../views/login.php';
     }
 
-    // Traite le formulaire de login
+    
     public function login()
     {
         if (

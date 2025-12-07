@@ -45,4 +45,54 @@ class User
         $_SESSION = [];
         session_destroy();
     }
+
+     public static function createAccount(array $data)
+    {
+        global $pdo;
+
+        $adherent_id = intval($data['adherent_id']);
+        $login = trim($data['login']);
+        $password = trim($data['password']);
+        $confirm_password = trim($data['confirm_password']);
+        $roles = $data['roles'] ?? [];
+
+        if (empty($login) || empty($password) || empty($roles)) {
+            return ['success' => false, 'message' => "Tous les champs sont obligatoires."];
+        }
+
+        if ($password !== $confirm_password) {
+            return ['success' => false, 'message' => "Les mots de passe ne correspondent pas."];
+        }
+
+        $stmt = $pdo->prepare("SELECT id FROM user WHERE adherent_id = ?");
+        $stmt->execute([$adherent_id]);
+        if ($stmt->fetch()) {
+            return ['success' => false, 'message' => "Un compte existe déjà pour cet adhérent."];
+        }
+
+        $hashed = password_hash($password, PASSWORD_BCRYPT);
+
+        try {
+            $pdo->beginTransaction();
+
+            $stmt = $pdo->prepare("INSERT INTO user (login, password, status, adherent_id)
+                                   VALUES (?, ?, ?, ?)");
+            $stmt->execute([$login, $hashed, "active", $adherent_id]);
+            $user_id = $pdo->lastInsertId();
+
+            foreach ($roles as $role_id) {
+                $sql = "INSERT INTO user_role (user_id, role_id, status)
+                        VALUES (?, ?, 'active')";
+                $pdo->prepare($sql)->execute([$user_id, $role_id]);
+            }
+
+            $pdo->commit();
+
+            return ['success' => true, 'message' => "Compte créé avec succès !"];
+
+        } catch (PDOException $e) {
+            $pdo->rollBack();
+            return ['success' => false, 'message' => $e->getMessage()];
+        }
+    }
 }
