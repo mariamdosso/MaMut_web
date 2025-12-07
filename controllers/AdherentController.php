@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../Models/Adherent.php';
 require_once __DIR__ . '/../Models/User.php';
+require_once __DIR__ . '/../Models/Role.php';
 
 class AdherentController
 {
@@ -196,4 +197,47 @@ class AdherentController
 
         require_once __DIR__ . '/../views/info_user.php';
     }
+
+    public function showCreateUserForm()
+    {
+        
+        $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+        if ($id <= 0) {
+            die("Adhérent non spécifié.");
+        }
+
+        $adherent = Adherent::getById($id);
+
+        if (!$adherent) {
+            die("Adhérent introuvable.");
+        }
+
+        require_once __DIR__ . '/../Models/Role.php';
+        $roles = Role::all();
+
+        // 4. Charger la vue
+        require __DIR__ . '/../views/create_user_account.php';
+        }
+
+    public function storeUserAccount()
+    {
+        require_once __DIR__ . '/../models/User.php';
+        require_once __DIR__ . '/../models/UserRole.php';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $result = User::createAccount($_POST);
+
+            if ($result['success']) {
+                $_SESSION['successMessage'] = $result['message'];
+                header("Location: /MaMut_web/member_list");
+                exit;
+            } else {
+                $_SESSION['errorMessage'] = $result['message'];
+                header("Location: /MaMut_web/create_user_adherent_account?id=" . $_POST['adherent_id']);
+                exit;
+            }
+        }
+    }
+
 }

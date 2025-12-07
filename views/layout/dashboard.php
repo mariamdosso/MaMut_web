@@ -100,8 +100,10 @@
             $controller->showDashboard();
             break;
 
-        case '/MaMut_web/modifier_compte':
-            require("views/edit_acount.php");
+        case '/MaMut_web/update_account':
+            require_once __DIR__ . "/controllers/UserController.php";
+            $user = new UserController();
+            $user->showEditAccount();
             break;
 
         case '/MaMut_web/info_user':
@@ -173,7 +175,21 @@
             break;
 
 
-        // Routes for management adherent
+        
+            // Routes for management adherent
+
+        case '/MaMut_web/create_user_adherent_account':
+            require_once  "controllers/AdherentController.php";
+            $controller = new AdherentController();
+            $controller->showCreateUserForm();
+            break;
+
+        case '/MaMut_web/store_user_account':
+            require_once "controllers/AdherentController.php";
+            $controller = new AdherentController();
+            $controller->storeUserAccount(); 
+            break;
+
         case '/MaMut_web/update_adherent':
             require_once "controllers/AdherentController.php";
             $controller = new AdherentController();
@@ -192,9 +208,6 @@
             $controller->detailsAdherent();
             break;
 
-        case '/MaMut_web/create_account':
-            require_once "controllers/create_account.php";
-            break;
 
         case '/MaMut_web/toggle_status':
             require_once "controllers/AdherentController.php";

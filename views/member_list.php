@@ -73,7 +73,7 @@
                                 </a>
 
                                 <?php if (empty($adherent['has_account_id'])): ?>
-                                    <a href="create_account?id=<?= $adherent['adherent_id'] ?>"
+                                    <a href="/MaMut_web/create_user_adherent_account?id=<?= $adherent['adherent_id'] ?>"
                                         data-bs-toggle="tooltip"
                                         title="Créer un compte pour cet adhérent">
                                         <button class="btn btn-sm btn-light-primary btn-flex btn-center mx-2" data-kt-follow-btn="true">

@@ -8,8 +8,8 @@
                     Pour : <span class="fw-bold text-dark"><?= htmlspecialchars($adherent['full_name']) ?></span>
                 </h6>
 
-                <form method="post" action="controller/create_account_process.php">
-                    <input type="hidden" name="adherent_id" value="<?= $adherent['id'] ?>">
+                <form method="POST" action="/MaMut_web/store_user_account">
+                    <input type="hidden" name="adherent_id" value="<?= $adherent['adherent_id'] ?>">
                     <div class="mb-3">
                         <label for="login" class="form-label">Login (ex: email)</label>
                         <input type="text" name="login" id="login" class="form-control" required>
