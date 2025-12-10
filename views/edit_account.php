@@ -28,7 +28,7 @@ $user = $_SESSION['user_info'] ?? null;
                         </div>
                     <?php endif; ?>
 
-                    <form method="POST" action="controller/edit_acount_controller.php" novalidate>
+                    <form method="POST" action="controller/edit_account_controller.php" novalidate>
                         <div class="mb-3">
                             <label for="login" class="form-label"><i class="bi bi-person"></i> Login</label>
                             <input type="text" name="login" id="login" class="form-control" value="<?= htmlspecialchars($user['login'] ?? '') ?>" required>
