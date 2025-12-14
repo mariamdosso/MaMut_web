@@ -1,13 +1,25 @@
+<?php
+//session_start();
+
+$path = rtrim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+
+if ($path === '/MaMut_web/logout') {
+    require_once __DIR__ . "/../../controllers/UserController.php";
+    $controller = new UserController();
+    $controller->logout();
+    exit;
+}
+?>
 <main class="d-flex flex-nowrap">
     <h1 class="visually-hidden">Sidebars examples</h1>
     <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark min-vh-100 sidebar" style="width: 280px;">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <span class="fs-4">Mat_Mut</span>
+            <span class="fs-4">MaMut</span>
         </a>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="home" class="nav-link active" aria-current="page">
+                <a href="home" class="nav-link text-white" aria-current="page">
                     <svg class="bi pe-none me-2" width="16" height="16">
                         <use xlink:href="#home" />
                     </svg>
@@ -112,11 +124,11 @@
             $controller->showProfile();
             break;
 
-        case '/MaMut_web/logout':
-            require_once __DIR__ . "/controllers/UserController.php";
-            $user = new UserController();
-            $user->logout();
-            break;
+//        case '/MaMut_web/logout':
+//            require_once __DIR__ . "/controllers/UserController.php";
+//            $user = new UserController();
+//            $user->logout();
+//            break;
 
 
         // Routes for management event 

@@ -2,10 +2,10 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$host = "localhost";
+$host = "127.0.0.1";
 $dbname = "gestion_mutuel"; 
 $username = "root";
-$password = ""; 
+$password = "rootdailen";
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password, [
