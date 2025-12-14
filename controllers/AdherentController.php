@@ -197,6 +197,7 @@ class AdherentController
 
         require_once __DIR__ . '/../views/info_user.php';
     }
+    
 
     public function showCreateUserForm()
     {
@@ -218,7 +219,8 @@ class AdherentController
 
         // 4. Charger la vue
         require __DIR__ . '/../views/create_user_account.php';
-        }
+    }
+
 
     public function storeUserAccount()
     {

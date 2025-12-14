@@ -132,9 +132,7 @@
             </ul>
         </nav>
     <?php } ?>
-
 </div>
-
 
 <style>
     .member-card {

@@ -2,10 +2,10 @@
     <div class="wrapper d-flex flex-column flex-row-fluid">
         <div class="content d-flex flex-column flex-column-fluid">
             <div class=" container-xxl mt-2">
-                <div class="card mb-5 mb-xl-10">
+                <div class="card mb-2 mb-xl-10">
                     <div class="card-body compact pt-9 pb-0">
                         <div class="d-flex flex-wrap flex-sm-nowrap">
-                            <div class="me-7 mb-4">
+                            <div class="me-7 mb-2">
                                 <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
                                     <img src="/assets/images/adherent-profile.jpg" alt="image">
                                     <div class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px"></div>
@@ -60,15 +60,15 @@
                         </div>
 
                         <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent  fw-bold">
-                            <li class="nav-item mt-2">
+                            <li class="nav-item">
                                 <a class="nav-link text-active-primary ms-0 me-10 py-5 active" href="/metronic8/demo1/account/overview.html">
                                     Overview </a>
                             </li>
-                            <li class="nav-item mt-2">
+                            <li class="nav-item">
                                 <a class="nav-link text-active-primary ms-0 me-10 py-5 " href="/metronic8/demo1/account/settings.html">
                                     Settings </a>
                             </li>
-                            <li class="nav-item mt-2">
+                            <li class="nav-item">
                                 <a class="nav-link text-active-primary ms-0 me-10 py-5 " href="/metronic8/demo1/account/security.html">
                                     Security </a>
                             </li>
