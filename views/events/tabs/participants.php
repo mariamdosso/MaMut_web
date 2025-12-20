@@ -11,7 +11,7 @@
             <?php endforeach; ?>
         </select>
 
-        <button type="submit" class="btn btn-primary mb-2">Ajouter</button>
+        <button type="submit" class="btn login-button mb-2">Ajouter</button>
     </form>
 </div>
 <div class="row g-6 mb-6 g-xl-9 mb-xl-9">

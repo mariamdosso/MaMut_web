@@ -1,14 +1,13 @@
 
-<div class="container list-bg mt-5 w-100">
-    <h2 class="fw-bold text-primary mb-3 mb-md-0">👥 Gestion des évenements</h2>
+<div class="container-fluid list-bg mt-3 w-100">
+    <h2 class="fw-bold link-primary-login  mb-3 mb-md-0">Gestion des évenements</h2>
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
-        <a href="/MaMut_web/add_event" class="btn btn-primary mb-3"> ➕ Ajouter un événement</a>
+        <a href="/MaMut_web/add_event" class="btn login-button mb-3"> ➕ Ajouter un événement</a>
     </div>
 
     <div class="row g-6 mb-6 g-xl-9 mb-xl-9">
         <?php if (count($events)) {
             foreach ($events as $event) { ?>
-
                 <div class="col-md-6 col-xxl-4">
                     <div class="card ">
                         <div class="card-header border-0 pt-9">

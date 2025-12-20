@@ -1,7 +1,7 @@
 <div class="page d-flex flex-row flex-column-fluid">
     <div class="wrapper d-flex flex-column flex-row-fluid">
         <div class="content d-flex flex-column flex-column-fluid">
-            <div class=" container-xxl mt-2">
+            <div class="ccontainer-fluid mt-2">
                 <div class="card mb-2 mb-xl-10">
                     <div class="card-body compact pt-9 pb-0">
                         <div class="d-flex flex-wrap flex-sm-nowrap">

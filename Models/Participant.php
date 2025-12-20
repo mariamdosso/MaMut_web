@@ -4,7 +4,7 @@ require_once __DIR__ . '/../config/db.php';
 
 class Participant
 {
-    // Tous les participants
+
     public static function all()
     {
         global $pdo;
@@ -13,7 +13,7 @@ class Participant
         return $stmt->fetchAll();
     }
 
-    // Nouvelle méthode pour récupérer les participants par événement
+
     public static function getByEvent($eventId, $page = 1, $perPage = 6)
     {
         global $pdo;
@@ -69,12 +69,11 @@ class Participant
         ];
     }
 
-    // Ajouter un utilisateur sur un évenement
+
     public static function addToEvent($eventId, $userId)
     {
         global $pdo;
 
-        // Vérifier si l'utilisateur est déjà participant de cet événement
         $stmt = $pdo->prepare("
         SELECT COUNT(*) 
         FROM user_event 
@@ -85,12 +84,11 @@ class Participant
             ':eventId' => $eventId
         ]);
 
-        // Si déjà présent → stop
+
         if ($stmt->fetchColumn() > 0) {
             return false;
         }
 
-        // Ajouter le participant
         $stmt = $pdo->prepare("
         INSERT INTO user_event (event_id, user_id, created_at, updated_at)
         VALUES (:eventId, :userId, NOW(), NOW())
@@ -102,7 +100,7 @@ class Participant
         ]);
     }
 
-    // Supprimer un utilisateur ajouté sur un évenement
+
     public static function delete($id)
     {
         global $pdo;
@@ -111,7 +109,6 @@ class Participant
         return $stmt->execute([$id]);
     }
 
-    // detail d'un utilisateur sur un évenement 
     public static function getDetails($id)
     {
         global $pdo;

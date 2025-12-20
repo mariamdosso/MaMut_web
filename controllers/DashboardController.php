@@ -12,25 +12,22 @@ class DashboardController
     public function showDashboard()
     {
         $totalMembers = Dashboard::getTotalMembers();
-        $totalEvents = Dashboard::getTotalEvents();
-        $totalFunds = Dashboard::getTotalFunds();
-
-        require_once __DIR__ . '/../views/home.php';
-    }
-
-    public function dashboard()
-    {
-        session_start();
+        $totalEvents  = Dashboard::getTotalEvents();
+        $totalFunds   = Dashboard::getTotalFunds();
 
         $adherentController = new AdherentController();
         $adherent = $adherentController->getCurrentAdherent();
+        $user     = $_SESSION['user_info'] ?? null;
 
-        require __DIR__ . '/../views/dashboard.php';
+        ob_start();
+        require __DIR__ . '/../views/home.php';
+        $content = ob_get_clean();
+
+        require __DIR__ . '/../views/layout/dashboard.php';
     }
 
     public function index()
     {
-        $user = $_SESSION['user_info'];
-        require __DIR__ . '/../views/layout/dashboard.php';
+        $this->showDashboard();
     }
 }

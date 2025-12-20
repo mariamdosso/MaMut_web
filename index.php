@@ -1,7 +1,6 @@
 <?php
 session_start();
 include("config/db.php");
-
 require_once __DIR__ . "/controllers/AuthController.php";
 require_once __DIR__ . "/controllers/DashboardController.php";
 ?>
@@ -27,6 +26,8 @@ require_once __DIR__ . "/controllers/DashboardController.php";
     <link rel="stylesheet" href="/assets/css/pages/edit_membre.css">
     <link rel="stylesheet" href="/assets/css/pages/event_add.css">
     <link rel="stylesheet" href="/assets/css/pages/list_event.css">
+    <link rel="stylesheet" href="/assets/css/pages/sidebar.css">
+
 </head>
 
 <body>
@@ -40,23 +41,19 @@ require_once __DIR__ . "/controllers/DashboardController.php";
         }
 
         if (isset($_SESSION["user_token"])) {
-            $dashboard = new DashboardController();
-            $dashboard->index();
+            require_once __DIR__ . "/views/router.php";
         } else {
             $auth = new AuthController();
             switch ($url) {
                 case '/MaMut_web/login':
                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                        // Traite le formulaire
                         $auth->login();
                     } else {
-                        // Affiche le formulaire
                         $auth->loginView();
                     }
                     break;
 
                 default:
-                    // Redirection vers le login par défaut
                     header('Location: /MaMut_web/login');
                     exit();
             }
@@ -64,7 +61,6 @@ require_once __DIR__ . "/controllers/DashboardController.php";
         ?>
 
     </div>
-
     <script src="/assets/js/popper.min.js" defer> </script>
     <script src="/assets/js/jquery-3.6.0.min.js" defer> </script>
     <script src="/assets/js/select2.min.js" defer> </script>

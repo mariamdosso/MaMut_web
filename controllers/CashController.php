@@ -12,4 +12,13 @@ class CashController
     {
         $cash = Cash::getById($id);
     }
+
+    public function showCashList() {
+
+    }
+
+    public function showCashForm(){
+
+    }
+
 }   
