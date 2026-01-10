@@ -14,7 +14,11 @@ class UserController
 
     public function showEditAccount()
     {
-        require __DIR__ . '/../views/edit_account.php';
+        ob_start();
+        require __DIR__ . '/../views/adherents/edit_account.php';
+        $content = ob_get_clean();
+
+        require __DIR__ . '/../views/layout/dashboard.php';
     }
    
 }

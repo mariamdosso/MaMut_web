@@ -4,7 +4,7 @@ require_once __DIR__ . '/../config/db.php';
 
 class Event
 {
-    // Récupérer les infos d'un événement par ID
+
     public static function getById($eventId)
     {
         global $pdo;
@@ -16,14 +16,12 @@ class Event
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Récupérer tous les événements
     public static function allEvent($page = 1, $perPage = 8)
     {
         global $pdo;
 
         $offset = ($page - 1) * $perPage;
 
-        // Récupération des événements
         $sql = "SELECT * FROM event ORDER BY created_at DESC LIMIT :limit OFFSET :offset";
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
@@ -31,12 +29,10 @@ class Event
         $stmt->execute();
         $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Nombre total d'événements
         $totalStmt = $pdo->query("SELECT COUNT(*) as total FROM event");
         $totalEvents = $totalStmt->fetch(PDO::FETCH_ASSOC)['total'];
         $totalPages = ceil($totalEvents / $perPage);
 
-        // Retourner les données + pagination
         return [
             "data" => $events,
             "total" => $totalEvents,
@@ -46,7 +42,6 @@ class Event
         ];
     }
 
-    // Ajouter un événement
     public static function create(array $data)
     {
         global $pdo;
@@ -77,7 +72,7 @@ class Event
         ]);
     }
 
-     public static function update(int $id, array $data)
+    public static function update(int $id, array $data)
     {
         global $pdo;
 
@@ -105,5 +100,16 @@ class Event
             ':description' => htmlspecialchars($data['description'] ?? ''),
             ':id' => $id
         ]);
+    }
+
+    public static function getEventTypes(): array
+    {
+        global $pdo;
+
+        $stmt = $pdo->query(
+            "SELECT id, label FROM event_type WHERE status = 1 ORDER BY label ASC"
+        );
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

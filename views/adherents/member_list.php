@@ -1,10 +1,7 @@
-<div class="container list-bg mt-5 w-100">
-    <h2 class="fw-bold text-primary mb-3 mb-md-0">👥 Gestion des Membres</h2>
-    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
-        <!-- Bouton d’ajout -->
-        <a href="add_member" class="btn btn-primary mb-2">➕ Ajouter un membre</a>
-
-        <!-- Formulaire de recherche -->
+<div class="container-fluid list-bg mt-3 w-100">
+    <h2 class="fw-bold link-primary-login  mb-3 mb-md-0">Gestion des Membres</h2>
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+        <a href="add_member" class="btn login-button mb-2">➕ Ajouter un membre</a>
         <form method="GET" action="" class="d-flex align-items-center mb-2" style="max-width: 480px; width: 100%;">
             <div class="input-group">
                 <input type="text"
@@ -13,7 +10,7 @@
                     placeholder="🔍 Rechercher par nom, email, ville ou genre..."
                     value="<?= htmlspecialchars($_GET['search'] ?? '') ?>"
                     style="min-width: 250px;">
-                <button type="submit" class="btn btn-primary">Rechercher</button>
+                <button type="submit" class="btn login-button">Rechercher</button>
             </div>
         </form>
     </div>

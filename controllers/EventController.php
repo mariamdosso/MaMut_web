@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__ . '/../Models/Event.php';
 require_once __DIR__ . '/../Models/Participant.php';
 require_once __DIR__ . '/../Models/User.php';
@@ -20,7 +19,11 @@ class EventController
 
         $allUsers = User::allUsers();
 
-        require __DIR__ . '/../views/event_details.php';
+        ob_start();
+        require __DIR__ . '/../views/events/event_details.php';
+        $content = ob_get_clean();
+
+        require __DIR__ . '/../views/layout/dashboard.php';
     }
 
     public function deleteParticipant()
@@ -45,12 +48,16 @@ class EventController
         $total = $result['total'];
         $perPage = $result['perPage'];
 
-        require __DIR__ . '/../views/event_list.php';
+        ob_start();
+        require __DIR__ . '/../views/events/event_list.php';
+        $content = ob_get_clean();
+
+        require __DIR__ . '/../views/layout/dashboard.php';
     }
 
     public function handleShowEvent()
     {
-        // Récupérer ID depuis URL si aucun paramètre n’est passé
+
         $eventId = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
         if ($eventId <= 0) {
@@ -58,17 +65,18 @@ class EventController
             exit;
         }
 
-        // Appeler automatiquement showEvent()
         $this->showEvent($eventId);
     }
 
-    // Affiche le formulaire pour ajouter un événement
     public function showAddEventForm()
     {
-        require __DIR__ . '/../views/add_event.php';
+        ob_start();
+        require __DIR__ . '/../views/events/add_event.php';
+        $content = ob_get_clean();
+
+        require __DIR__ . '/../views/layout/dashboard.php';
     }
 
-    // Traite le formulaire d'ajout
     public function addEvent()
     {
         if (!isset($_SESSION['user_info']['id'])) {
@@ -95,18 +103,17 @@ class EventController
                     exit;
                 } else {
                     $error = "Erreur lors de l'ajout de l'événement.";
-                    require __DIR__ . '/../views/add_event.php';
+                    require __DIR__ . '/../views/events/add_event.php';
                 }
             } else {
                 $error = "Veuillez remplir tous les champs obligatoires.";
-                require __DIR__ . '/../views/add_event.php';
+                require __DIR__ . '/../views/events/add_event.php';
             }
         } else {
             $this->showAddEventForm();
         }
     }
 
-    // Afficher le formulaire pour éditer un évenement 
     public function showEditEventForm()
     {
         $eventId = isset($_GET['id']) ? intval($_GET['id']) : 0;
@@ -118,11 +125,15 @@ class EventController
         if (!$event) {
             die("Événement introuvable.");
         }
+        $types = Event::getEventTypes();
 
-        require __DIR__ . '/../views/edit_event.php';
+        ob_start();
+        require __DIR__ . '/../views/events/edit_event.php';
+        $content = ob_get_clean();
+
+        require __DIR__ . '/../views/layout/dashboard.php';
     }
 
-    // Traite le formulaire de mise à jour
     public function updateEvent()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

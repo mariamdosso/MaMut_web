@@ -1,10 +1,9 @@
 <div class="page d-flex flex-row flex-column-fluid">
     <div class="wrapper d-flex flex-column flex-row-fluid">
         <div class="content d-flex flex-column flex-column-fluid">
-            <div class="container-xxl mt-2">
+            <div class="container-fluid mt-2">
                 <div class="card mb-2 mb-xl-10">
-                    <div class="card-body compact pt-9 pb-0">
-                        <div class="d-flex flex-wrap flex-sm-nowrap">
+*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************                     <div class="d-flex flex-wrap flex-sm-nowrap">
                             <div class="flex-grow-1">
                                 <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
                                     <div class="d-flex flex-column">
@@ -20,7 +19,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                </div>
+             =                   </div>
 
                                 <div class="d-flex flex-wrap flex-stack">
                                     <div class="d-flex flex-column flex-grow-1 pe-8">
@@ -51,8 +50,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                         <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fw-bold" id="myTabs" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link text-active-primary ms-0 me-10 py-5 active" data-bs-toggle="tab" data-bs-target="#tab-infos" role="tab">
@@ -70,8 +67,6 @@
                     </div>
                 </div>
                 <div class="tab-content mt-3">
-
-                    <!-- TAB INFOS -->
                     <div class="tab-pane fade show active" id="tab-infos" role="tabpanel">
                         <div class="card mb-5 mb-xl-10">
                             <div class="card-body p-9">
@@ -79,8 +74,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- TAB PARTICIPANTS -->
                     <div class="tab-pane fade" id="tab-participants" role="tabpanel">
                         <div class="card mb-5 mb-xl-10">
                             <div class="card-body p-9">
@@ -88,8 +81,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- TAB PAIEMENT -->
                     <div class="tab-pane fade" id="tab-paiement" role="tabpanel">
                         <div class="card mb-5 mb-xl-10">
                             <div class="card-body p-9">

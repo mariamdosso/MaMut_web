@@ -2,6 +2,8 @@
 require_once __DIR__ . '/../Models/Adherent.php';
 require_once __DIR__ . '/../Models/User.php';
 require_once __DIR__ . '/../Models/Role.php';
+require_once __DIR__ . '/../Models/UserRole.php';
+
 
 class AdherentController
 {
@@ -18,7 +20,11 @@ class AdherentController
         $total = $result['total'];
         $perPage = $result['perPage'];
 
-        require __DIR__ . '/../views/member_list.php';
+        ob_start();
+        require __DIR__ . '/../views/adherents/member_list.php';
+        $content = ob_get_clean();
+
+        require __DIR__ . '/../views/layout/dashboard.php';
     }
 
     public function showEditForm()
@@ -35,7 +41,11 @@ class AdherentController
             die("Adhérent non trouvé !");
         }
 
-        require __DIR__ . '/../views/edit_member.php';
+        ob_start();
+        require __DIR__ . '/../views/adherents/edit_member.php';
+        $content = ob_get_clean();
+
+        require __DIR__ . '/../views/layout/dashboard.php';
     }
 
     public function updateAdherent()
@@ -80,9 +90,13 @@ class AdherentController
 
     public function showAddForm()
     {
-        require __DIR__ . '/../views/add_member.php';
-    }
+        ob_start();
+        require __DIR__ . '/../views/adherents/add_member.php';
+        $content = ob_get_clean();
 
+        require __DIR__ . '/../views/layout/dashboard.php';
+    }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
     public function addAdherent()
     {
         if (!isset($_SESSION['user_info']['id'])) {
@@ -107,7 +121,7 @@ class AdherentController
             foreach ($requiredFields as $field) {
                 if (!isset($_POST[$field]) || $_POST[$field] === '') {
                     $_SESSION['errorMessage'] = "Le champ '$field' est requis.";
-                    require __DIR__ . '/../views/add_member.php';
+                    require __DIR__ . '/../views/adherents/add_member.php';
                     return;
                 }
             }
@@ -121,7 +135,7 @@ class AdherentController
                 exit();
             } else {
                 $_SESSION['errorMessage'] = $result['message'];
-                require __DIR__ . '/../views/add_member.php';
+                require __DIR__ . '/../views/adherents/add_member.php';
             }
         } else {
             $this->showAddForm();
@@ -165,12 +179,15 @@ class AdherentController
             die("Adhérent introuvable !");
         }
 
-        require __DIR__ . '/../views/details_info_adherent.php';
+        ob_start();
+        require __DIR__ . '/../views/adherents/details_info_adherent.php';
+        $content = ob_get_clean();
+
+        require __DIR__ . '/../views/layout/dashboard.php';
     }
 
     public function getCurrentAdherent()
     {
-        session_start();
 
         if (!isset($_SESSION['user_info'])) {
             return null; 
@@ -195,9 +212,12 @@ class AdherentController
 
         $adherent = Adherent::getById($adherentId);
 
-        require_once __DIR__ . '/../views/info_user.php';
+        ob_start();
+        require __DIR__ . '/../views/adherents/info_user.php';
+        $content = ob_get_clean();
+
+        require __DIR__ . '/../views/layout/dashboard.php';
     }
-    
 
     public function showCreateUserForm()
     {
@@ -217,16 +237,15 @@ class AdherentController
         require_once __DIR__ . '/../Models/Role.php';
         $roles = Role::all();
 
-        // 4. Charger la vue
-        require __DIR__ . '/../views/create_user_account.php';
-    }
+        ob_start();
+        require __DIR__ . '/../views/adherents/create_user_account.php';
+        $content = ob_get_clean();
 
+        require __DIR__ . '/../views/layout/dashboard.php';
+    }
 
     public function storeUserAccount()
     {
-        require_once __DIR__ . '/../models/User.php';
-        require_once __DIR__ . '/../models/UserRole.php';
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = User::createAccount($_POST);
 
@@ -242,4 +261,12 @@ class AdherentController
         }
     }
 
+    public function getCurrentUserRole()
+    {
+        session_start();
+        if (!isset($_SESSION['user_info'])) return 'guest';
+
+        $userId = $_SESSION['user_info']['id'];
+        return Role::getUserRole($userId);
+    }
 }
