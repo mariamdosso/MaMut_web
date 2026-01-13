@@ -3,7 +3,7 @@
         <div class="content d-flex flex-column flex-column-fluid">
             <div class="container-fluid mt-2">
                 <div class="card mb-2 mb-xl-10">
-*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************                     <div class="d-flex flex-wrap flex-sm-nowrap">
+                        <div class="d-flex flex-wrap flex-sm-nowrap">
                             <div class="flex-grow-1">
                                 <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
                                     <div class="d-flex flex-column">
@@ -19,7 +19,7 @@
                                             </a>
                                         </div>
                                     </div>
-             =                   </div>
+                             </div>
 
                                 <div class="d-flex flex-wrap flex-stack">
                                     <div class="d-flex flex-column flex-grow-1 pe-8">

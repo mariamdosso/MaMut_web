@@ -45,7 +45,7 @@ class AuthController
                 $_SESSION['user_info'] = [
                     'id'          => $user['id'],
                     'login'       => $user['login'],
-                    'role'        => $user['role'] ?? 'guest',
+                    'role'        => $user['role'],
                     'adherent_id' => $user['adherent_id'],
                     'status'      => $user['status']
                 ];
