@@ -24,7 +24,7 @@ $menu = [
     [
         "label" => "Gestion des caisses",
         "icon" => "wallet",
-        "url" => "/MaMut_web/fund",
+        "url" => "/MaMut_web/fund_list",
         "roles" => ["admin"]
     ],
 
