@@ -12,6 +12,8 @@ if (strpos($path, '/MaMut_web/controllers/') === 0) {
 }
 
 switch ($path) {
+
+    // General routes for all user
     case '/MaMut_web/home':
         require_once __DIR__ . "/../controllers/DashboardController.php";
         (new DashboardController())->index();
@@ -22,11 +24,9 @@ switch ($path) {
         (new UserController())->showEditAccount();
         break;
 
-    case '/MaMut_web/info_user':
-        require_once __DIR__ . "/../controllers/AdherentController.php";
-        (new AdherentController())->showProfile();
-        break;
-
+    
+        
+    // Management Event routes    
     case '/MaMut_web/add_event':
         require_once __DIR__ . "/../controllers/EventController.php";
         (new EventController())->showAddEventForm();
@@ -57,24 +57,51 @@ switch ($path) {
         (new EventController())->handleShowEvent();
         break;
 
-    case '/MaMut_web/add_participant':
-        require_once __DIR__ . "/../controllers/ParticipantController.php";
-        (new ParticipantController())->addParticipant();
+    case '/MaMut_web/event/attach_fund':
+        require_once __DIR__ . "/../controllers/EventController.php";
+        (new EventController())->attachFund();
         break;
 
-    case '/MaMut_web/delete_participant':
-        require_once __DIR__ . "/../controllers/ParticipantController.php";
-        (new ParticipantController())->deleteParticipant();
+
+    case '/MaMut_web/event/add_participant':
+        require_once __DIR__ . "/../controllers/EventController.php";
+        (new EventController())->addParticipant();
         break;
 
-    case '/MaMut_web/details_user_event':
-        require_once __DIR__ . "/../controllers/ParticipantController.php";
-        (new ParticipantController())->showParticipantDetails();
+    
+    case '/MaMut_web/event/show_edit_participant_form':
+        require_once __DIR__ . "/../controllers/EventController.php";
+        (new EventController())->showEditParticipant();
         break;
 
+    
+    case '/MaMut_web/event/edit_participant':
+        require_once __DIR__ . "/../controllers/EventController.php";
+        (new EventController())->updateParticipant();
+        break;
+
+
+    case '/MaMut_web/event/participant/delete':
+        require_once __DIR__ . "/../controllers/EventController.php";
+        (new EventController())->deleteParticipant();
+        break;
+
+
+    // case '/MaMut_web/details_user_event':
+    //     require_once __DIR__ . "/../controllers/ParticipantController.php";
+    //     (new ParticipantController())->showParticipantDetails();
+    //     break;
+
+
+    // Management Adherent routes   
     case '/MaMut_web/create_user_adherent_account':
         require_once __DIR__ . "/../controllers/AdherentController.php";
         (new AdherentController())->showCreateUserForm();
+        break;
+
+    case '/MaMut_web/info_user':
+        require_once __DIR__ . "/../controllers/AdherentController.php";
+        (new AdherentController())->showProfile();
         break;
 
     case '/MaMut_web/store_user_account':
@@ -117,15 +144,44 @@ switch ($path) {
         (new AdherentController())->addAdherent();
         break;
 
-    case '/MaMut_web/fund':
-        require_once __DIR__ . "/../controllers/CashController.php";
-        (new CashController())->showCashList();
-        break;
+
+     // Management Fund routes  
+    case '/MaMut_web/fund_list':
+    require_once __DIR__ . "/../controllers/FundController.php";
+    (new FundController())->showAllFunds();
+    break;
 
     case '/MaMut_web/add_fund':
-        require_once __DIR__ . "/../controllers/CashController.php";
-        (new CashController())->showCashForm();
+        require_once __DIR__ . "/../controllers/FundController.php";
+        (new FundController())->showCreateFundForm();
         break;
+
+    case '/MaMut_web/add_fund_controller':
+        require_once __DIR__ . "/../controllers/FundController.php";
+        (new FundController())->createFund();
+        break;
+
+    case '/MaMut_web/edit_fund':
+        require_once __DIR__ . "/../controllers/FundController.php";
+        (new FundController())->showEditFundForm();
+        break;
+
+    case '/MaMut_web/edit_fund_controller':
+        require_once __DIR__ . "/../controllers/FundController.php";
+        (new FundController())->updateFund();
+        break;
+
+    case '/MaMut_web/change_fund_status':
+        require_once __DIR__ . "/../controllers/FundController.php";
+        (new FundController())->changeFundStatus();
+        break;
+
+    case '/MaMut_web/fund_details':
+        require_once __DIR__ . "/../controllers/FundController.php";
+        (new FundController())->viewFund($_GET['id'] ?? 0);
+        break;
+
+
 
     default:
         require_once __DIR__ . "/../controllers/DashboardController.php";

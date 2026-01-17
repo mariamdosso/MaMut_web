@@ -42,17 +42,42 @@ class Event
         ];
     }
 
-    public static function create(array $data)
+   public static function create(array $data)
     {
         global $pdo;
 
         $event_ref = "EVT_" . strtoupper(bin2hex(random_bytes(4)));
         $today = date("Y-m-d");
 
-        $sql = "INSERT INTO event
-            (label, event_ref, description, event_start_date, event_end_date, event_amount, with_participation, event_target_participation, event_type_id, statut_event_id, created_at, updated_at)
-            VALUES
-            (:label, :event_ref, :description, :start, :end, :amount, :participation, :target, :type, :statut, :created, :updated)";
+        $sql = "INSERT INTO event (
+                    label,
+                    event_ref,
+                    description,
+                    event_start_date,
+                    event_end_date,
+                    with_participation,
+                    contribution_type,
+                    event_amount,
+                    event_target_participation,
+                    event_type_id,
+                    statut_event_id,
+                    created_at,
+                    updated_at
+                ) VALUES (
+                    :label,
+                    :event_ref,
+                    :description,
+                    :start,
+                    :end,
+                    :participation,
+                    :contribution_type,
+                    :amount,
+                    :target,
+                    :type,
+                    1,
+                    :created,
+                    :updated
+                )";
 
         $stmt = $pdo->prepare($sql);
 
@@ -62,11 +87,11 @@ class Event
             ':description' => htmlspecialchars($data['description'] ?? ''),
             ':start' => $data['event_start_date'],
             ':end' => $data['event_end_date'],
-            ':amount' => floatval($data['event_amount']),
             ':participation' => intval($data['with_participation']),
-            ':target' => floatval($data['event_target_participation']),
+            ':contribution_type' => $data['contribution_type'],
+            ':amount' => $data['event_amount'], 
+            ':target' => $data['event_target_participation'], 
             ':type' => intval($data['event_type_id']),
-            ':statut' => $data['statut_event_id'] ?? 2,
             ':created' => $today,
             ':updated' => $today
         ]);
@@ -77,39 +102,31 @@ class Event
         global $pdo;
 
         $sql = "UPDATE event SET 
-                    label = :label, 
-                    event_amount = :amount, 
-                    event_target_participation = :target,
-                    event_start_date = :start, 
-                    event_end_date = :end, 
-                    with_participation = :participation,
-                    event_type_id = :type, 
+                    label = :label,
                     description = :description,
+                    event_start_date = :start,
+                    event_end_date = :end,
+                    with_participation = :participation,
+                    contribution_type = :contribution_type,
+                    event_amount = :amount,
+                    event_target_participation = :target,
+                    event_type_id = :type,
                     updated_at = NOW()
                 WHERE id = :id";
 
         $stmt = $pdo->prepare($sql);
+
         return $stmt->execute([
             ':label' => htmlspecialchars($data['label']),
-            ':amount' => floatval($data['event_amount']),
-            ':target' => floatval($data['event_target_participation']),
+            ':description' => htmlspecialchars($data['description'] ?? ''),
             ':start' => $data['event_start_date'],
             ':end' => $data['event_end_date'],
             ':participation' => intval($data['with_participation']),
+            ':contribution_type' => $data['contribution_type'],
+            ':amount' => $data['event_amount'], // NULL ou valeur
+            ':target' => $data['event_target_participation'], // NULL ou valeur
             ':type' => intval($data['event_type_id']),
-            ':description' => htmlspecialchars($data['description'] ?? ''),
             ':id' => $id
         ]);
-    }
-
-    public static function getEventTypes(): array
-    {
-        global $pdo;
-
-        $stmt = $pdo->query(
-            "SELECT id, label FROM event_type WHERE status = 1 ORDER BY label ASC"
-        );
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

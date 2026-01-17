@@ -15,12 +15,54 @@
                         <input type="text" name="label" class="form-control" value="<?= htmlspecialchars($event['label']) ?>" required>
                     </div>
                     <div class="mb-8">
-                        <label>Montant de l'événement</label>
-                        <input type="number" name="event_amount" class="form-control" value="<?= $event['event_amount'] ?>" required>
+                        <label>Cet événement nécessite-t-il une contribution ?</label><br>
+
+                        <label>
+                            <input type="radio" name="with_participation" value="1"
+                                <?= $event['with_participation'] == 1 ? 'checked' : '' ?>>
+                            Oui
+                        </label>
+
+                        <label class="ms-5">
+                            <input type="radio" name="with_participation" value="0"
+                                <?= $event['with_participation'] == 0 ? 'checked' : '' ?>>
+                            Non
+                        </label>
                     </div>
-                    <div class="mb-8">
-                        <label>Montant cible de l'événement</label>
-                        <input type="number" name="event_target_participation" class="form-control" value="<?= $event['event_target_participation'] ?>" required>
+                    <div id="contributionTypeFields" style="display:none;">
+                        <div class="mb-8">
+                            <label>Type de contribution</label><br>
+
+                            <label>
+                                <input type="radio" name="contribution_type" value="global"
+                                    <?= $event['contribution_type'] === 'global' ? 'checked' : '' ?>>
+                                Montant global
+                            </label>
+
+                            <label class="ms-5">
+                                <input type="radio" name="contribution_type" value="per_person"
+                                    <?= $event['contribution_type'] === 'per_person' ? 'checked' : '' ?>>
+                                Montant par personne
+                            </label>
+                        </div>
+                    </div>
+                    <div id="globalAmountFields" style="display:none;">
+                        <div class="mb-8">
+                            <label>Montant global de l'événement</label>
+                            <input type="number"
+                                name="event_amount"
+                                class="form-control"
+                                value="<?= $event['event_amount'] ?>">
+                        </div>
+                    </div>
+                    <div id="perPersonAmountFields" style="display:none;">
+                        <div class="mb-8">
+                            <label>Montant par participant</label>
+                            <input type="number"
+                                name="event_target_participation"
+                                class="form-control"
+                                value="<?= $event['event_target_participation'] ?>">
+                        </div>
                     </div>
                     <div class="row mb-8">
                         <div class="col-md-6">
@@ -33,10 +75,6 @@
                         </div>
                     </div>
                     <div class="mb-8">
-                        <label>Participation</label><br>
-                        <label><input type="radio" name="with_participation" value="1" <?= $event['with_participation'] ? 'checked' : '' ?>> Oui</label>
-                        <label><input type="radio" name="with_participation" value="0" <?= !$event['with_participation'] ? 'checked' : '' ?>> Non</label>
-                    </div>
                     <div class="mb-8">
                         <label>Type d'événement</label>
                         <select name="event_type_id" class="form-control" required>
@@ -51,7 +89,7 @@
                         <textarea name="description" class="form-control" rows="3"><?= htmlspecialchars($event['description']) ?></textarea>
                     </div>
                     <div class="text-end">
-                        <button type="reset" class="btn btn-light me-3">Annuler</button>
+                        <button type="reset" onclick="window.location.href='event_list'" class="btn btn-light me-3">Annuler</button>
                         <button type="submit" class="btn btn-primary">Modifier</button>
                     </div>
                 </form>
@@ -61,3 +99,57 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const participationRadios = document.querySelectorAll('input[name="with_participation"]');
+    const contributionTypeRadios = document.querySelectorAll('input[name="contribution_type"]');
+
+    const contributionTypeFields = document.getElementById('contributionTypeFields');
+    const globalAmountFields = document.getElementById('globalAmountFields');
+    const perPersonAmountFields = document.getElementById('perPersonAmountFields');
+
+    function resetAmounts() {
+        globalAmountFields.style.display = 'none';
+        perPersonAmountFields.style.display = 'none';
+    }
+
+    participationRadios.forEach(radio => {
+        radio.addEventListener('change', function () {
+            if (this.value === '1') {
+                contributionTypeFields.style.display = 'block';
+            } else {
+                contributionTypeFields.style.display = 'none';
+                resetAmounts();
+            }
+        });
+    });
+
+    contributionTypeRadios.forEach(radio => {
+        radio.addEventListener('change', function () {
+            if (this.value === 'global') {
+                globalAmountFields.style.display = 'block';
+                perPersonAmountFields.style.display = 'none';
+            } else if (this.value === 'per_person') {
+                perPersonAmountFields.style.display = 'block';
+                globalAmountFields.style.display = 'none';
+            }
+        });
+    });
+
+    const withParticipationChecked = document.querySelector('input[name="with_participation"]:checked');
+    if (withParticipationChecked && withParticipationChecked.value === '1') {
+        contributionTypeFields.style.display = 'block';
+
+        const contributionTypeChecked = document.querySelector('input[name="contribution_type"]:checked');
+        if (contributionTypeChecked) {
+            if (contributionTypeChecked.value === 'global') {
+                globalAmountFields.style.display = 'block';
+            } else if (contributionTypeChecked.value === 'per_person') {
+                perPersonAmountFields.style.display = 'block';
+            }
+        }
+    }
+});
+</script>

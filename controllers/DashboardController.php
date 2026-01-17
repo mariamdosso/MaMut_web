@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__ . '/../Models/Event.php';
-require_once __DIR__ . '/../Models/Participant.php';
 require_once __DIR__ . '/../Models/User.php';
 require_once __DIR__ . '/../Models/Dashboard.php';
 require_once __DIR__ . '/AdherentController.php';
