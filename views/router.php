@@ -57,6 +57,12 @@ switch ($path) {
         (new EventController())->handleShowEvent();
         break;
 
+    case '/MaMut_web/event/attach_fund':
+        require_once __DIR__ . "/../controllers/EventController.php";
+        (new EventController())->attachFund();
+        break;
+
+
     case '/MaMut_web/add_participant':
         require_once __DIR__ . "/../controllers/ParticipantController.php";
         (new ParticipantController())->addParticipant();
@@ -160,6 +166,8 @@ switch ($path) {
         require_once __DIR__ . "/../controllers/FundController.php";
         (new FundController())->viewFund($_GET['id'] ?? 0);
         break;
+
+
 
     default:
         require_once __DIR__ . "/../controllers/DashboardController.php";

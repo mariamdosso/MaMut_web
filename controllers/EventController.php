@@ -3,6 +3,8 @@ require_once __DIR__ . '/../Models/Event.php';
 require_once __DIR__ . '/../Models/Participant.php';
 require_once __DIR__ . '/../Models/User.php';
 require_once __DIR__ . '/../Models/EventType.php';
+require_once __DIR__ . '/../Models/Fund.php';
+require_once __DIR__ . '/../Models/EventCotisations.php';
 
 
 class EventController
@@ -17,6 +19,9 @@ class EventController
         $totalPages = $result['totalPages'];
         $total = $result['total'];
         $perPage = $result['perPage'];
+
+        $eventFund = EventCotisations::getByEvent($eventId);
+        $attachableFunds = Fund::getAttachableFunds();
 
         $allUsers = User::allUsers();
 
@@ -243,6 +248,41 @@ class EventController
         } else {
             die("Erreur lors de la mise à jour de l'événement.");
         }
+    }
+
+    public function attachFund()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            die('Méthode non autorisée');
+        }
+
+        $eventId = intval($_POST['event_id'] ?? 0);
+        $fundId  = intval($_POST['fund_id'] ?? 0);
+
+        if ($eventId <= 0 || $fundId <= 0) {
+            $_SESSION['errorMessage'] = "Données invalides.";
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit;
+        }
+
+        // Vérifier que l'event accepte les participations
+        $event = Event::getById($eventId);
+        if (!$event || !$event['with_participation']) {
+            $_SESSION['errorMessage'] = "Cet événement n'accepte pas de caisse.";
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit;
+        }
+
+        $success = EventCotisations::attachFund($eventId, $fundId);
+
+        if ($success) {
+            $_SESSION['message'] = "Caisse ajoutée avec succès à l'événement.";
+        } else {
+            $_SESSION['errorMessage'] = "Une caisse est déjà associée à cet événement.";
+        }
+
+        header("Location: /MaMut_web/event_details?id=" . $eventId);
+        exit;
     }
 
 }

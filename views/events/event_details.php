@@ -19,7 +19,20 @@
                                             </a>
                                         </div>
                                     </div>
-                             </div>
+
+                                    <div class="d-flex align-items-center">
+                                        <?php if ($event['with_participation'] && empty($eventFund)) : ?>
+
+                                            <button
+                                                class="btn btn-sm btn-primary"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#attachFundModal">
+                                                ➕ Ajouter une caisse
+                                            </button>
+
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
 
                                 <div class="d-flex flex-wrap flex-stack">
                                     <div class="d-flex flex-column flex-grow-1 pe-8">
@@ -53,15 +66,15 @@
                         <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fw-bold" id="myTabs" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link text-active-primary ms-0 me-10 py-5 active" data-bs-toggle="tab" data-bs-target="#tab-infos" role="tab">
-                                    Infos détaillés </a>
+                                    Infos caisse </a>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link text-active-primary ms-0 me-10 py-5 " data-bs-toggle="tab" data-bs-target="#tab-participants" role="tab">
-                                    Listing participant </a>
+                                    Participants </a>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link text-active-primary ms-0 me-10 py-5 " data-bs-toggle="tab" data-bs-target="#tab-paiement" role="tab">
-                                    List paiement</a>
+                                   Paiements</a>
                             </li>
                         </ul>
                     </div>
@@ -92,6 +105,52 @@
                 </div>
 
             </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="attachFundModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <form method="POST" action="/MaMut_web/event/attach_fund" class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Ajouter une caisse à l'événement</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
+
+                    <div class="mb-3">
+                        <label class="form-label">Caisse</label>
+                        <select name="fund_id" class="form-select" required>
+                            <option value="">-- Sélectionner une caisse --</option>
+                            <?php foreach ($attachableFunds as $fund): ?>
+                                <option value="<?= $fund['id'] ?>">
+                                    <?= htmlspecialchars($fund['label']) ?>
+                                    (<?= number_format($fund['balance'], 0) ?> FR)
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                        Annuler
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Associer
+                    </button>
+                </div>
+
+            </form>
+
         </div>
     </div>
 </div>

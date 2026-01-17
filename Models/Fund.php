@@ -33,7 +33,7 @@ class Fund
 
         return $stmt->execute([
             ':code' => $code,
-            ':label' => $data['label'],
+            ':label' => htmlspecialchars(trim($data['label'])),
             ':balance' => 0,
             ':fund_status_id' => 1 // default: OPEN
         ]);
@@ -159,5 +159,31 @@ class Fund
             ':status_id' => $fund_status_id,
             ':id' => $id
         ]);
+    }
+
+    
+    /**
+     * get All fund to attach on event
+     */
+    public static function getAttachableFunds()
+    {
+        global $pdo;
+
+        $sql = "
+            SELECT 
+                f.id, 
+                f.label, 
+                f.balance
+            FROM fund f
+            JOIN fund_status fs ON fs.id = f.fund_status_id
+            WHERE fs.code = 'OPEN'
+            AND f.id NOT IN (
+                SELECT fund_id FROM event_cotisations
+            )
+            ORDER BY f.label ASC
+        ";
+
+        $stmt = $pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
