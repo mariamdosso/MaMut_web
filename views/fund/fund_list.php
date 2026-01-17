@@ -58,11 +58,11 @@
                         <div class="card-body d-flex flex-center flex-column py-9 px-5">
 
                             <div class="fs-3 fw-bold text-gray-900">
-                                <?= htmlspecialchars($fund['label']) ?>
+                               <?= number_format($fund['balance'], 2) ?> F CFA
                             </div>
 
-                            <div class="fs-6 text-gray-600 mb-3">
-                                Created at: <?= date('d/m/Y', strtotime($fund['created_at'])) ?>
+                            <div class="fs-6 text-gray-300 mb-3">
+                               <?= htmlspecialchars($fund['label']) ?> - Créé le : <?= date('d/m/Y', strtotime($fund['created_at'])) ?>
                             </div>
 
                             <div class="d-flex flex-row justify-content-between mt-3">
@@ -107,7 +107,7 @@
                             <div class="modal-body">
                                 <p><strong>Code:</strong> <?= htmlspecialchars($fund['code']) ?></p>
                                 <p><strong>Label:</strong> <?= htmlspecialchars($fund['label']) ?></p>
-                                <p><strong>Balance:</strong> $<?= number_format($fund['balance'], 2) ?></p>
+                                <p><strong>Balance:</strong> FCFA<?= number_format($fund['balance'], 2) ?></p>
                                 <p><strong>Status:</strong> 
                                     <span class="badge <?= $statusClass ?>">
                                         <?= htmlspecialchars($fund['status_label']) ?>

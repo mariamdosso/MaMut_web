@@ -63,23 +63,37 @@ switch ($path) {
         break;
 
 
-    case '/MaMut_web/add_participant':
-        require_once __DIR__ . "/../controllers/ParticipantController.php";
-        (new ParticipantController())->addParticipant();
+    case '/MaMut_web/event/add_participant':
+        require_once __DIR__ . "/../controllers/EventController.php";
+        (new EventController())->addParticipant();
         break;
 
-    case '/MaMut_web/delete_participant':
-        require_once __DIR__ . "/../controllers/ParticipantController.php";
-        (new ParticipantController())->deleteParticipant();
+    
+    case '/MaMut_web/event/show_edit_participant_form':
+        require_once __DIR__ . "/../controllers/EventController.php";
+        (new EventController())->showEditParticipant();
         break;
 
-    case '/MaMut_web/details_user_event':
-        require_once __DIR__ . "/../controllers/ParticipantController.php";
-        (new ParticipantController())->showParticipantDetails();
+    
+    case '/MaMut_web/event/edit_participant':
+        require_once __DIR__ . "/../controllers/EventController.php";
+        (new EventController())->updateParticipant();
         break;
 
 
-     // Management Adherent routes   
+    case '/MaMut_web/event/participant/delete':
+        require_once __DIR__ . "/../controllers/EventController.php";
+        (new EventController())->deleteParticipant();
+        break;
+
+
+    // case '/MaMut_web/details_user_event':
+    //     require_once __DIR__ . "/../controllers/ParticipantController.php";
+    //     (new ParticipantController())->showParticipantDetails();
+    //     break;
+
+
+    // Management Adherent routes   
     case '/MaMut_web/create_user_adherent_account':
         require_once __DIR__ . "/../controllers/AdherentController.php";
         (new AdherentController())->showCreateUserForm();
