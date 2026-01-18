@@ -27,6 +27,5 @@ class Dashboard
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return intval($result['total']);
     }
-
-    
+ 
 }
