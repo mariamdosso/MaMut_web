@@ -87,11 +87,6 @@ switch ($path) {
         break;
 
 
-    // case '/MaMut_web/details_user_event':
-    //     require_once __DIR__ . "/../controllers/ParticipantController.php";
-    //     (new ParticipantController())->showParticipantDetails();
-    //     break;
-
 
     // Management Adherent routes   
     case '/MaMut_web/create_user_adherent_account':
@@ -145,7 +140,7 @@ switch ($path) {
         break;
 
 
-     // Management Fund routes  
+    // Management Fund routes  
     case '/MaMut_web/fund_list':
     require_once __DIR__ . "/../controllers/FundController.php";
     (new FundController())->showAllFunds();
@@ -180,7 +175,34 @@ switch ($path) {
         require_once __DIR__ . "/../controllers/FundController.php";
         (new FundController())->viewFund($_GET['id'] ?? 0);
         break;
+    
 
+
+    // Management Event Type routes
+    case '/MaMut_web/event_type_list':
+        require_once __DIR__ . "/../controllers/EventTypeController.php";
+        (new EventTypeController())->index();
+        break;
+
+    case '/MaMut_web/store_event_type':
+        require_once __DIR__ . "/../controllers/EventTypeController.php";
+        (new EventTypeController())->store();
+        break;
+
+    case '/MaMut_web/update_event_type':
+        require_once __DIR__ . "/../controllers/EventTypeController.php";
+        (new EventTypeController())->update($_POST['id'] ?? 0, $_POST);
+        break;
+
+    case '/MaMut_web/activate_event_type':
+        require_once __DIR__ . "/../controllers/EventTypeController.php";
+        (new EventTypeController())->activate();
+        break;
+
+    case '/MaMut_web/deactivate_event_type':
+        require_once __DIR__ . "/../controllers/EventTypeController.php";
+        (new EventTypeController())->deactivate();
+        break;
 
 
     default:

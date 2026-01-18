@@ -22,6 +22,13 @@ $menu = [
     ],
 
     [
+        "label" => "Gestion des activités",
+        "icon" => "list-task",
+        "url" => "/MaMut_web/activity_list",
+        "roles" => ["admin"]
+    ],
+
+    [
         "label" => "Gestion des caisses",
         "icon" => "wallet",
         "url" => "/MaMut_web/fund_list",
@@ -33,8 +40,8 @@ $menu = [
         "icon" => "gear",
         "roles" => ["admin"],
         "children" => [
-            ["label" => "Type d’événement", "icon"=> "wallet" ,"url" => "/MaMut_web/add_fund"],
-            ["label" => "Mode paiement", "icon"=> "gear" , "url" => "/MaMut_web/fund"]
+            ["label" => "Type d’événement", "icon"=> "wallet" ,"url" => "/MaMut_web/event_type_list"],
+            ["label" => "Mode paiement", "icon"=> "gear" , "url" => "/MaMut_web/mode_payment_list"]
         ]
     ],
 ];
